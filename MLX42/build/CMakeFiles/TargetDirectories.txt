@@ -1,0 +1,7 @@
+/Users/bolcay/Desktop/Cub3d/MLX42/build/CMakeFiles/mlx42.dir
+/Users/bolcay/Desktop/Cub3d/MLX42/build/CMakeFiles/edit_cache.dir
+/Users/bolcay/Desktop/Cub3d/MLX42/build/CMakeFiles/rebuild_cache.dir
+/Users/bolcay/Desktop/Cub3d/MLX42/build/CMakeFiles/list_install_components.dir
+/Users/bolcay/Desktop/Cub3d/MLX42/build/CMakeFiles/install.dir
+/Users/bolcay/Desktop/Cub3d/MLX42/build/CMakeFiles/install/local.dir
+/Users/bolcay/Desktop/Cub3d/MLX42/build/CMakeFiles/install/strip.dir
