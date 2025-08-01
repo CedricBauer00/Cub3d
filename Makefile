@@ -6,7 +6,7 @@
 #    By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/01 12:14:05 by bolcay            #+#    #+#              #
-#    Updated: 2025/08/01 12:30:38 by bolcay           ###   ########.fr        #
+#    Updated: 2025/08/01 15:54:10 by bolcay           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g $(INCLUDE)
 RM = rm -f
 RM_DIR = rm -rf
-NAME = cub3d
+NAME = cub3D
 OBJS = $(SRCS:.c=.o)
 
 LIBFT_DIR = libft
