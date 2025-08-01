@@ -1,1 +1,82 @@
-this is a test
+🧩 1. Parsing Phase
+Goal: Read the .cub file, validate it, and store all relevant data internally.
+
+🔄 Steps:
+📄 1.1 Read the file
+Open the .cub file
+
+Read it line by line
+
+🧾 1.2 Identify the content
+Distinguish between:
+
+Texture paths: NO, SO, WE, EA
+
+Colors: F, C
+
+Map (everything after the above elements)
+
+📦 1.3 Store the data (e.g. in a t_config structure)
+Texture paths (e.g. char *north_tex)
+
+Colors (int floor_color, int ceiling_color)
+
+Map (char **map, int map_height, int map_width)
+
+Player start position and direction (float px, py, angle)
+
+🧪 1.4 Validate the data
+Is each element defined exactly once?
+
+Are RGB color values within valid range?
+
+Do all texture files exist?
+
+Is the map:
+
+Completely enclosed by walls (1)?
+
+Made up of valid characters (0, 1, N, S, E, W, and spaces)?
+
+Containing only one player start position?
+
+🕹️ 2. Execution Phase
+Goal: Start the game, render using raycasting, and handle player input.
+
+🧱 2.1 Setup
+Initialize MiniLibX (mlx_init, mlx_new_window)
+
+Load texture images
+
+Convert RGB color values
+
+Create and open the game window
+
+📐 2.2 Raycasting & Rendering
+For each vertical column of pixels in the screen:
+
+Cast a ray from the player’s position
+
+Detect the first wall hit
+
+Compute the distance, wall height, correct texture, and texture offset
+
+Render that vertical line (e.g. with an image buffer)
+
+🧭 2.3 Input & Movement
+Keyboard input:
+
+W, A, S, D: move the player
+
+Arrow keys: rotate the player view
+
+ESC or red window close button: clean exit
+
+Collision detection with the map (don't walk through walls)
+
+♻️ 2.4 Event Loop
+Main loop (mlx_loop) with:
+
+Rendering function
+
+Event hooks for input handling (mlx_key_hook, mlx_loop_hook)
