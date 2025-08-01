@@ -1,0 +1,3 @@
+On 01.08.25
+So far I just setup the makefile and the struct for reading from the input file.
+and also set all variables up for the parsing in the 'init_data()' function. 
