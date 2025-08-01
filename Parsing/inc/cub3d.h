@@ -18,6 +18,7 @@ typedef struct s_setup
 //							  MAIN
 // ----------------------------------------------------------------------
 
-int main(int argc, char **argv);
+int		main(int argc, char **argv);
+void	init_data(t_setup *data);
 
 #endif
