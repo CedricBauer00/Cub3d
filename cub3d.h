@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/01 12:27:36 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/02 13:29:36 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,23 @@
 # include <stdio.h>
 # include <stddef.h>
 # include <fcntl.h>
+
+# define TS 64
+# define WIDTH 1024
+# define HEIGHT 512
+typedef struct s_player
+{
+	int		x;
+	int		y;
+}	t_player;
+
+typedef struct s_game
+{
+	mlx_t	*mlx;
+	t_player *player;
+}	t_game;
+
+void	key(mlx_key_data_t keys, void *ptr);
+int		paint_map(t_game *game, mlx_image_t *image);
 
 #endif

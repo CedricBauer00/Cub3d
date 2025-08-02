@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/01 13:00:32 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/02 12:38:49 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,52 @@ int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	mlx_t *mlx;
+	int	i;
+	int	j;
+	t_game	*game;
+	mlx_image_t	*image;
 
-	mlx = mlx_init(500, 500, "game", true);
-	if (!mlx)
+	i = 0;
+	game = malloc(sizeof(t_game));
+	if (!game)
 		return (0);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	game->player = malloc(sizeof(t_player));
+	if (!game->player)
+		return (0);
+	game->mlx = mlx_init(1024, 512, "game", true);
+	if (!game->mlx)
+		return (0);
+	image = mlx_new_image(game->mlx, 1024, 512);
+	while (i < 8)
+	{
+		j = 0;
+		while (j < 8)
+		{
+			mlx_put_pixel(image, 250 + i, 250 - j, 0x40E0D0);
+			j++;
+		}
+		if (i == 3 || i == 4 || i == 5)
+		{
+			if (i == 4)
+			{
+				j = 0;
+				while (j < 150)
+				{
+					mlx_put_pixel(image, 250 + i, 250 + j + 1, 0xFF0000FF);
+					j++;
+				}
+			}
+			j = 0;
+			while (j < 20)
+			{
+				mlx_put_pixel(image, 250 + i, 250 + j + 1,0xFFFF00FF);
+				j++;
+			}
+		}
+		i++;
+	}
+	mlx_image_to_window(game->mlx, image, 0, 0);
+	mlx_loop(game->mlx);
+	mlx_terminate(game->mlx);
 	return (0);
 }

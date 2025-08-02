@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+         #
+#    By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/01 12:14:05 by bolcay            #+#    #+#              #
-#    Updated: 2025/08/01 15:54:10 by bolcay           ###   ########.fr        #
+#    Updated: 2025/08/02 13:10:10 by batuhan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c
+SRCS = main.c player_movement.c utils.c initialize.c
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g $(INCLUDE)
+CFLAGS = $(INCLUDE)
 RM = rm -f
 RM_DIR = rm -rf
 NAME = cub3D
@@ -26,7 +26,7 @@ MLX42_DIR = MLX42
 MLX42_LIB = $(MLX42_DIR)/build/libmlx42.a
 
 INCLUDE     = -I$(MLX42_DIR)/include -I header -I libft
-LDINCLUDE   = -L$(MLX42_DIR)/build -lmlx42 -L$(LIBFT_DIR) -lft -lglfw -framework Cocoa -framework OpenGL -framework IOKit
+LDINCLUDE   = -L$(MLX42_DIR)/build -lmlx42 -L$(LIBFT_DIR) -lft -lglfw MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 
 all: ${NAME}
 
