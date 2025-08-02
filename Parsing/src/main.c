@@ -36,8 +36,7 @@ int	read_from_file(char **argv, t_configs *data)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		return (printf("\033[31mError: Could not read from file! \
-			Try another one.\n\033[0m"), -1);
+		return (printf("\033[31mError: Could not read from file! Try another one.\n\033[0m"), -1);
 	if (get_next_line(fd) == NULL)
 			return (printf("\033[31mEmpty file!\n\033[0m"), -1);
 	data->lcount++;
