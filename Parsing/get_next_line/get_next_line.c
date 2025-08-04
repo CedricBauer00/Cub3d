@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:23:06 by cbauer            #+#    #+#             */
-/*   Updated: 2024/12/10 17:47:30 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/04 14:28:11 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ char	*get_next_line(int fd)
 		linebreakpos = 0;
 		i = ft_readfile(fd, &buf, &line);
 		if (i > 0)
-			line = ft_strjoin(line, buf);
+			line = gnl_strjoin(line, buf);
 		if (i < 0)
 			return (NULL);
 		if (i == 0)

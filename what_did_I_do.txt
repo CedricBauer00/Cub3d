@@ -1,3 +1,6 @@
 On 01.08.25
 So far I just setup the makefile and the struct for reading from the input file.
 and also set all variables up for the parsing in the 'init_data()' function. 
+
+On 04.08.25
+I implemented a function for parsing the 'map_name' correctly, so only maps ending with '.cub' will be allowed

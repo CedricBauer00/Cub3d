@@ -8,6 +8,7 @@
 #include <string.h>
 #include <math.h>
 #include "../get_next_line/get_next_line.h"
+#include "../libft/libft.h"
 
 typedef struct s_configs
 {
@@ -41,5 +42,6 @@ typedef struct s_configs
 
 int		main(int argc, char **argv);
 void	init_data(t_configs *data);
+int		correct_name(char **argv);
 
 #endif

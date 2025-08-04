@@ -6,21 +6,21 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:28:54 by ialiev            #+#    #+#             */
-/*   Updated: 2024/12/10 11:59:50 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/04 14:28:01 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char *line, char *buf)
+char	*gnl_strjoin(char *line, char *buf)
 {
 	size_t	line_len;
 	size_t	buf_len;
 	size_t	i;
 	char	*new_str;
 
-	line_len = ft_strlen(line, 0, 0);
-	buf_len = ft_strlen(buf, 1, 0);
+	line_len = gnl_strlen(line, 0, 0);
+	buf_len = gnl_strlen(buf, 1, 0);
 	if (buf[buf_len] == '\n')
 		buf_len += 1;
 	new_str = (char *)malloc((line_len + buf_len + 1) * sizeof(char));
@@ -38,7 +38,7 @@ char	*ft_strjoin(char *line, char *buf)
 	return (new_str);
 }
 
-int	ft_strlen(const char *buf, int indic, int linebreakpos)
+int	gnl_strlen(const char *buf, int indic, int linebreakpos)
 {
 	int	c;
 
@@ -66,7 +66,7 @@ char	*ft_writeremainder(char **buf, int *linebreakpos)
 	c = 0;
 	if (linebreakpos > 0)
 		c = linebreakpos[0] + 1;
-	i = ft_strlen((*buf), 2, linebreakpos[0]);
+	i = gnl_strlen((*buf), 2, linebreakpos[0]);
 	line = (char *)malloc((i + 1) * sizeof(char));
 	if (!line)
 	{

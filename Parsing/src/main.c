@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/01 13:05:49 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/04 15:06:01 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,39 @@ int	read_from_file(char **argv, t_configs *data)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		return (printf("\033[31mError: Could not read from file! Try another one.\n\033[0m"), -1);
+	{
+		printf("\033[31mError: Could not read from file! Try another one.\n\
+			\033[0m");
+		return (-1);
+	}
 	if (get_next_line(fd) == NULL)
 			return (printf("\033[31mEmpty file!\n\033[0m"), -1);
 	data->lcount++;
 	
-			// while (get_next_line(fd))
+	// while (get_next_line(fd))
 	// {
 	// 	lines = 
 	// 	data->lcount++;
 	// }
 	close (fd);
+	return (0);
+}
+
+int	correct_name(char **argv)
+{
+	int		i;
+	int		j;
+
+	j = 0;
+	i = ft_strlen(argv[1]);
+	if (i <= 4)
+		return (printf("Error: Map name too short!\n"), -1);
+	i -= 4;
+	if (ft_strncmp(argv[1] + i, ".cub", 4) != 0)
+	{
+		printf("Error: Incorrect naming! Try a file ending with .cub\n");
+		return (-1);
+	}
 	return (0);
 }
 
@@ -57,6 +79,8 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (printf("Error: Too many/few arguments!\n"), -1);
 	init_data(&data);
+	if (correct_name(argv) < 0)
+		return (-1);
 	if (read_from_file(&argv[1], &data) < 0)
 		return (-1);
 }
