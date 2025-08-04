@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/04 15:06:01 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/04 15:51:01 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,64 @@ void	init_data(t_configs	*data)
 	data->plr_dir = '\0'; //'no_direction'
 }
 
-int	read_from_file(char **argv, t_configs *data)
+int	get_lines(char **argv, t_configs *data)
 {
+	int	length;
 	int	fd;
 
+	length = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
-		printf("\033[31mError: Could not read from file! Try another one.\n\
-			\033[0m");
-		return (-1);
+		return (printf("\033[31m\
+			Error: Could not read from file! Try another one.\n\
+			\033[0m"), -1);
 	}
-	if (get_next_line(fd) == NULL)
-			return (printf("\033[31mEmpty file!\n\033[0m"), -1);
-	data->lcount++;
-	
-	// while (get_next_line(fd))
-	// {
-	// 	lines = 
-	// 	data->lcount++;
-	// }
+	while (get_next_line(fd) != NULL)
+		length++;
+	data->lines = (char **)malloc(sizeof(char *) * (length + 1));
+	if (!data->lines)
+		return (close(fd), printf("Error: Allocation failed!"), -1);
+	close(fd);
+	return (0);
+}
+
+bool	check_empty_line(char *line) //checks if a line in the map.cub file is empty - so it can be skipped by returning false
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == '\n')
+		return (false);
+	return (true);
+}
+
+int	read_from_file(char **argv, t_configs *data)
+{
+	int	fd;
+	int	i;
+
+	i = 0;
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+	{
+		return (printf("\033[31m\
+			Error: Could not read from file! Try another one.\n\
+			\033[0m"), -1);
+	}
+	get_lines(argv, data);
+	data->lines[i] = get_next_line(fd);
+	while (data->lines[i] != NULL)
+	{
+		data->lines[i] = get_next_line(fd);
+		if (check_empty_line(data->lines[i]) == true) // if true, increment count
+			data->lcount++;
+		i++;
+	}
+	if (data->lines[0] == NULL)
+		return (close (fd), printf("\033[31mEmpty file!\n\033[0m"), -1);
 	close (fd);
 	return (0);
 }

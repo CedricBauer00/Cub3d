@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include <math.h>
 #include "../get_next_line/get_next_line.h"
 #include "../libft/libft.h"
@@ -42,6 +43,8 @@ typedef struct s_configs
 
 int		main(int argc, char **argv);
 void	init_data(t_configs *data);
+void	get_lines(t_configs *data, int fd);
 int		correct_name(char **argv);
+bool	check_empty_line(char *line);
 
 #endif
