@@ -8,24 +8,29 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include <MLX42/MLX42.h>
 #include "../get_next_line/get_next_line.h"
 #include "../libft/libft.h"
 
-typedef struct s_configs
+typedef struct s_textures
 {
-	char	**lines;
-	int		lcount;
-	char	**txtrs;
-
 	//textures
-	char	*no_text;
-	char	*so_text;
-	char	*we_text;
-	char	*ea_text;
+	mlx_texture_t	*no_text;
+	mlx_texture_t	*so_text;
+	mlx_texture_t	*we_text;
+	mlx_texture_t	*ea_text;
 
 	//floor/ceeling
-	int		f_clr;
-	int		c_clr;
+	uint32_t	f_clr;
+	uint32_t	c_clr;
+}	t_textures;
+
+typedef struct s_configs
+{
+	char		**lines;
+	int			lcount;
+	char		**txtrs;
+	t_textures	*textures;
 
 	//map
 	int		m_hight;
@@ -33,9 +38,9 @@ typedef struct s_configs
 	char	**map;
 
 	//player position 
-	int		x_pos;
-	int		y_pos;
-	char	plr_dir;
+	int			x_pos;
+	int			y_pos;
+	char		plr_dir;
 }	t_configs;
 
 typedef struct s_seen

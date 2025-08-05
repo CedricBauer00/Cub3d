@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/05 10:20:28 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/05 12:50:25 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ void	init_data(t_configs	*data)
 {
 	data->lines = NULL;
 	data->lcount = 0;
-	data->no_text = NULL;
-	data->so_text = NULL;
-	data->we_text = NULL;
-	data->ea_text = NULL;
-	data->f_clr = -1; //initialized to 'no color'
-	data->c_clr = -1; //initialized to 'no color'
 	data->m_hight = 0;
 	data->m_width = 0;
 	data->map = NULL;

@@ -2,7 +2,8 @@ GREEN = \033[0;32m
 DEFAULT = \033[0m
 
 LDFLAGS = -L$(LIBFT_DIR) -lft
-CFLAGS = -Ilibft -Wextra -Wall -Werror #-lm #-g -fsanitize=address #del 
+CFLAGS = -Ilibft -Wextra -Wall -Werror -I$(MLX_DIR)/include #-g -fsanitize=address #del 
+MLX_FLAGS = -L./libs/MLX42/build -L/opt/homebrew/lib -lmlx42 -lglfw -ldl -lm
 
 RM = rm -f
 CC = gcc
@@ -11,7 +12,11 @@ NAME = cub3d
 
 LIBFT_DIR = libft
 
+MLX_DIR = MLX
+MLX = $(MLX_DIR)/build/libmlx42.a
+
 LIBFT = $(LIBFT_DIR)/libft.a
+
 
 SOURCES = src/main.c \
 		get_next_line/get_next_line.c \
@@ -19,10 +24,24 @@ SOURCES = src/main.c \
 
 OBJECTS := $(SOURCES:.c=.o)
 
-all: $(NAME)
+all: submodules $(NAME)
+
+submodules:
+    @if [ ! -f $(MLX_DIR)/CMakeLists.txt ]; then \
+        echo "$(D_YELLOW)Initializing submodules...$(DEFAULT)"; \
+        git submodule update --init --recursive; \
+        echo "$(D_GREEN)Submodules initialized!$(DEFAULT)"; \
+    fi
+$(MLX): $(MLX_DIR)
+    @echo "Building MLX..."
+    @cmake $(MLX_DIR) -B $(MLX_DIR)/build
+    @cmake --build $(MLX_DIR)/build -j4
+    @echo "...finished building MLX"
+$(MLX_DIR):
+    @git clone https://github.com/codam-coding-college/MLX42.git $@
 
 $(NAME): $(LIBFT) $(OBJECTS)
-	@$(CC) $(CFLAGS) $(LIBFT) $(OBJECTS) $(INC) -o $(NAME) $(LDFLAGS)
+	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(MLX) $(LIBFT) $(OBJECTS) $(INC) -o $(NAME) $(LDFLAGS)
 	@echo "$(GREEN)Cub3d is playable!$(DEFAULT)"
 
 $(LIBFT):
@@ -45,68 +64,3 @@ re: fclean all
 
 debug: $(OBJECTS)
 	@$(CC) $(CFLAGS) $^ -o debug
-
-
-# GREEN = \033[0;32m
-# DEFAULT = \033[0m
-
-# LDFLAGS = -L$(LIBFT_DIR) -lft
-# CFLAGS = -Ilibft -Wextra -Wall -Werror #-lm #-g -fsanitize=address #del 
-
-# RM = rm -f
-# CC = gcc
-
-# NAME = cub3d
-
-# LIBFT_DIR = libft
-# LIBFT = $(LIBFT_DIR)/libft.a
-
-# SOURCES = src/main.c \
-# 		get_next_line/get_next_line.c \
-# 		get_next_line/get_next_line_utils.c
-
-# OBJ_DIR = obj
-
-# # Ersetze Pfad von .c durch obj/*.o
-# OBJECTS = $(patsubst src/%.c,$(OBJ_DIR)/%.o,$(filter src/%.c,$(SOURCES))) \
-# 		  $(patsubst get_next_line/%.c,$(OBJ_DIR)/get_next_line/%.o,$(filter get_next_line/%.c,$(SOURCES)))
-
-# all: $(NAME)
-
-# # Stelle sicher, dass der obj/ und obj/get_next_line/ Ordner existiert
-# $(OBJ_DIR):
-# 	mkdir -p $(OBJ_DIR)
-
-# $(OBJ_DIR)/get_next_line:
-# 	mkdir -p $(OBJ_DIR)/get_next_line
-
-# # Linken
-# $(NAME): $(LIBFT) $(OBJECTS)
-# 	$(CC) $(CFLAGS) $(LIBFT) $(OBJECTS) $(INC) -o $(NAME) $(LDFLAGS)
-# 	@echo "$(GREEN)Cub3d is playable!$(DEFAULT)"
-
-# # Libft kompilieren
-# $(LIBFT):
-# 	@$(MAKE) -C $(LIBFT_DIR) --silent
-
-# # Kompilieren: Je nachdem ob Datei in src/ oder get_next_line/ liegt, passende Regel
-# $(OBJ_DIR)/%.o: src/%.c | $(OBJ_DIR)
-# 	$(CC) $(CFLAGS) -c $< -o $@
-
-# $(OBJ_DIR)/get_next_line/%.o: get_next_line/%.c | $(OBJ_DIR)/get_next_line
-# 	$(CC) $(CFLAGS) -c $< -o $@
-
-# clean:
-# 	@$(MAKE) -C $(LIBFT_DIR) clean --silent
-# 	@$(RM) -r $(OBJ_DIR)
-# 	@echo "$(GREEN)Cub3d cleaned successfully!$(DEFAULT)"
-
-# fclean: clean
-# 	@$(RM) $(LIBFT)
-# 	@$(RM) $(NAME)
-# 	@echo "$(GREEN)Cub3d fully cleaned successfully!$(DEFAULT)"
-
-# re: fclean all
-
-# debug: $(OBJECTS)
-# 	$(CC) $(CFLAGS) $^ -o debug

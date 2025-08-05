@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 17:46:07 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/05 11:28:52 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/05 12:28:42 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ int	is6lines(char **lines)
 	return (0);
 }
 
-// int	matches(char *line, char *prfx)
-// {
-// 	if (strncmp(line, prfx, 3) < 0)
-// 		return ()
-// }
-
 int	set_flags(t_seen *flags, char **lines)
 {
 	flags->no = 0;
@@ -46,7 +40,7 @@ int	set_flags(t_seen *flags, char **lines)
 int	check_duplicate(char **lines)
 {
 	int		i;
-	t_seen	flags;
+	t_seen	flags; // eignetlich schöner mit flags = {0}; aber dann 26 lines
 
 	i = -1;
 	if (set_flags(&flags, lines) < 0)
@@ -71,7 +65,15 @@ int	check_duplicate(char **lines)
 		return (printf("Error: Input error: Duplicates/Missing lines!\n"));
 	return (0);
 }
-//some \0 or \n check
+//some \0 or \n check missing earlier - Leon fragen
+
+bool	ft_isspace(char c)
+{
+	if (c >= 9 && c <= 13 || c == 32)
+		return (true);
+	return (false);
+}
+
 int	seperate(t_configs *data)
 {
 	if (check_duplicate(data->lines) < 0)
@@ -79,4 +81,8 @@ int	seperate(t_configs *data)
 	data->txtrs = (char **)malloc(sizeof(char *) * 7);
 	if (!data->txtrs)
 		return (printf("Error: Allocation failed!"), -1);
+	if (init_txtrs(data) < 0)
+		return (-1);
+	if (check_textures(data) < 0)
+		return (-1);
 }
