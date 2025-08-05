@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/05 15:03:36 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/05 17:24:39 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@
 # define TS 64
 # define WIDTH 1024
 # define HEIGHT 512
+# define SPEED 0.05
+# define PI 3.1415926535897932
 
 typedef enum e_dir {UP, DOWN, LEFT, RIGHT} t_dir;
 typedef struct s_player
 {
 	int		x;
 	int		y;
+	double	angle;
 	t_dir	dir;
 	mlx_image_t *image;
 	mlx_instance_t *inst;
@@ -54,6 +57,7 @@ void	move_down(t_game *game);
 
 void	draw_player_updown(t_game *game, mlx_image_t *image);
 void	draw_player_sides(t_game *game, mlx_image_t *image);
+void	draw_player_ex(t_game *game, mlx_image_t *image);
 void	initialize(t_game *game);
 
 #endif

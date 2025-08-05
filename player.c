@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/05 15:03:23 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/05 17:30:35 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,51 @@
 static void	delete_image(mlx_image_t *image)
 {
 	ft_memset(image->pixels, 0, image->width * image->height * sizeof(uint32_t));
+}
+
+void	draw_player_ex(t_game *game, mlx_image_t *image)
+{
+	int i;
+    int j;
+    int d_x;
+    int d_y;
+	int	p_x;
+	int	p_y;
+
+    i = 0;
+    j = 0;
+    d_x = game->player->x;
+    d_y = game->player->y;
+	delete_image(image);
+	// while (i < 8)
+	// {
+	// 	j = 0;
+	// 	while (j < 8)
+	// 	{
+	// 		mlx_put_pixel(image, d_x, d_y + j, 0x40E0D0);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	i = 0;
+	while (i < 20)
+	{
+		p_x = d_x + 4 + (int)round(cos(game->player->angle) * i);
+		p_y = d_y + 4 - (int)round(sin(game->player->angle) * i);
+		mlx_put_pixel(image, p_x, p_y, 0xFFFF00FF);
+		i++;
+	}
+	i = 0;
+	while (i < 8)
+	{
+		j = 0;
+		while (j < 8)
+		{
+			mlx_put_pixel(image, d_x + i, d_y + j, 0x40E0D0);
+			j++;
+		}
+		i++;
+	}
 }
 
 void	draw_player_sides(t_game *game, mlx_image_t *image)

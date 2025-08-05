@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/05 15:06:15 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/05 17:42:10 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	rotate_right(t_game *game)
+{
+	game->player->angle -= SPEED;
+	if (game->player->angle < 0)
+		game->player->angle += 2 * PI;
+	draw_player_ex(game, game->player->image);
+}
+
+static void	rotate_left(t_game *game)
+{
+	game->player->angle += SPEED;
+	if (game->player->angle > 2 * PI)
+		game->player->angle -= 2 * PI;
+	draw_player_ex(game, game->player->image);
+}
 
 void	key(mlx_key_data_t keys, void *ptr)
 {
@@ -41,9 +57,11 @@ void	key(mlx_key_data_t keys, void *ptr)
 		}
 		else if (signal == MLX_KEY_LEFT)
 		{
+			rotate_left(game);
 		}
 		else if (signal == MLX_KEY_RIGHT)
 		{
+			rotate_right(game);
 		}
 	}
 }
@@ -52,9 +70,14 @@ void	move_up(t_game *game)
 {
 	game->player->dir = UP;
 	game->player->inst = &game->player->image->instances[0];
-	game->player->inst->y -= 5;
-	game->player->y -= 5;
-	draw_player_updown(game, game->player->image);
+	game->player->inst->x += (int)round(cos(game->player->angle) * 5);
+	game->player->x += (int)round(cos(game->player->angle) * 5);
+	game->player->inst->y -= (int)round(sin(game->player->angle) * 5);
+	game->player->y -= (int)round(sin(game->player->angle) * 5);
+	// game->player->inst = &game->player->image->instances[0];
+	// game->player->inst->y -= 5;
+	// game->player->y -= 5;
+	draw_player_ex(game, game->player->image);
 }
 
 void	move_down(t_game *game)
@@ -63,7 +86,7 @@ void	move_down(t_game *game)
 	game->player->inst = &game->player->image->instances[0];
 	game->player->inst->y += 5;
 	game->player->y += 5;
-	draw_player_updown(game, game->player->image);
+	draw_player_ex(game, game->player->image);
 }
 
 void	move_right(t_game *game)
@@ -72,7 +95,7 @@ void	move_right(t_game *game)
 	game->player->inst = &game->player->image->instances[0];
 	game->player->inst->x += 5;
 	game->player->x += 5;
-	draw_player_sides(game, game->player->image);
+	draw_player_ex(game, game->player->image);
 }
 
 void	move_left(t_game *game)
@@ -82,5 +105,5 @@ void	move_left(t_game *game)
 	// draw_player(game, game->player->image);
 	game->player->inst = &game->player->image->instances[0];
 	game->player->inst->x -= 5;
-	draw_player_sides(game, game->player->image);
+	draw_player_ex(game, game->player->image);
 }
