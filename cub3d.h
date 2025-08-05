@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/03 12:36:28 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/05 13:49:04 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,11 @@ int		paint_map(t_game *game, mlx_image_t *image);
 
 // 2D movement
 void	move_left(t_game *game);
+void	move_right(t_game *game);
+void	move_up(t_game *game);
+void	move_down(t_game *game);
+
+void	draw_player(t_game *game, mlx_image_t *image);
+void	initialize(t_game *game);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/03 12:37:04 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/05 13:37:55 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	key(mlx_key_data_t keys, void *ptr)
 			exit(1);
 		else if (signal == MLX_KEY_W)
 		{
+			move_up(game);
 		}
 		else if (signal == MLX_KEY_A)
 		{
@@ -32,9 +33,11 @@ void	key(mlx_key_data_t keys, void *ptr)
 		}
 		else if (signal == MLX_KEY_S)
 		{
+			move_down(game);
 		}
 		else if (signal == MLX_KEY_D)
 		{
+			move_right(game);
 		}
 		else if (signal == MLX_KEY_LEFT)
 		{
@@ -45,10 +48,41 @@ void	key(mlx_key_data_t keys, void *ptr)
 	}
 }
 
+void	move_up(t_game *game)
+{
+	game->player->dir = UP;
+	game->player->inst = &game->player->image->instances[0];
+	game->player->inst->y -= 5;
+	game->player->y -= 5;
+	draw_player(game, game->player->image);
+}
+
+void	move_down(t_game *game)
+{
+	game->player->dir = DOWN;
+	game->player->inst = &game->player->image->instances[0];
+	game->player->inst->y += 5;
+	game->player->y += 5;
+	draw_player(game, game->player->image);
+}
+
+void	move_right(t_game *game)
+{
+	game->player->dir = RIGHT;
+	game->player->inst = &game->player->image->instances[0];
+	game->player->inst->x += 5;
+	game->player->x += 5;
+	draw_player(game, game->player->image);
+}
+
 void	move_left(t_game *game)
 {
+	game->player->dir = LEFT;
+	game->player->x -= 5;
+	// draw_player(game, game->player->image);
 	game->player->inst = &game->player->image->instances[0];
 	game->player->inst->x -= 5;
+	draw_player(game, game->player->image);
 	// int	x;
 	// int	y;
 	// int	i;

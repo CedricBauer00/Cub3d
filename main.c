@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/03 12:31:40 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/05 13:49:45 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,12 @@ int	main(int ac, char **av)
 	game->mlx = mlx_init(1024, 512, "game", true);
 	if (!game->mlx)
 		return (0);
+	initialize(game);
 	paint_map(game, game->player->image);
 	game->player->image = mlx_new_image(game->mlx, 1024, 512);
 	while (i < 8)
 	{
 		j = 0;
-		while (j < 8)
-		{
-			mlx_put_pixel(game->player->image, 253 + i, 253 - j, 0x40E0D0);
-			j++;
-		}
 		if (i == 3 || i == 4 || i == 5)
 		{
 			if (i == 4)
@@ -57,6 +53,12 @@ int	main(int ac, char **av)
 				mlx_put_pixel(game->player->image, 253 + i, 253 + j + 1,0xFFFF00FF);
 				j++;
 			}
+		}
+		j = 0;
+		while (j < 8)
+		{
+			mlx_put_pixel(game->player->image, 253 + i, 253 + j, 0x40E0D0);
+			j++;
 		}
 		i++;
 	}
