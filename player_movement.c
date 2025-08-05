@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/05 17:53:02 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/05 18:17:11 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,82 +40,72 @@ void	key(mlx_key_data_t keys, void *ptr)
 		if (signal == MLX_KEY_ESCAPE)
 			exit(1);
 		else if (signal == MLX_KEY_W)
-		{
 			move_up(game);
-		}
 		else if (signal == MLX_KEY_A)
-		{
 			move_left(game);
-		}
 		else if (signal == MLX_KEY_S)
-		{
 			move_down(game);
-		}
 		else if (signal == MLX_KEY_D)
-		{
 			move_right(game);
-		}
 		else if (signal == MLX_KEY_LEFT)
-		{
 			rotate_left(game);
-		}
 		else if (signal == MLX_KEY_RIGHT)
-		{
 			rotate_right(game);
-		}
 	}
 }
 
 void	move_up(t_game *game)
 {
+	double	angle;
+
+	angle = game->player->angle;
 	game->player->dir = UP;
 	game->player->inst = &game->player->image->instances[0];
-	game->player->inst->x += (int)round(cos(game->player->angle) * 5);
-	game->player->x += (int)round(cos(game->player->angle) * 5);
-	game->player->inst->y -= (int)round(sin(game->player->angle) * 5);
-	game->player->y -= (int)round(sin(game->player->angle) * 5);
-	// game->player->inst = &game->player->image->instances[0];
-	// game->player->inst->y -= 5;
-	// game->player->y -= 5;
+	game->player->inst->x += (int)round(cos(angle) * 5);
+	game->player->x += (int)round(cos(angle) * 5);
+	game->player->inst->y -= (int)round(sin(angle) * 5);
+	game->player->y -= (int)round(sin(angle) * 5);
 	draw_player_ex(game, game->player->image);
 }
 
 void	move_down(t_game *game)
 {
+	double	angle;
+
+	angle = game->player->angle;
 	game->player->dir = DOWN;
 	game->player->inst = &game->player->image->instances[0];
-	// game->player->inst->y += 5;
-	// game->player->y += 5;
-	game->player->inst->x -= (int)round(cos(game->player->angle) * 5);
-	game->player->x -= (int)round(cos(game->player->angle) * 5);
-	game->player->inst->y += (int)round(sin(game->player->angle) * 5);
-	game->player->y += (int)round(sin(game->player->angle) * 5);
+	game->player->inst->x -= (int)round(cos(angle) * 5);
+	game->player->x -= (int)round(cos(angle) * 5);
+	game->player->inst->y += (int)round(sin(angle) * 5);
+	game->player->y += (int)round(sin(angle) * 5);
 	draw_player_ex(game, game->player->image);
 }
 
 void	move_right(t_game *game)
 {
+	double	angle;
+
+	angle = game->player->angle;
 	game->player->dir = RIGHT;
 	game->player->inst = &game->player->image->instances[0];
-	// game->player->inst->x += 5;
-	// game->player->x += 5;
-	game->player->inst->x += (int)round(sin(game->player->angle) * 5);
-	game->player->x += (int)round(sin(game->player->angle) * 5);
-	game->player->inst->y += (int)round(cos(game->player->angle) * 5);
-	game->player->y += (int)round(cos(game->player->angle) * 5);
+	game->player->inst->x += (int)round(sin(angle) * 5);
+	game->player->x += (int)round(sin(angle) * 5);
+	game->player->inst->y += (int)round(cos(angle) * 5);
+	game->player->y += (int)round(cos(angle) * 5);
 	draw_player_ex(game, game->player->image);
 }
 
 void	move_left(t_game *game)
 {
+	double	angle;
+
+	angle = game->player->angle;
 	game->player->dir = LEFT;
-	// game->player->x -= 5;
-	// draw_player(game, game->player->image);
 	game->player->inst = &game->player->image->instances[0];
-	// game->player->inst->x -= 5;
-	game->player->inst->x -= (int)round(sin(game->player->angle) * 5);
-	game->player->x -= (int)round(sin(game->player->angle) * 5);
-	game->player->inst->y -= (int)round(cos(game->player->angle) * 5);
-	game->player->y -= (int)round(cos(game->player->angle) * 5);
+	game->player->inst->x -= (int)round(sin(angle) * 5);
+	game->player->x -= (int)round(sin(angle) * 5);
+	game->player->inst->y -= (int)round(cos(angle) * 5);
+	game->player->y -= (int)round(cos(angle) * 5);
 	draw_player_ex(game, game->player->image);
 }

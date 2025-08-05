@@ -1,6 +1,7 @@
 Created a 2D map cus i like having something visual when working on projects.
 
 For now the 2D map only shows our movements and the direction we're facing.
+(Update): it shows the directions in 360 degrees and the movement is done accordingly to where the character is facing.
 
 The map will help when calculating the ray tracing stuff and also we probably will be able
 to use it as a minimap after changing the code a bit.

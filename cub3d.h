@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/05 17:55:01 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/05 18:19:50 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,19 @@ typedef struct s_game
 	t_player *player;
 }	t_game;
 
-void	key(mlx_key_data_t keys, void *ptr);
+// printing stuff on the map
 int		paint_map(t_game *game, mlx_image_t *image);
+void	draw_player_ex(t_game *game, mlx_image_t *image);
 
 // 2D movement
+void	key(mlx_key_data_t keys, void *ptr);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
 void	move_up(t_game *game);
 void	move_down(t_game *game);
 
-void	draw_player_updown(t_game *game, mlx_image_t *image);
-void	draw_player_sides(t_game *game, mlx_image_t *image);
-void	draw_player_ex(t_game *game, mlx_image_t *image);
+// void	draw_player_updown(t_game *game, mlx_image_t *image);
+// void	draw_player_sides(t_game *game, mlx_image_t *image);
 void	initialize(t_game *game);
 
 #endif
