@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/02 12:26:46 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/03 12:37:04 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	key(mlx_key_data_t keys, void *ptr)
 		}
 		else if (signal == MLX_KEY_A)
 		{
+			move_left(game);
 		}
 		else if (signal == MLX_KEY_S)
 		{
@@ -44,4 +45,48 @@ void	key(mlx_key_data_t keys, void *ptr)
 	}
 }
 
+void	move_left(t_game *game)
+{
+	game->player->inst = &game->player->image->instances[0];
+	game->player->inst->x -= 5;
+	// int	x;
+	// int	y;
+	// int	i;
+	// int	j;
 
+	// i = 0;
+	// x = game->player->x - 5;
+	// y = game->player->y;
+	// mlx_delete_image(game->mlx, game->player->image);
+	// game->player->image = mlx_new_image(game->mlx, 8, 151);
+	// while (i < 8)
+	// {
+	// 	printf("bitch wtf\n");
+	// 	j = 0;
+	// 	while (j < 8)
+	// 	{
+	// 		mlx_put_pixel(game->player->image, x + i, y - j, 0x40E0D0);
+	// 		j++;
+	// 	}
+	// 	if (i == 3 || i == 4 || i == 5)
+	// 	{
+	// 		if (i == 4)
+	// 		{
+	// 			j = 0;
+	// 			while (j < 150)
+	// 			{
+	// 				mlx_put_pixel(game->player->image, x + i, y + j + 1, 0xFF0000FF);
+	// 				j++;
+	// 			}
+	// 		}
+	// 		j = 0;
+	// 		while (j < 20)
+	// 		{
+	// 			mlx_put_pixel(game->player->image, x + i, y + j + 1,0xFFFF00FF);
+	// 			j++;
+	// 		}
+	// 	}
+	// 	i++;
+	// }
+	// mlx_image_to_window(game->mlx, game->player->image, 0, 0);
+}

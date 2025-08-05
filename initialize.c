@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:55:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/02 13:06:46 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/03 11:06:38 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	initialize(t_game *game)
 {
-	game->player->x = 250;
-	game->player->y = 250;
+	game->player->x = 253;
+	game->player->y = 253;
 }
