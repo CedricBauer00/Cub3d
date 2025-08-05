@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:55:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/02 13:06:46 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/05 10:40:13 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ int	initialize(t_game *game)
 {
 	game->player->x = 250;
 	game->player->y = 250;
+	return (0);
 }
