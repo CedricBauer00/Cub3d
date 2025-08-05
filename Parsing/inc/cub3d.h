@@ -15,6 +15,7 @@ typedef struct s_configs
 {
 	char	**lines;
 	int		lcount;
+	char	**txtrs;
 
 	//textures
 	char	*no_text;
@@ -37,14 +38,30 @@ typedef struct s_configs
 	char	plr_dir;
 }	t_configs;
 
+typedef struct s_seen
+{
+	int	no;
+	int	so;
+	int	we;
+	int	ea;
+	int	f;
+	int	c;
+}	t_seen;
+
 // ----------------------------------------------------------------------
 //							  MAIN
 // ----------------------------------------------------------------------
 
 int		main(int argc, char **argv);
 void	init_data(t_configs *data);
-void	get_lines(t_configs *data, int fd);
-int		correct_name(char **argv);
+int		get_lines(char *argv1, t_configs *data);
+int		correct_name(char *argv1);
 bool	check_empty_line(char *line);
+
+int		is6lines(char **lines);
+int		check_duplicate(char **lines);
+int		seperate(t_configs *data);
+
+
 
 #endif

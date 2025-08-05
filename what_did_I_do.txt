@@ -3,4 +3,9 @@ So far I just setup the makefile and the struct for reading from the input file.
 and also set all variables up for the parsing in the 'init_data()' function. 
 
 On 04.08.25
-I implemented a function for parsing the 'map_name' correctly, so only maps ending with '.cub' will be allowed
+- I implemented a function for parsing the 'map_name' correctly, so only maps ending with '.cub' will be allowed
+- implemented function that reads form file, allocates a double array where i will save the map without any empty lines for easier input checking
+- will seperate the modified map by the configurations and the actual map, for checking the input
+
+On 05.08.25
+- implemented checking if valid configuration-input is given: is existing or for duplicates and now seperating input 
