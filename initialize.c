@@ -6,15 +6,16 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:55:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/05 10:40:13 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/05 10:41:24 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "cub3d.h"
 
-int	initialize(t_game *game)
+void	initialize(t_game *game)
 {
-	game->player->x = 250;
-	game->player->y = 250;
+	game->player->x = 253;
+	game->player->y = 253;
 	return (0);
 }
