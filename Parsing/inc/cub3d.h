@@ -31,6 +31,7 @@ typedef struct s_configs
 	int			lcount;
 	char		**txtrs;
 	t_textures	*textures;
+	int			where_color_is;
 
 	//map
 	int		m_hight;
@@ -66,6 +67,11 @@ bool	check_empty_line(char *line);
 int		is6lines(char **lines);
 int		check_duplicate(char **lines);
 int		seperate(t_configs *data);
+int		init_txtrs(t_configs *data);//char **txtrs kann ich das machen?
+char	*cut_spaces(char *line);
+char	*init_str(char *line, char *str, int len, int i);
+int		check_textures(t_configs *data, int i, char *path, int error);
+bool	ft_isspace(char c);
 
 
 

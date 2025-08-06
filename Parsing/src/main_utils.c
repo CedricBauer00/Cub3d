@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 17:46:07 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/05 12:28:42 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/06 15:12:45 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	check_duplicate(char **lines)
 
 bool	ft_isspace(char c)
 {
-	if (c >= 9 && c <= 13 || c == 32)
+	if ((c >= 9 && c <= 13) || c == 32)
 		return (true);
 	return (false);
 }
@@ -83,6 +83,7 @@ int	seperate(t_configs *data)
 		return (printf("Error: Allocation failed!"), -1);
 	if (init_txtrs(data) < 0)
 		return (-1);
-	if (check_textures(data) < 0)
+	if (check_textures(data, -1, NULL, 0) < 0)
 		return (-1);
+	return (0);
 }

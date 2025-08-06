@@ -6,32 +6,155 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 11:51:36 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/05 13:19:49 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/06 16:00:31 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-// char	
-
-bool	foo(t_configs *data, char **txtrs)
+char	*get_path(char *str)
 {
-	
+	if (str[0] == 'N' || str[0] == 'S' || str[0] == 'W' || str[0] == 'E')
+		return (ft_substr(str, 3, ft_strlen(str) - 3));
+	else
+		return (ft_substr(str, 2, ft_strlen(str) - 2));
 }
 
-int	check_textures(t_configs *data)
+void	free_split(char **d)
 {
-	int				i;
-	mlx_texture_t	text;
+	int	i;
 
 	i = 0;
+	if (!d)
+		return;
+	while (d[i])
+		free(d[i++]);
+	free(d);
+}
+
+int	str_isdigit(char *str)
+{
+	int	i;
+	int	num;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (-1);
+		i++;
+	}
+	if (i > 3)
+		return (printf("Error: Out of int range!\n"), -1);
+	num = ft_atoi(str);
+	if (num < 0 || num > 255)
+		return (printf("Error: Color code invalid!\n"), -1);
+	return (0);
+}
+
+uint32_t	set_color(char **d)
+{
+	int			i;
+	int			j;
+	int			num;
+	uint32_t	color;
+
+	i = 0;
+	color = 0;
+	while (d[i])
+	{
+		j = 0;
+		while (d[i][j])
+			num = num * 10 + (d[i][j++] - '0');
+		color |= num; //adding bits from num into color 
+		color <<= 8; //shifting 8 to the left
+		i++;
+	}
+	color |= 255; //setting alpha = brightness
+	return (color);
+}
+// 255, 254, 253
+// 255 = 11111111
+// 254 = 11111110
+// 253 = 11111101
+// 00000000, 00000000, 00000000, 00000000 = 00000000, 00000000, 00000000, 11111111
+// 00000000, 00000000, 00000000, 11111111 <<= 8
+// = 00000000, 00000000, 11111111, 00000000 
+// 00000000, 00000000, 11111111, 00000000 |= 00000000, 00000000, 00000000, 11111110
+// = 00000000, 00000000, 11111111, 11111110 <<= 8
+// = 00000000, 11111111, 11111110, 00000000
+// 00000000, 11111111, 11111110, 00000000 |= 00000000, 00000000, 00000000, 11111101
+// = 00000000, 11111111, 11111110, 11111101 <<= 8
+// = 11111111, 11111110, 11111101, 00000000
+
+int	process_color(t_configs *data, char *path, char which) // int if allocate something
+{
+	int		i;
+	char	**d;
+
+	i = 0;
+	d = ft_split(path, ',');
+	if (!d)
+		return (printf("Error: Split failed!\n"), -1);
+	while (d[i])
+	{
+		if (d[i][0] == '\0')
+			return (free_split(d), printf("Error: Invalid color code!\n"), -1);
+		if (str_isdigit(d[i]) < 0)
+			return (free_split(d), printf("Error: Invalid color code!\n"), -1);
+		i++;
+	}
+	if (i != 3)
+		return (free_split(d), printf("Error: Split failed!\n"), -1);
+	if (which == 'F')
+		data->textures->f_clr = set_color(d);
+	else
+		data->textures->c_clr = set_color(d);
+	return (0);
+}
+
+int	process_texture(t_configs *data, char *path, char which)
+{
+	mlx_texture_t	*test;
+
+	test = mlx_load_png(path);
+	if (!test)
+		return (printf("Error: mlx_load_png failed!\n"), -1);
+	if (which == 'N')
+		data->textures->no_text = test;
+	if (which == 'S')
+		data->textures->so_text = test;
+	if (which == 'W')
+		data->textures->we_text = test;
+	if (which == 'E')
+		data->textures->ea_text = test;
+	// mlx_delete_texture(test); at the end of the program
+	return (0);
+}
+
+int	check_textures(t_configs *data, int i, char *path, int error)
+{
 	data->textures = (t_textures *)malloc(sizeof(t_textures));
 	if (!data->textures)
 		return (printf("Error: Allocation failed!\n"), -1);
-	// get_path(data->txtrs);
-	while (i < 6)
+	while (++i < 6)
 	{
-		foo(data, data->txtrs);
+		path = get_path(data->txtrs[i]);
+		if (data->txtrs[i][0] == 'F' || data->txtrs[i][0] == 'C')
+			error = process_color(data, path, data->txtrs[i][0]) < 0;
+		else
+		{
+			if (data->txtrs[i][0] == 'N')
+				error = process_texture(data, path, data->txtrs[i][0] < 0);
+			if (data->txtrs[i][0] == 'S')
+				error = process_texture(data, path, data->txtrs[i][0] < 0);
+			if (data->txtrs[i][0] == 'W')
+				error = process_texture(data, path, data->txtrs[i][0] < 0);
+			if (data->txtrs[i][0] == 'E')
+				error = process_texture(data, path, data->txtrs[i][0] < 0);
+		}
+		if (error < 0)
+			return (-1);
 	}
-	text = mlx_load_png()
+	return (0);
 }
