@@ -9,3 +9,7 @@ On 04.08.25
 
 On 05.08.25
 - implemented checking if valid configuration-input is given: is existing or for duplicates and now seperating input 
+
+On 06.08.25
+- implemented checking for valid colors and also valid textures
+- also for different and mixed order of textures and colors in the map file
