@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 13:09:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/05 16:49:45 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/06 13:41:21 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,31 @@ int	paint_map(t_game *game, mlx_image_t *image)
 		{1, 1, 1, 1, 1, 1, 1, 1},
 		{1, 0, 0, 0, 0, 0, 0, 1},
 		{1, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 1, 1, 1, 0, 0, 1},
+		{1, 0, 1, 0, 0, 0, 0, 1},
 		{1, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 1, 0, 0, 1},
+		{1, 0, 0, 0, 1, 1, 1, 1},
 		{1, 0, 0, 0, 0, 0, 0, 1},
 		{1, 1, 1, 1, 1, 1, 1, 1},
 	};
 	i = 0;
+	j = 0;
+	while (i < 8)
+	{
+		j = 0;
+		while (j < 8)
+		{
+			game->map[i][j] = map[i][j];
+			// printf("%d", game->map[i][j]);
+			j++;
+		}
+		// printf("\n");
+		i++;
+	}
+	i = 0;
+	j = 0;
 	k = -1;
 	l = -1;
-	image = mlx_new_image(game->mlx, 1024, 512);
+	image = mlx_new_image(game->mlx, 512, 512);
 	while (i < 512)
 	{
 		j = 0;
@@ -56,13 +71,13 @@ int	paint_map(t_game *game, mlx_image_t *image)
 			}
 			else
 			{
-				if (map[k][l] == 1)
+				if (map[l][k] == 1)
 				{
-					mlx_put_pixel(image, i, j, 0xFFFFFFFF);
+					mlx_put_pixel(image, j, i, 0xFFFFFFFF);
 				}
-				else if (map[k][l] == 0)
+				else if (map[l][k] == 0)
 				{
-					mlx_put_pixel(image, i, j, 0x000000FF);
+					mlx_put_pixel(image, j, i, 0x000000FF);
 				}
 				j++;
 			}

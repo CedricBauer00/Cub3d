@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/05 18:17:11 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/06 13:39:14 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,61 +51,118 @@ void	key(mlx_key_data_t keys, void *ptr)
 			rotate_left(game);
 		else if (signal == MLX_KEY_RIGHT)
 			rotate_right(game);
+		// printf("x = %d, y = %d, angle = %f\n", game->player->x, game->player->y, game->player->angle);
 	}
 }
 
 void	move_up(t_game *game)
 {
 	double	angle;
+	int		x;
+	int		y;
 
 	angle = game->player->angle;
+	x = game->player->x;
+	y = game->player->y;
+	x += (int)round(sin(angle) * 5);
+	y -= (int)round(cos(angle) * 5);
+	if (game->map[y / 32][x / 32] == 1)
+	{
+		printf("x = %d, y = %d\n", x, y);
+		printf("x = %d, y = %d\n", x / 32, y / 32);
+		printf("can't go that way\n");
+		return ;
+	}
 	game->player->dir = UP;
 	game->player->inst = &game->player->image->instances[0];
 	game->player->inst->x += (int)round(cos(angle) * 5);
 	game->player->x += (int)round(cos(angle) * 5);
 	game->player->inst->y -= (int)round(sin(angle) * 5);
 	game->player->y -= (int)round(sin(angle) * 5);
+	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player_ex(game, game->player->image);
 }
 
 void	move_down(t_game *game)
 {
 	double	angle;
+	int		x;
+	int		y;
 
 	angle = game->player->angle;
+	x = game->player->x;
+	y = game->player->y;
+	x -= (int)round(cos(angle) * 5);
+	y += (int)round(sin(angle) * 5);
+	if (game->map[y / 32][x / 32] == 1)
+	{
+		printf("x = %d, y = %d\n", x, y);
+		printf("x = %d, y = %d\n", x / 32, y / 32);
+		printf("can't go that way\n");
+		return ;
+	}
 	game->player->dir = DOWN;
 	game->player->inst = &game->player->image->instances[0];
 	game->player->inst->x -= (int)round(cos(angle) * 5);
 	game->player->x -= (int)round(cos(angle) * 5);
 	game->player->inst->y += (int)round(sin(angle) * 5);
 	game->player->y += (int)round(sin(angle) * 5);
+	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player_ex(game, game->player->image);
 }
 
 void	move_right(t_game *game)
 {
 	double	angle;
+	int		x;
+	int		y;
 
 	angle = game->player->angle;
+	x = game->player->x;
+	y = game->player->y;
+	x += (int)round(sin(angle) * 5);
+	y += (int)round(cos(angle) * 5);
+	if (game->map[y / 32][x / 32] == 1)
+	{
+		printf("x = %d, y = %d\n", x, y);
+		printf("x = %d, y = %d\n", x / 32, y / 32);
+		printf("can't go that way\n");
+		return ;
+	}
 	game->player->dir = RIGHT;
 	game->player->inst = &game->player->image->instances[0];
 	game->player->inst->x += (int)round(sin(angle) * 5);
 	game->player->x += (int)round(sin(angle) * 5);
 	game->player->inst->y += (int)round(cos(angle) * 5);
 	game->player->y += (int)round(cos(angle) * 5);
+	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player_ex(game, game->player->image);
 }
 
 void	move_left(t_game *game)
 {
 	double	angle;
+	int		x;
+	int		y;
 
 	angle = game->player->angle;
+	x = game->player->x;
+	y = game->player->y;
+	x -= (int)round(sin(angle) * 5);
+	y -= (int)round(cos(angle) * 5);
+	if (game->map[y / 32][x / 32] == 1)
+	{
+		printf("x = %d, y = %d\n", x, y);
+		printf("x = %d, y = %d\n", x / 32, y / 32);
+		printf("can't go that way\n");
+		return ;
+	}
 	game->player->dir = LEFT;
 	game->player->inst = &game->player->image->instances[0];
 	game->player->inst->x -= (int)round(sin(angle) * 5);
 	game->player->x -= (int)round(sin(angle) * 5);
 	game->player->inst->y -= (int)round(cos(angle) * 5);
 	game->player->y -= (int)round(cos(angle) * 5);
+	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player_ex(game, game->player->image);
 }

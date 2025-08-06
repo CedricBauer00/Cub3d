@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/05 17:58:59 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/06 13:35:54 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,28 @@ void	draw_player_ex(t_game *game, mlx_image_t *image)
 		j = 0;
 		while (j < 8)
 		{
-			mlx_put_pixel(image, d_x + i, d_y + j, 0x40E0D0);
+			mlx_put_pixel(image, d_x + i, d_y + j, 0xFFFF00FF);
 			j++;
 		}
 		i++;
 	}
+}
+
+void	draw_ray(t_game *game, mlx_image_t *image)
+{
+	int	i;
+	int	j;
+	int	dx;
+	int	dy;
+	int	ax;
+	int	ay;
+	
+	i = 0;
+	j = 0;
+	ax = (int)round(cos(game->player->angle));
+	ay = (int)round(cos(game->player->angle));
+	dx = game->player->x;
+	dy = game->player->x;
 }
 
 // void	draw_player_sides(t_game *game, mlx_image_t *image)

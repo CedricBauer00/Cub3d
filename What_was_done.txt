@@ -5,3 +5,6 @@ For now the 2D map only shows our movements and the direction we're facing.
 
 The map will help when calculating the ray tracing stuff and also we probably will be able
 to use it as a minimap after changing the code a bit.
+
+There is a problem with the wall collision. it doesn't calculate things correctly.
+(Update): it's kinda fixed but needs to be polished more.
