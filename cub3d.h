@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/06 11:41:24 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/07 10:19:48 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_game
 // printing stuff on the map
 int		paint_map(t_game *game, mlx_image_t *image);
 void	draw_player_ex(t_game *game, mlx_image_t *image);
+void	draw_ray1(t_game *game, mlx_image_t *image);
 
 // 2D movement
 void	key(mlx_key_data_t keys, void *ptr);
