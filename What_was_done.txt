@@ -9,5 +9,5 @@ to use it as a minimap after changing the code a bit.
 There is a problem with the wall collision. it doesn't calculate things correctly.
 (Update): it's kinda fixed but needs to be polished more.
 
-Friday:
-		mostly did research about the DDA algorithm and started an experimental function for it.
+Thursday:
+	mostly did research about the DDA algorithm and started an experimental function for it.
