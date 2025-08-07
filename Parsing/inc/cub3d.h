@@ -8,6 +8,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include "../gc/gc.h"
 #include <MLX42/MLX42.h>
 #include "../get_next_line/get_next_line.h"
 #include "../libft/libft.h"
@@ -72,6 +73,7 @@ char	*cut_spaces(char *line);
 char	*init_str(char *line, char *str, int len, int i);
 int		check_textures(t_configs *data, int i, char *path, int error);
 bool	ft_isspace(char c);
+int		create_map(t_configs *data);
 
 
 

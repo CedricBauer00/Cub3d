@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 17:46:07 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/06 15:12:45 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/07 14:49:32 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ int	check_duplicate(char **lines)
 		return (-1);
 	while (++i < 6)
 	{
-		if (strncmp(lines[i], "NO ", 3) == 0)
+		if (ft_strncmp(lines[i], "NO ", 3) == 0)
 			flags.no++;
-		if (strncmp(lines[i], "SO ", 3) == 0)
+		if (ft_strncmp(lines[i], "SO ", 3) == 0)
 			flags.so++;
-		if (strncmp(lines[i], "WE ", 3) == 0)
+		if (ft_strncmp(lines[i], "WE ", 3) == 0)
 			flags.we++;
-		if (strncmp(lines[i], "EA ", 3) == 0)
+		if (ft_strncmp(lines[i], "EA ", 3) == 0)
 			flags.ea++;
-		if (strncmp(lines[i], "F ", 2) == 0)
+		if (ft_strncmp(lines[i], "F ", 2) == 0)
 			flags.f++;
-		if (strncmp(lines[i], "C ", 2) == 0)
+		if (ft_strncmp(lines[i], "C ", 2) == 0)
 			flags.c++;
 	}
 	if (flags.no != 1 || flags.so != 1 || flags.we != 1 || flags.ea != 1
@@ -78,12 +78,14 @@ int	seperate(t_configs *data)
 {
 	if (check_duplicate(data->lines) < 0)
 		return (-1);
-	data->txtrs = (char **)malloc(sizeof(char *) * 7);
+	data->txtrs = (char **)gc_malloc(sizeof(char *) * 7, PARS);
 	if (!data->txtrs)
-		return (printf("Error: Allocation failed!"), -1);
+		return (-1);
 	if (init_txtrs(data) < 0)
 		return (-1);
 	if (check_textures(data, -1, NULL, 0) < 0)
+		return (-1);
+	if (create_map(data) < 0)
 		return (-1);
 	return (0);
 }

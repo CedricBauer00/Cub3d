@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 11:51:36 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/06 16:00:31 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/07 14:51:29 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,9 @@
 char	*get_path(char *str)
 {
 	if (str[0] == 'N' || str[0] == 'S' || str[0] == 'W' || str[0] == 'E')
-		return (ft_substr(str, 3, ft_strlen(str) - 3));
+		return (gc_substr(str, 3, ft_strlen(str) - 3), TEXT);
 	else
-		return (ft_substr(str, 2, ft_strlen(str) - 2));
-}
-
-void	free_split(char **d)
-{
-	int	i;
-
-	i = 0;
-	if (!d)
-		return;
-	while (d[i])
-		free(d[i++]);
-	free(d);
+		return (gc_substr(str, 2, ft_strlen(str) - 2), TEXT);
 }
 
 int	str_isdigit(char *str)
@@ -93,19 +81,19 @@ int	process_color(t_configs *data, char *path, char which) // int if allocate so
 	char	**d;
 
 	i = 0;
-	d = ft_split(path, ',');
+	d = gc_split(path, ',', TEXT);
 	if (!d)
-		return (printf("Error: Split failed!\n"), -1);
+		return (-1);
 	while (d[i])
 	{
 		if (d[i][0] == '\0')
-			return (free_split(d), printf("Error: Invalid color code!\n"), -1);
+			return (printf("Error: Invalid color code!\n"), -1);
 		if (str_isdigit(d[i]) < 0)
-			return (free_split(d), printf("Error: Invalid color code!\n"), -1);
+			return (printf("Error: Invalid color code!\n"), -1);
 		i++;
 	}
 	if (i != 3)
-		return (free_split(d), printf("Error: Split failed!\n"), -1);
+		return (printf("Error: Invalid color code!\n"), -1);
 	if (which == 'F')
 		data->textures->f_clr = set_color(d);
 	else
@@ -134,9 +122,9 @@ int	process_texture(t_configs *data, char *path, char which)
 
 int	check_textures(t_configs *data, int i, char *path, int error)
 {
-	data->textures = (t_textures *)malloc(sizeof(t_textures));
+	data->textures = (t_textures *)gc_malloc(sizeof(t_textures), TEXT);
 	if (!data->textures)
-		return (printf("Error: Allocation failed!\n"), -1);
+		return (-1);
 	while (++i < 6)
 	{
 		path = get_path(data->txtrs[i]);

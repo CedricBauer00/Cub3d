@@ -12,9 +12,13 @@ NAME = cub3d
 
 LIBFT_DIR = libft
 
+GC_DIR = gc
+
 MLX_DIR = MLX
 
 MLX = $(MLX_DIR)/build/libmlx42.a
+
+GC = $(GC_DIR)/gc.a
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
@@ -49,23 +53,28 @@ $(MLX): $(MLX_DIR)
 $(MLX_DIR):
 	@git clone https://github.com/codam-coding-college/MLX42.git $@
 
-$(NAME): $(LIBFT) $(OBJECTS) $(MLX)
-	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(MLX) $(LIBFT) $(OBJECTS) -o $(NAME) $(LDFLAGS)
+$(NAME): $(LIBFT) $(OBJECTS) $(GC) $(MLX)
+	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(MLX) $(GC) $(LIBFT) $(OBJECTS) -o $(NAME) $(LDFLAGS)
 	@echo "$(GREEN)Cub3d is playable!$(DEFAULT)"
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR) --silent
+
+$(GC):
+	@$(MAKE) -C $(GC_DIR) --silent
 
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean --silent
+	@$(MAKE) -C $(GC_DIR) clean --silent
 	@$(RM) $(OBJECTS)
 	@echo "$(GREEN)Cub3d cleaned successfully!$(DEFAULT)"
 
 fclean: clean
 	@$(RM) $(LIBFT)
+	@$(RM) $(GC)
 	@$(RM) $(NAME)
 	@echo "$(GREEN)Cub3d cleaned successfully!$(DEFAULT)"
 

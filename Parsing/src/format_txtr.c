@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 12:29:54 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/06 16:00:24 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/07 14:49:48 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ char	*init_str(char *line, char *str, int len, int i)
 	int	j;
 
 	j = 0;
-	str = (char *)malloc(sizeof(char) * len + 1);
+	str = (char *)gc_malloc(sizeof(char) * len + 1, PARS);
 	if (!str)
-		return (printf("Error: Allocation failed!"), NULL);
+		return (NULL);
 	while (i < len)
 	{
 		if (!ft_isspace(line[i]))
@@ -59,8 +59,7 @@ char	*cut_spaces(char *line)
 	}
 	str = init_str(line, NULL, len, 0);
 	if (!str)
-		return (free(line), NULL);
-	free(line);
+		return (NULL);
 	return (str);
 }
 

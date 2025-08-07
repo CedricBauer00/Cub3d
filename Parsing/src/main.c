@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/06 15:24:18 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/07 14:49:11 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,16 @@ int	get_lines(char *argv1, t_configs *data)
 		free(str);
 		str = get_next_line(fd);
 	}
-	data->lines = (char **)malloc(sizeof(char *) * (data->lcount + 1));
+	data->lines = (char **)gc_malloc(sizeof(char *) * (data->lcount + 1), PARS); 
 	if (!data->lines)
-		return (close(fd), printf("Error: Allocation failed!"), -1);
+		return (close(fd), -1);
 	data->lines[data->lcount] = NULL;
 	close(fd);
 	return (0);
 }
 
-int	read_from_file(char *argv1, t_configs *data)
+int	read_from_file(char *argv1, t_configs *data, int fd, char *tmp)
 {
-	int		fd;
-	char	*subst;
-
 	fd = open(argv1, O_RDONLY);
 	if (fd < 0)
 	{
@@ -75,15 +72,15 @@ int	read_from_file(char *argv1, t_configs *data)
 		printf("Try another one.\n\033[0m"), -1);
 	}
 	get_lines(argv1, data);
-	subst = get_next_line(fd);
+	tmp = get_next_line(fd);
 	data->lcount = 0;
-	while (subst != NULL)
+	while (tmp != NULL)
 	{
-		if (check_empty_line(subst) == true) // if true, increment count
-			data->lines[data->lcount++] = subst;
-		else
-			free(subst);
-		subst = get_next_line(fd);
+		if (check_empty_line(tmp) == true) // if true, increment count
+			data->lines[data->lcount++] = gc_substr(tmp, 0,
+				ft_strlen(tmp), PARS); 
+		free(tmp);
+		tmp = get_next_line(fd);
 	}
 	if (data->lines[0] == NULL)
 		return (close (fd), printf("\033[31mEmpty file!\n\033[0m"), -1);
@@ -120,9 +117,13 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	if (correct_name(argv[1]) < 0)
 		return (-1);
-	if (read_from_file(argv[1], &data) < 0)
-		return (-1);
+	if (read_from_file(argv[1], &data, 0, NULL) < 0)
+	return (gc_free_all(), -1);
 	// for (int i = 0; data.lines[i] != NULL; i++)
 	// 	printf("%s", data.lines[i]);
+	gc_free(PARS);
+	//EXECUTION!
+	
+	gc_free_all();
 	return (0);
 }
