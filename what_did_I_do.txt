@@ -20,6 +20,19 @@ On 07.08.25
 - build a garbage collector, which you can use on different list - PARS, EXEC, MAP, TEXT - lists
 	-> able to free specific lists and able to free all lists in one function (for the end of the programm)
 - modified my code to the according gc, so it will be memory leak free
--build also additional gc_functions like gc_strjoin(), gc_strdup(), gc_split(), ...
+- build also additional gc_functions like gc_strjoin(), gc_strdup(), gc_split(), ...
 	-> all in gc/gc_lib folder
 - corrected the makefile - solved the MLX issue, included the GC into - GC makefile is chained to normal makefile
+
+On 08.08.25
+
+- implemented flood fill from so_long but a little easier - floodfill checks ONLY 'player_room' not the entire map input, only whats relevant for the game to run
+- i fixed and updated my makefile so we could use it as the colaboration makefile
+- made a function that gets and initializes the player_position (where and which direction) and implementation of checking player_position, also for duplicates
+- included 'D' for doors bonus in character checks - door is only valid if it is not in the outer border and if there are walls either left and right next to it or over and under it
+	-> so according to my logic a door cannot stand alone in a room or be attached to only one wall - however it cann be completely surrounded by walls - is still valid even if not accessible
+- tested a lot of test maps on my parsing - fixed crucial issues - still some smaller ones to do
+- restructered pasring a little bit because of white_space_check_errors i encountered
+- i added an execute_main() function after my parsign part in my main, in which i pass the input you need in order to execute the game
+	-> map as a double array - also player pos, etc...
+	-> texture struct where all the infos are 
