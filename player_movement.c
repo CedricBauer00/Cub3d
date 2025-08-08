@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/06 13:49:32 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/08 14:16:16 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	move_right(t_game *game)
 	game->player->x += (int)round(sin(angle) * 5);
 	game->player->inst->y += (int)round(cos(angle) * 5);
 	game->player->y += (int)round(cos(angle) * 5);
-	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
+	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player_ex(game, game->player->image);
 }
 

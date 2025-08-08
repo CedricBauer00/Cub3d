@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/08 13:45:31 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/08 15:19:02 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	draw_player_ex(t_game *game, mlx_image_t *image)
 		}
 		i++;
 	}
-	draw_ray1(game, image);
+	draw_ray2(game, image);
 }
 
 void	draw_ray2(t_game *game, mlx_image_t *image)
@@ -57,10 +57,20 @@ void	draw_ray2(t_game *game, mlx_image_t *image)
 	double	dx = cos(game->player->angle);
 	double	dy = sin(game->player->angle);
 	double	m = tan(game->player->angle);
-	int	x = game->player->x;
-	int	y = game->player->y;
+	int		mapX = game->player->x;
+	int		mapY = game->player->y;
+	double	x = (double)game->player->x;
+	double	y = (double)game->player->y;
+	double	sideDX;
+	double	sideDY;
 	double	Fx;
 	double	Fy;
+	double	deltaX;
+	double	deltaY;
+	int		i = 0;
+	int		j = 0;
+	int		k = 0;
+	int		l = 0;
 	int		Sx;
 	int		Sy;
 
@@ -75,14 +85,74 @@ void	draw_ray2(t_game *game, mlx_image_t *image)
 		Sy = -1;
 	x /= 32;
 	y /= 32;
-	Fx = x - floor(x);
-	Fy = y - floor(y);
+	Fx = floor(x);
+	Fy = floor(y);
+	// x /= 32;
+	// y /= 32;
+	if (dx == 0)
+		deltaX = INFINITY;
+	else
+		deltaX = sqrt(1 + ((dy / dx) * (dy / dx)));
+	if (dy == 0)
+		deltaY = INFINITY;
+	else
+		deltaY = sqrt(1 + ((dx / dy) * (dx / dy)));
+	// if (dx >= 0)
+	// 	sideDX = (Fx + 1.0 - x) * deltaX;
+	// else
+	// 	sideDX = (x - Fx) * deltaX;
+	// if (dy >= 0)
+	// 	sideDY = (Fy + 1.0 - y) * deltaY;
+	// else
+	// 	sideDY = (y - Fy) * deltaY;
+	// Fx = x - floor(x);
+	// Fy = y - floor(y);
 	while (1)
 	{
-		if (game->map[y][x] == 1)
+		// Fx = x - floor(x);
+		// Fy = y - floor(y);
+		// if (Fx < Fy)
+		// {
+		// 	x += (Sx * deltaX);
+		// }
+		// else
+		// {
+		// 	y += (Sy * deltaY);
+		// }
+		// i = floor(x);
+		// j = floor(y);
+		mlx_put_pixel(image, mapX, mapY, 0xFF0000FF);
+		if (dx >= 0)
+			sideDX = (Fx + 1.0 - mapX) * deltaX;
+		else
+			sideDX = (mapX - Fx) * deltaX;
+		if (dy >= 0)
+			sideDY = (Fy + 1.0 - mapY) * deltaY;
+		else
+			sideDY = (mapY - Fy) * deltaY;
+		if (sideDX < sideDY)
+		{
+			sideDX += deltaX;
+			mapX += Sx;
+		}
+		else
+		{
+			sideDY += deltaY;
+			mapY += Sy;
+		}
+		// printf("x = %f, y = %f\n", x, y);
+		printf("i = %d, j = %d\n", mapX, mapY);
+		if (game->map[mapY / 32][mapX / 32] == 1)
 			break ;
-		
+		// mlx_put_pixel(image, mapX, mapY, 0xFF0000FF);
 	}
+	// x *= 32;
+	// y *= 32;
+	// // printf("x = %f, y = %f\n", x, y);
+	// while (k < y)
+	// {
+	// 	k++;
+	// }
 }
 
 void	draw_ray1(t_game *game, mlx_image_t *image)

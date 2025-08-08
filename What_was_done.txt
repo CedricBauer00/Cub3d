@@ -11,3 +11,5 @@ There is a problem with the wall collision. it doesn't calculate things correctl
 
 Thursday:
 	mostly did research about the DDA algorithm and started an experimental function for it.
+Friday:
+	also research about DDA and some experiments with it.
