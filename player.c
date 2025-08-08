@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/07 13:19:00 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/08 13:45:31 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,39 @@ void	draw_player_ex(t_game *game, mlx_image_t *image)
 	draw_ray1(game, image);
 }
 
+void	draw_ray2(t_game *game, mlx_image_t *image)
+{
+	double	dx = cos(game->player->angle);
+	double	dy = sin(game->player->angle);
+	double	m = tan(game->player->angle);
+	int	x = game->player->x;
+	int	y = game->player->y;
+	double	Fx;
+	double	Fy;
+	int		Sx;
+	int		Sy;
+
+	if (dx >= 0)
+		Sx = 1;
+	else
+		Sx = -1;
+	dy *= -1;
+	if (dy >= 0)
+		Sy = 1;
+	else
+		Sy = -1;
+	x /= 32;
+	y /= 32;
+	Fx = x - floor(x);
+	Fy = y - floor(y);
+	while (1)
+	{
+		if (game->map[y][x] == 1)
+			break ;
+		
+	}
+}
+
 void	draw_ray1(t_game *game, mlx_image_t *image)
 {
 	double	theta = game->player->angle;
@@ -60,13 +93,13 @@ void	draw_ray1(t_game *game, mlx_image_t *image)
 	double	m = tan(theta);
 	double	absDX;
 	double	absDY;
-	double	distX;
-	double	distY;
+	double	j = 0;
+	double	i = 0;
 	int		s;
 	int		stepX;
 	int		stepY;
-	float	x = (float)game->player->x;
-	float	y = (float)game->player->y;
+	double	x = (double)game->player->x;
+	double	y = (double)game->player->y;
 
 	if (dx >= 0)
 		stepX = 1;
@@ -79,16 +112,26 @@ void	draw_ray1(t_game *game, mlx_image_t *image)
 		stepY = -1;
 	x /= 32;
 	y /= 32;
-	x = x - floor(x);
-	y = y - floor(y);
-	printf("RAY: x = %f, y = %f, angle = %f\n", dx, dy, game->player->angle);
-	if (x > y)
-	{
-	}
-	else if (y > x)
-	{
-	}
-
+	// while (1)
+	// {
+	// 	i = x - floor(x);
+	// 	j = y - floor(y);
+	// 	printf("RAY: x = %d, y = %d, angle = %f\n", x, y, game->player->angle);
+	// 	while (i > j)
+	// 	{
+	// 		i += 1;
+	// 	}
+	// 	while (j > i)
+	// 	{
+	// 		j += 1;
+	// 	}
+	// }
+	printf("RAY: x = %f, y = %f, angle = %f\n", x, y, game->player->angle);
+	// x /= 32;
+	// y /= 32;
+	i = x - floor(x);
+	j = y - floor(y);
+	printf("RAY: x = %f, y = %f, angle = %f\n", i, j, game->player->angle);
 }
 
 // void	draw_ray(t_game *game, mlx_image_t *image)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/07 10:19:48 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/08 13:31:38 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_game
 int		paint_map(t_game *game, mlx_image_t *image);
 void	draw_player_ex(t_game *game, mlx_image_t *image);
 void	draw_ray1(t_game *game, mlx_image_t *image);
+void	draw_ray2(t_game *game, mlx_image_t *image);
 
 // 2D movement
 void	key(mlx_key_data_t keys, void *ptr);
