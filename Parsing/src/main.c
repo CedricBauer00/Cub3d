@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/08 14:28:09 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/08 14:33:53 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	main(int argc, char **argv)
 	// 	printf("%s", data.lines[i]);
 	gc_free(PARS);
 	//EXECUTION!
-	
+	printf("Parsing wokred successfully!\n");
 	gc_free_all();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 12:20:07 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/08 14:30:21 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/08 14:33:14 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_player(t_configs *data, int i, int j, char c)
 	data->map_info = gc_malloc(sizeof(t_map), MAP);
 	if (!data->map_info)
 		return (-1);
-	data->map_info->y_pos = (float)i + 0.5f;
+	data->map_info->y_pos = (float)i + 0.5f; //in middle of block
 	data->map_info->x_pos = (float)j + 0.5f;
 	data->map_info->plr_dir = c;
 	data->map_info->hight = data->m_hight;

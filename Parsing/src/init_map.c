@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:00:56 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/08 14:18:33 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/08 14:57:48 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,21 @@ void	init_map(t_configs *data, int i, int j, int l)
 }
 // substitute tabs with spaces
 
+int	check_doors(t_configs *data, char **map, int i, int j)
+{
+	if (i - 1 >= 0 && map[i - 1][j] == '1')
+	{
+		if (i + 1 < data->m_hight && map[i + 1][j] == '1')
+			return (0);
+	}
+	if (j - 1 >= 0 && map[i][j - 1] == '1')
+	{
+		if (j + 1 < data->m_width && map[i][j + 1] == '1')
+			return (0);
+	}
+	return (printf("Error: Door is invalid!\n"), -1);
+}
+
 int	check_map(t_configs *data, char **map)
 {
 	int	i;
@@ -107,6 +122,11 @@ int	check_map(t_configs *data, char **map)
 				&& map[i][j] != 'S' && map[i][j] != 'W' && map[i][j] != 'E'
 				&& map[i][j] != 'D' && map[i][j] != ' ')
 				return (printf("Error: Invalid character in map!\n"), -1);
+			if (map[i][j] == 'D')
+			{
+				if (check_doors(data, map, i, j) < 0)
+					return (-1);
+			}
 			j++;
 		}
 		i++;
