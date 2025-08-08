@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:00:56 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/07 15:28:10 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/08 14:18:33 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	per_line(t_configs *data, char *line, int i, int len)
 		i++;
 	if (line[i] == '\n' || line[i] == '\0')
 	{
-		flag = 1
+		flag = 1;
 		return ;
 	}
 	i = 0;
@@ -37,7 +37,6 @@ void	per_line(t_configs *data, char *line, int i, int len)
 	data->m_hight++;
 	if (data->m_width < len)
 		data->m_width = len;
-	return ;
 }
 
 int	allocate_map(t_configs *data, int i)
@@ -57,7 +56,7 @@ int	allocate_map(t_configs *data, int i)
 
 int	init_map_helper(t_configs *data, int i, int j)
 {
-	int	fillspaces;
+	int	fill_space;
 
 	fill_space = 0;
 	while (fill_space < 4)
@@ -66,12 +65,11 @@ int	init_map_helper(t_configs *data, int i, int j)
 		fill_space++;
 		j++;
 	}
+	return (j);
 }
 
 void	init_map(t_configs *data, int i, int j, int l)
 {
-	int	fill_space;
-
 	while (i < data->m_hight)
 	{
 		j = 0;
@@ -83,14 +81,14 @@ void	init_map(t_configs *data, int i, int j, int l)
 			else if (data->lines[i + 6][l] == '\t')
 				j = init_map_helper(data, i, j);
 			else
-				data->map[i][j] = data->lines[i][l];
+				data->map[i][j] = data->lines[i + 6][l];
 			if (data->lines[i + 6][l] != '\n' && data->lines[i + 6][l] != '\0')
 				l++;
 			j++;
 		}
+		data->map[i][j] = '\0';
 		i++;
 	}
-	data->map[i][j] = '\0';
 }
 // substitute tabs with spaces
 
@@ -105,9 +103,9 @@ int	check_map(t_configs *data, char **map)
 		j = 0;
 		while (j < data->m_width)
 		{
-			if (map[i][j] != '1' || map[i][j] != '0' || map[i][j] != 'N'
-				map[i][j] != 'S' || map[i][j] != 'W' || map[i][j] != 'E'
-				map[i][j] != 'D')
+			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'N'
+				&& map[i][j] != 'S' && map[i][j] != 'W' && map[i][j] != 'E'
+				&& map[i][j] != 'D' && map[i][j] != ' ')
 				return (printf("Error: Invalid character in map!\n"), -1);
 			j++;
 		}
@@ -124,40 +122,16 @@ int	create_map(t_configs *data)
 	while (data->lines[i])
 	{
 		per_line(data, data->lines[i], 0, 0);
-			return (-1);
 		i++;
 	}
 	if (allocate_map(data, 0) < 0)
 		return (-1);
-	if (init_map(data, 0, 0, 0) < 0)
-		return (-1);
+	init_map(data, 0, 0, 0);
 	if (check_map(data, data->map) < 0)
+		return (-1);
+	if (player(data) < 0)
+		return (-1);
+	if (set_up_fl(data) < 0)
 		return (-1);
 	return (0);
 }
-
-// int	per_line(t_configs *data, char *line)
-// {
-// 	int			i;
-// 	// static int	flag = 0;
-
-// 	i = 0;
-// 	data->m_hight++;
-// 	while (line[i] || line[i] != '\n')
-// 	{
-// 		while (ft_isspace(line[i]))
-// 		{
-// 			data->m_width++;
-// 			i++;
-// 		}
-// 		if (line[i] == '\n' || line[i] == '\0')
-// 		{
-// 			// flag = -1;
-// 			return (-1);
-// 		}
-// 		// flag = 0;
-// 		data->m_width++;
-// 		i++;
-// 	}
-// 	return (0);
-// }

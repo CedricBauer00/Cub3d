@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:18:04 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/07 14:01:38 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/08 11:45:23 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ t_which	*get_id(int id)
 	t_which	*which = get_gc()->head;
 	while (which)
 	{
-		if (which->id = id)
+		if (which->id == id)
 			return (which);
 		which = which->next;
 	}
 	which = (t_which *)malloc(sizeof(t_which));
-	if (which)
+	if (!which)
 		return (printf("Error: GC failed!\n"), NULL);
 	which->id = id;
 	which->list = NULL;
@@ -70,7 +70,7 @@ void	gc_free_all(void)
 		temp = which;
 		which = which->next;
 		free(temp);
-		gc_free_helper(which->list);
+		gc_free_helper(temp->list);
 	}
 	get_gc()->head = NULL;
 }

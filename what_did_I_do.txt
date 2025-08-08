@@ -13,3 +13,13 @@ On 05.08.25
 On 06.08.25
 - implemented checking for valid colors and also valid textures
 - also for different and mixed order of textures and colors in the map file
+
+On 07.08.25
+
+- implemented seperating map in a seperate double array (data.map): first allocating, then initializing, then checking for valid character input
+- build a garbage collector, which you can use on different list - PARS, EXEC, MAP, TEXT - lists
+	-> able to free specific lists and able to free all lists in one function (for the end of the programm)
+- modified my code to the according gc, so it will be memory leak free
+-build also additional gc_functions like gc_strjoin(), gc_strdup(), gc_split(), ...
+	-> all in gc/gc_lib folder
+- corrected the makefile - solved the MLX issue, included the GC into - GC makefile is chained to normal makefile

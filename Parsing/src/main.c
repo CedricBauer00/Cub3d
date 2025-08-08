@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/07 14:49:11 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/08 14:28:09 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ void	init_data(t_configs	*data)
 {
 	data->lines = NULL;
 	data->lcount = 0;
+	data->txtrs = NULL;
+	data->textures = NULL;
+	data->where_color_is = 0;
 	data->m_hight = 0;
 	data->m_width = 0;
 	data->map = NULL;
-	data->x_pos = -1; //-1 = out_of_map_pos
-	data->y_pos = -1; //-1 = out_of_map_pos
-	data->plr_dir = '\0'; //'no_direction'
+	data->map_info = NULL;
 }
 
 bool	check_empty_line(char *line) //checks if a line in the map.cub file is empty - so it can be skipped by returning false
@@ -79,6 +80,8 @@ int	read_from_file(char *argv1, t_configs *data, int fd, char *tmp)
 		if (check_empty_line(tmp) == true) // if true, increment count
 			data->lines[data->lcount++] = gc_substr(tmp, 0,
 				ft_strlen(tmp), PARS); 
+		if (!data->lines[data->lcount - 1])
+			return (free(tmp), -1);
 		free(tmp);
 		tmp = get_next_line(fd);
 	}
@@ -118,7 +121,7 @@ int	main(int argc, char **argv)
 	if (correct_name(argv[1]) < 0)
 		return (-1);
 	if (read_from_file(argv[1], &data, 0, NULL) < 0)
-	return (gc_free_all(), -1);
+		return (gc_free_all(), -1);
 	// for (int i = 0; data.lines[i] != NULL; i++)
 	// 	printf("%s", data.lines[i]);
 	gc_free(PARS);

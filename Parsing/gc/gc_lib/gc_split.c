@@ -6,11 +6,31 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:16:58 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/07 14:22:26 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/07 16:04:52 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../gc.h"
+
+static int	ft_readstr(char const *s, char c)
+{
+	int	strcount;
+	int	i;
+
+	i = 0;
+	strcount = 0;
+	while (s[i] != '\0' && s[i] == c)
+		i++;
+	while (s[i] != '\0')
+	{
+		while (s[i] != c && s[i] != '\0')
+			i++;
+		while (s[i] == c && s[i] != '\0')
+			i++;
+		strcount++;
+	}
+	return (strcount);
+}
 
 static char	**ft_initarray(char const *s, char c, char **doublearray, int id)
 {
@@ -36,26 +56,6 @@ static char	**ft_initarray(char const *s, char c, char **doublearray, int id)
 		i++;
 	}
 	return (doublearray);
-}
-
-static int	ft_readstr(char const *s, char c)
-{
-	int	strcount;
-	int	i;
-
-	i = 0;
-	strcount = 0;
-	while (s[i] != '\0' && s[i] == c)
-		i++;
-	while (s[i] != '\0')
-	{
-		while (s[i] != c && s[i] != '\0')
-			i++;
-		while (s[i] == c && s[i] != '\0')
-			i++;
-		strcount++;
-	}
-	return (strcount);
 }
 
 char	**gc_split(char const *s, char c, int id)

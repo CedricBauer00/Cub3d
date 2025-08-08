@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 11:51:36 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/07 14:51:29 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/07 16:03:00 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 char	*get_path(char *str)
 {
 	if (str[0] == 'N' || str[0] == 'S' || str[0] == 'W' || str[0] == 'E')
-		return (gc_substr(str, 3, ft_strlen(str) - 3), TEXT);
+		return (gc_substr(str, 3, ft_strlen(str) - 3, TEXT));
 	else
-		return (gc_substr(str, 2, ft_strlen(str) - 2), TEXT);
+		return (gc_substr(str, 2, ft_strlen(str) - 2, TEXT));
 }
 
 int	str_isdigit(char *str)

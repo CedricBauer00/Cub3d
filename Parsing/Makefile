@@ -16,24 +16,30 @@ GC_DIR = gc
 
 MLX_DIR = MLX
 
+OBJ_DIR = obj
+
 MLX = $(MLX_DIR)/build/libmlx42.a
 
 GC = $(GC_DIR)/gc.a
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SOURCES = src/main.c \
-		get_next_line/get_next_line.c \
-		get_next_line/get_next_line_utils.c \
-		src/main_utils.c \
-		src/format_txtr.c \
-		src/check_textures.c
+SOURCES = main.c \
+		get_next_line.c \
+		get_next_line_utils.c \
+		main_utils.c \
+		format_txtr.c \
+		check_textures.c \
+		init_map.c \
+		player.c \
+		flood_fill.c
+		
 
-OBJECTS := $(SOURCES:.c=.o)
+OBJECTS := $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 
-vpath %.c	src/
+vpath %.c	src/ \
+			get_next_line/
 vpath %.h	inc/
-
 
 all: submodules $(NAME)
 
@@ -63,13 +69,15 @@ $(LIBFT):
 $(GC):
 	@$(MAKE) -C $(GC_DIR) --silent
 
-%.o : %.c
+$(OBJ_DIR)/%.o : %.c
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean --silent
 	@$(MAKE) -C $(GC_DIR) clean --silent
-	@$(RM) $(OBJECTS)
+	@$(RM) $(OBJECTS) 
+	@$(RM) -r $(OBJ_DIR)
 	@echo "$(GREEN)Cub3d cleaned successfully!$(DEFAULT)"
 
 fclean: clean

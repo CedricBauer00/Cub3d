@@ -26,6 +26,18 @@ typedef struct s_textures
 	uint32_t	c_clr;
 }	t_textures;
 
+typedef struct s_map
+{
+	int		hight;
+	int		width;
+	char	**map;
+
+	//player position 
+	float		x_pos;
+	float		y_pos;
+	char		plr_dir;
+}	t_map;
+
 typedef struct s_configs
 {
 	char		**lines;
@@ -38,11 +50,7 @@ typedef struct s_configs
 	int		m_hight;
 	int		m_width;
 	char	**map;
-
-	//player position 
-	int			x_pos;
-	int			y_pos;
-	char		plr_dir;
+	t_map	*map_info;
 }	t_configs;
 
 typedef struct s_seen
@@ -75,6 +83,12 @@ int		check_textures(t_configs *data, int i, char *path, int error);
 bool	ft_isspace(char c);
 int		create_map(t_configs *data);
 
+int		check_map(t_configs *data, char **map);
+void	init_map(t_configs *data, int i, int j, int l);
 
+int	get_player(t_configs *data, int i, int j, char c);
+int	player(t_configs *data);
+
+int	set_up_fl(t_configs *data);
 
 #endif
