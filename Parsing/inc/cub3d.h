@@ -73,7 +73,7 @@ int		get_lines(char *argv1, t_configs *data);
 int		correct_name(char *argv1);
 bool	check_empty_line(char *line);
 
-int		is6lines(char **lines);
+int		set_flags(t_seen *flags);
 int		check_duplicate(char **lines);
 int		seperate(t_configs *data);
 int		init_txtrs(t_configs *data);//char **txtrs kann ich das machen?

@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 11:51:36 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/07 16:03:00 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/08 15:37:25 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ int	process_color(t_configs *data, char *path, char which) // int if allocate so
 	while (d[i])
 	{
 		if (d[i][0] == '\0')
-			return (printf("Error: Invalid color code!\n"), -1);
+			return (printf("1Error: Invalid color code!\n"), -1);
 		if (str_isdigit(d[i]) < 0)
-			return (printf("Error: Invalid color code!\n"), -1);
+			return (printf("2Error: Invalid color code!\n"), -1);
 		i++;
 	}
 	if (i != 3)
-		return (printf("Error: Invalid color code!\n"), -1);
+		return (printf("3Error: Invalid color code!\n"), -1);
 	if (which == 'F')
 		data->textures->f_clr = set_color(d);
 	else
@@ -119,7 +119,7 @@ int	process_texture(t_configs *data, char *path, char which)
 	// mlx_delete_texture(test); at the end of the program
 	return (0);
 }
-
+// pngs/wall_1.png
 int	check_textures(t_configs *data, int i, char *path, int error)
 {
 	data->textures = (t_textures *)gc_malloc(sizeof(t_textures), TEXT);
@@ -129,7 +129,7 @@ int	check_textures(t_configs *data, int i, char *path, int error)
 	{
 		path = get_path(data->txtrs[i]);
 		if (data->txtrs[i][0] == 'F' || data->txtrs[i][0] == 'C')
-			error = process_color(data, path, data->txtrs[i][0]) < 0;
+			error = process_color(data, path, data->txtrs[i][0]);
 		else
 		{
 			if (data->txtrs[i][0] == 'N')

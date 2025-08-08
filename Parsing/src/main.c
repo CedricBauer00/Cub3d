@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/08 14:33:53 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/08 15:47:15 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	get_lines(char *argv1, t_configs *data)
 		free(str);
 		str = get_next_line(fd);
 	}
+	if (data->lcount < 9)
+		return (printf("Error: Too little lines!\n"), -1);
 	data->lines = (char **)gc_malloc(sizeof(char *) * (data->lcount + 1), PARS); 
 	if (!data->lines)
 		return (close(fd), -1);
@@ -122,10 +124,10 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (read_from_file(argv[1], &data, 0, NULL) < 0)
 		return (gc_free_all(), -1);
-	// for (int i = 0; data.lines[i] != NULL; i++)
-	// 	printf("%s", data.lines[i]);
 	gc_free(PARS);
 	//EXECUTION!
+	if (execute_main(data.textures, data.map_info) < 0)
+		return (printf("Error: Execution failed!\n"), -1);
 	printf("Parsing wokred successfully!\n");
 	gc_free_all();
 	return (0);

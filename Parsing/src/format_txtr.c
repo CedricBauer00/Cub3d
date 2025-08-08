@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 12:29:54 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/07 14:49:48 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/08 15:29:20 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ char	*init_str(char *line, char *str, int len, int i)
 	str = (char *)gc_malloc(sizeof(char) * len + 1, PARS);
 	if (!str)
 		return (NULL);
-	while (i < len)
+	while (ft_isspace(line[i]))
+		i++;
+	while (j < len)
 	{
 		if (!ft_isspace(line[i]))
 			str[j++] = line[i++];
