@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 13:09:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/11 15:08:33 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/11 15:29:31 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,6 @@ int	paint_map(t_game *game, mlx_image_t *image)
 	image = mlx_new_image(game->mlx, 512, 512);
 	while (i < 512)
 	{
-		// k = i / 64;
-		// j = 0;
-		// while (j < 512)
-		// {
-		// 	l = j / 64;
-		// 	if (map[k][l] == 1)
-		// 		mlx_put_pixel(image, j, i, 0xFFFFFFFF);
-		// 	else
-		// 		mlx_put_pixel(image, j, i, 0x000000FF);
-		// 	j++;
-		// }
 		j = 0;
 		k = -1;
 		if (i % 64 == 0)

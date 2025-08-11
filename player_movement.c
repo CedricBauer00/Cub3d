@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/11 15:20:09 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/11 15:32:26 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,7 @@ void	move_up(t_game *game)
 		printf("can't go that way\n");
 		return ;
 	}
-	game->player->dir = UP;
-	game->player->inst = &game->player->image->instances[0];
-	// game->player->inst->x += (int)round(cos(angle) * 5);
 	game->player->x += (int)round(cos(angle) * 5);
-	// game->player->inst->y -= (int)round(sin(angle) * 5);
 	game->player->y -= (int)round(sin(angle) * 5);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player_ex(game, game->player->image);
@@ -101,11 +97,7 @@ void	move_down(t_game *game)
 		printf("can't go that way\n");
 		return ;
 	}
-	game->player->dir = DOWN;
-	game->player->inst = &game->player->image->instances[0];
-	// game->player->inst->x -= (int)round(cos(angle) * 5);
 	game->player->x -= (int)round(cos(angle) * 5);
-	// game->player->inst->y += (int)round(sin(angle) * 5);
 	game->player->y += (int)round(sin(angle) * 5);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player_ex(game, game->player->image);
@@ -129,11 +121,7 @@ void	move_right(t_game *game)
 		printf("can't go that way\n");
 		return ;
 	}
-	game->player->dir = RIGHT;
-	game->player->inst = &game->player->image->instances[0];
-	// game->player->inst->x += (int)round(sin(angle) * 5);
 	game->player->x += (int)round(sin(angle) * 5);
-	// game->player->inst->y += (int)round(cos(angle) * 5);
 	game->player->y += (int)round(cos(angle) * 5);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player_ex(game, game->player->image);
@@ -157,11 +145,7 @@ void	move_left(t_game *game)
 		printf("can't go that way\n");
 		return ;
 	}
-	game->player->dir = LEFT;
-	game->player->inst = &game->player->image->instances[0];
-	// game->player->inst->x -= (int)round(sin(angle) * 5);
 	game->player->x -= (int)round(sin(angle) * 5);
-	// game->player->inst->y -= (int)round(cos(angle) * 5);
 	game->player->y -= (int)round(cos(angle) * 5);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player_ex(game, game->player->image);
