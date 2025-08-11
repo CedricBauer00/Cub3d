@@ -6,13 +6,13 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/11 13:51:16 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/11 15:13:26 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-bool	check_empty_line(char *line) //checks if a line in the map.cub file is empty - so it can be skipped by returning false
+bool	check_empty_line(char *line)
 {
 	int	i;
 
