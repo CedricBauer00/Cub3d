@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 17:46:07 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/08 15:44:39 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/11 13:17:09 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,3 @@ int	seperate(t_configs *data)
 		return (-1);
 	return (0);
 }
-pngs/wall_1.png

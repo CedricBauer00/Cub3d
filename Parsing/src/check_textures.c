@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 11:51:36 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/08 15:37:25 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/11 14:03:57 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ uint32_t	set_color(char **d)
 // = 00000000, 11111111, 11111110, 11111101 <<= 8
 // = 11111111, 11111110, 11111101, 00000000
 
-int	process_color(t_configs *data, char *path, char which) // int if allocate something
+int	process_color(t_configs *data, char *path, char which)
 {
 	int		i;
 	char	**d;
@@ -119,7 +119,7 @@ int	process_texture(t_configs *data, char *path, char which)
 	// mlx_delete_texture(test); at the end of the program
 	return (0);
 }
-// pngs/wall_1.png
+
 int	check_textures(t_configs *data, int i, char *path, int error)
 {
 	data->textures = (t_textures *)gc_malloc(sizeof(t_textures), TEXT);

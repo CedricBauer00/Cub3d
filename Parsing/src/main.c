@@ -6,24 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/08 15:47:15 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/11 13:51:16 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-void	init_data(t_configs	*data)
-{
-	data->lines = NULL;
-	data->lcount = 0;
-	data->txtrs = NULL;
-	data->textures = NULL;
-	data->where_color_is = 0;
-	data->m_hight = 0;
-	data->m_width = 0;
-	data->map = NULL;
-	data->map_info = NULL;
-}
 
 bool	check_empty_line(char *line) //checks if a line in the map.cub file is empty - so it can be skipped by returning false
 {
@@ -37,7 +24,7 @@ bool	check_empty_line(char *line) //checks if a line in the map.cub file is empt
 	return (true);
 }
 
-int	get_lines(char *argv1, t_configs *data)
+int	allocate_lines(char *argv1, t_configs *data)
 {
 	int		fd;
 	char	*str;
@@ -66,7 +53,7 @@ int	get_lines(char *argv1, t_configs *data)
 	return (0);
 }
 
-int	read_from_file(char *argv1, t_configs *data, int fd, char *tmp)
+int	init_lines(char *argv1, t_configs *data, int fd, char *tmp)
 {
 	fd = open(argv1, O_RDONLY);
 	if (fd < 0)
@@ -74,7 +61,7 @@ int	read_from_file(char *argv1, t_configs *data, int fd, char *tmp)
 		return (printf("\033[31mError: Could not read from file!"),
 		printf("Try another one.\n\033[0m"), -1);
 	}
-	get_lines(argv1, data);
+	allocate_lines(argv1, data);
 	tmp = get_next_line(fd);
 	data->lcount = 0;
 	while (tmp != NULL)
@@ -95,6 +82,41 @@ int	read_from_file(char *argv1, t_configs *data, int fd, char *tmp)
 	return (0);
 }
 
+int	main(int argc, char **argv)
+{
+	t_configs data;
+
+	if (argc != 2)
+		return (printf("Error: Too many/few arguments!\n"), -1);
+	init_data(&data);
+	if (correct_name(argv[1]) < 0)
+		return (-1);
+	if (init_lines(argv[1], &data, 0, NULL) < 0)
+		return (gc_free_all(), -1);
+	gc_free(PARS);
+	//EXECUTION!
+	// if (execute_main(data.textures, data.map_info) < 0)
+	// 	return (printf("Error: Execution failed!\n"), -1);
+	printf("Parsing wokred successfully!\n");
+	gc_free_all(); //	DELETE MLX TEXTURES with mlx_delete_texture(test) - DID NOT HAPPEN YET
+	return (0);
+}
+
+//utils
+
+void	init_data(t_configs	*data)
+{
+	data->lines = NULL;
+	data->lcount = 0;
+	data->txtrs = NULL;
+	data->textures = NULL;
+	data->where_color_is = 0;
+	data->m_hight = 0;
+	data->m_width = 0;
+	data->map = NULL;
+	data->map_info = NULL;
+}
+
 int	correct_name(char *argv1)
 {
 	int		i;
@@ -113,22 +135,3 @@ int	correct_name(char *argv1)
 	return (0);
 }
 
-int	main(int argc, char **argv)
-{
-	t_configs data;
-
-	if (argc != 2)
-		return (printf("Error: Too many/few arguments!\n"), -1);
-	init_data(&data);
-	if (correct_name(argv[1]) < 0)
-		return (-1);
-	if (read_from_file(argv[1], &data, 0, NULL) < 0)
-		return (gc_free_all(), -1);
-	gc_free(PARS);
-	//EXECUTION!
-	if (execute_main(data.textures, data.map_info) < 0)
-		return (printf("Error: Execution failed!\n"), -1);
-	printf("Parsing wokred successfully!\n");
-	gc_free_all();
-	return (0);
-}

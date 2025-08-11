@@ -6,11 +6,12 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 12:09:33 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/08 14:28:33 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/11 14:52:11 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
 int	flood_fill(t_configs *data, int y, int x, char **map)
 {
 	if (x < 0 || y < 0 || y >= data->m_hight || x >= data->m_width

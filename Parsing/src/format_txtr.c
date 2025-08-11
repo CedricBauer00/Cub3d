@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 12:29:54 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/08 15:29:20 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/11 13:37:52 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*cut_spaces(char *line)
 	return (str);
 }
 
-int	init_txtrs(t_configs *data)//char **txtrs kann ich das machen?
+int	init_txtrs(t_configs *data)
 {
 	int	i;
 

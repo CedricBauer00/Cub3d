@@ -36,3 +36,7 @@ On 08.08.25
 - i added an execute_main() function after my parsign part in my main, in which i pass the input you need in order to execute the game
 	-> map as a double array - also player pos, etc...
 	-> texture struct where all the infos are 
+
+On 11.08.25
+
+- wrote in detail behind every function of the parsing what they do - see cub3d.h - so you can understand what happens where and that you have less trouble following the code
