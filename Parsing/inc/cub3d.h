@@ -67,21 +67,21 @@ typedef struct s_seen
 //							  MAIN
 // ----------------------------------------------------------------------
 
-int		main(int argc, char **argv); // calls init_data() - afterwards correct_name() - after init_lines.
-void	init_data(t_configs *data); // sets the data. variables default (NULL/0).
 int		allocate_lines(char *argv1, t_configs *data); // counts how many lines the data.lines array needs to have and allocates it - immediatly checks of the minimum of input lines is given, if not error.
-int		correct_name(char *argv1); // checks on the correct input name - *.cub otherwise error.
 int		init_lines(char *argv1, t_configs *data, int fd, char *tmp); // calls allocate_lines() - initialyzes data.lines by substr(of GNL string - allocs in PARS GC list ) - calls check_empty_line() while inititalizing - calls seperate() at the end.
-bool	check_empty_line(char *line); // checks if a line in the map.cub file is empty - so it can be skipped by returning false.
+int		check_duplicate(char **lines); // calls set_flags() - checks crucial input components (NO, EA, F, C, ...) and sets flags accordingly.
+int		seperate(t_configs *data); // allocates data.txtrs (array in which textures components are stored to check on validity) calls init_txtrs() - after check_duplicate() - after check_textures() - after create_map().
+int		main(int argc, char **argv); // calls init_data() - afterwards correct_name() - after init_lines.
 
 // ----------------------------------------------------------------------
 //							MAIN_UTILS
 // ----------------------------------------------------------------------
 
+bool	check_empty_line(char *line); // checks if a line in the map.cub file is empty - so it can be skipped by returning false.
+int		correct_name(char *argv1); // checks on the correct input name - *.cub otherwise error.
+void	init_data(t_configs *data); // sets the data. variables default (NULL/0).
 int		set_flags(t_seen *flags); // sets flags to 0 - to check if crucial input component is found or not.
-int		check_duplicate(char **lines); // calls set_flags() - checks crucial input components (NO, EA, F, C, ...) and sets flags accordingly.
 bool	ft_isspace(char c); // true if white_space - wrong if not.
-int		seperate(t_configs *data); // allocates data.txtrs (array in which textures components are stored to check on validity) calls init_txtrs() - after check_duplicate() - after check_textures() - after create_map().
 
 // ----------------------------------------------------------------------
 //							FORMAT_TXTR
@@ -101,11 +101,16 @@ char		*get_path(char *str); // cuts the txtrs line which it gets to only the pat
 int			str_isdigit(char *str); // checks seperate part of the color code - only one 'number' - if there is a char return (error); if 'number' is more than 3 digits return (error); if more than 'number' is out of int range return (error); is being called for every 'number' of the color code.
 uint32_t	set_color(char **d); // converts WHOLE color code 'into uint_32_t color' variable - iterates through char **d (the seperate parts of the color code) and adds and shifts bits into uint32_t variable - setting brightness of the colors to 255. (explanation of the bit shifting under function in file).
 int			process_color(t_configs *data, char *path, char which); // gc_split on color code with ',' delimiter - (cahr **d = output of gc_split) - iterates through d, if ( d[i] empty ) return error - calls str_isdigit() on every string - if there are != 3 'numbers' (strings) in char **d array, return (error) - calls set_color() for either floor or ceiling color code.
-int			process_texture(t_configs *data, char *path, char which); // receives only the path of the different textures and mlx_loads them into according varaible in data.textures struct - STILL NEED TO mlx_delete_texture() AT THE END.
 int			check_textures(t_configs *data, int i, char *path, int error); // allocates data.textures (<-!STRUCT!) in gc TEXT list - goes through txtrs and calls get_path() on every line and saves in seperate path pointer - if a color, it calls process_color() - if a texture, calls process_texture() - p._color() and p._texture() both return indicator which will be checked at the end of error code.
 
 // ----------------------------------------------------------------------
-//							CREATE_MAP
+//							INIT_MAP
+// ----------------------------------------------------------------------
+
+int			process_texture(t_configs *data, char *path, char which); // receives only the path of the different textures and mlx_loads them into according varaible in data.textures struct - STILL NEED TO mlx_delete_texture() AT THE END.
+
+// ----------------------------------------------------------------------
+//							INIT_MAP
 // ----------------------------------------------------------------------
 
 // so far we have parsed the input configurations into the data.textures struct which will contain only correct components - will be parsed to execution
@@ -115,9 +120,13 @@ void		per_line(t_configs *data, char *line, int i, int len); // gets called for 
 int			allocate_map(t_configs *data, int i); // alloactes char **data.map array with data.m_hight and allocates each single line with data.m_width + 1 - all with GC MAP-list.
 int			init_map_helper(t_configs *data, int i, int j); // subsitutes 1 '\t' with 4 ' ' (spaces).
 void		init_map(t_configs *data, int i, int j, int l); // copies the lines that contain the map from data.lines into data.map - if at the end of a line and index is not yet at data.m_with, it will fill with spaces - if '\t' it calls init_map_helper(), which convertes 1 '\t' to 4 ' ' (spaces) - sets '\0' at end of every line in data.map array.
-int			check_doors(t_configs *data, char **map, int i, int j); // checks if the door is put at valid spot; a door can stand only between 2 Walls; either there are walls over and under the door or on the left and the right of the door, so the door cant stand alone or attached to only 1 wall.
-int			check_map(t_configs *data, char **map); // iterates through data.map and checks on crucial map components (also 'D' for doors - bonus) - if 'D' calls check_doors().
 int			create_map(t_configs *data); // goes through data.lines array from line 6 on (where the map alwalys starts) calls per_line() for each line - calls allocate_map() afterwards - init_map() after - player() after - set_up_fl() after.
+
+// ----------------------------------------------------------------------
+//							INIT_MAP
+// ----------------------------------------------------------------------
+
+int			check_map(t_configs *data, char **map); // iterates through data.map and checks on crucial map components (also 'D' for doors - bonus) - if 'D' calls check_doors().
 
 // ----------------------------------------------------------------------
 //								PLAYER
@@ -135,6 +144,12 @@ int			player(t_configs *data); // iterates through data.map and checks for playe
 
 int			flood_fill(t_configs *data, int y, int x, char **map); // goes through the map recursivly; updates the position with every function call; overwrites the current position with 'F' character - until it reaches final '1' or 'F'
 int			set_up_fl(t_configs *data); // allocates subst map array in GC PARS-list and inits it - we use this for flood_fill checking - calls flood_fill with according X and Y of the player.
+
+// ----------------------------------------------------------------------
+//								 BONUS
+// ----------------------------------------------------------------------
+
+int			check_doors(t_configs *data, char **map, int i, int j); // checks if the door is put at valid spot; a door can stand only between 2 Walls; either there are walls over and under the door or on the left and the right of the door, so the door cant stand alone or attached to only 1 wall.
 
 // this was the whole parsing
 // the GC uses 4 seperate lists: 

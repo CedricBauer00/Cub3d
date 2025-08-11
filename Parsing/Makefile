@@ -32,8 +32,10 @@ SOURCES = main.c \
 		check_textures.c \
 		init_map.c \
 		player.c \
-		flood_fill.c
-		
+		flood_fill.c \
+		check_map.c \
+		process_texture.c \
+		bonus.c 
 
 OBJECTS := $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 

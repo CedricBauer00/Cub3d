@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 11:51:36 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/11 14:03:57 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/11 15:57:59 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,25 +98,6 @@ int	process_color(t_configs *data, char *path, char which)
 		data->textures->f_clr = set_color(d);
 	else
 		data->textures->c_clr = set_color(d);
-	return (0);
-}
-
-int	process_texture(t_configs *data, char *path, char which)
-{
-	mlx_texture_t	*test;
-
-	test = mlx_load_png(path);
-	if (!test)
-		return (printf("Error: mlx_load_png failed!\n"), -1);
-	if (which == 'N')
-		data->textures->no_text = test;
-	if (which == 'S')
-		data->textures->so_text = test;
-	if (which == 'W')
-		data->textures->we_text = test;
-	if (which == 'E')
-		data->textures->ea_text = test;
-	// mlx_delete_texture(test); at the end of the program
 	return (0);
 }
 

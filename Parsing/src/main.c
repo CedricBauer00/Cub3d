@@ -6,23 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/11 15:13:26 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/11 15:50:32 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-bool	check_empty_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	if (line[i] == '\n')
-		return (false);
-	return (true);
-}
 
 int	allocate_lines(char *argv1, t_configs *data)
 {
@@ -82,6 +70,51 @@ int	init_lines(char *argv1, t_configs *data, int fd, char *tmp)
 	return (0);
 }
 
+int	check_duplicate(char **lines)
+{
+	int		i;
+	t_seen	flags;
+
+	i = -1;
+	if (set_flags(&flags) < 0)
+		return (-1);
+	while (++i < 6)
+	{
+		if (ft_strncmp(lines[i], "NO ", 3) == 0)
+			flags.no++;
+		if (ft_strncmp(lines[i], "SO ", 3) == 0)
+			flags.so++;
+		if (ft_strncmp(lines[i], "WE ", 3) == 0)
+			flags.we++;
+		if (ft_strncmp(lines[i], "EA ", 3) == 0)
+			flags.ea++;
+		if (ft_strncmp(lines[i], "F ", 2) == 0)
+			flags.f++;
+		if (ft_strncmp(lines[i], "C ", 2) == 0)
+			flags.c++;
+	}
+	if (flags.no != 1 || flags.so != 1 || flags.we != 1 || flags.ea != 1
+		|| flags.f != 1 || flags.c != 1)
+		return (printf("Error: Input error: Duplicates/Missing lines!\n"), -1);
+	return (0);
+}
+
+int	seperate(t_configs *data)
+{
+	data->txtrs = (char **)gc_malloc(sizeof(char *) * 7, PARS);
+	if (!data->txtrs)
+		return (-1);
+	if (init_txtrs(data) < 0)
+		return (-1);
+	if (check_duplicate(data->txtrs) < 0)
+		return (-1);
+	if (check_textures(data, -1, NULL, 0) < 0)
+		return (-1);
+	if (create_map(data) < 0)
+		return (-1);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_configs data;
@@ -101,37 +134,3 @@ int	main(int argc, char **argv)
 	gc_free_all(); //	DELETE MLX TEXTURES with mlx_delete_texture(test) - DID NOT HAPPEN YET
 	return (0);
 }
-
-//utils
-
-void	init_data(t_configs	*data)
-{
-	data->lines = NULL;
-	data->lcount = 0;
-	data->txtrs = NULL;
-	data->textures = NULL;
-	data->where_color_is = 0;
-	data->m_hight = 0;
-	data->m_width = 0;
-	data->map = NULL;
-	data->map_info = NULL;
-}
-
-int	correct_name(char *argv1)
-{
-	int		i;
-	int		j;
-
-	j = 0;
-	i = ft_strlen(argv1);
-	if (i <= 4)
-		return (printf("Error: Map name too short!\n"), -1);
-	i -= 4;
-	if (ft_strncmp(argv1 + i, ".cub", 4) != 0)
-	{
-		printf("Error: Incorrect naming! Try a file ending with .cub\n");
-		return (-1);
-	}
-	return (0);
-}
-
