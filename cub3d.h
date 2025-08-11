@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/11 16:04:05 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/11 16:46:08 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ int		paint_map(t_game *game, mlx_image_t *image);
 // i will add more rays to it to get a proper field of view.
 void	draw_player_ex(t_game *game, mlx_image_t *image);
 // draw_ray function and its little helper are used to calculate the distance of the red ray.
-void	draw_ray(t_game *game, mlx_image_t *image);
+void	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check);
 void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy);
+int		ray_loop(t_game *game, t_player *p);
+void	ray_initializer(t_player *p);
 
 // 2D movement
 

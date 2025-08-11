@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+         #
+#    By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/01 12:14:05 by bolcay            #+#    #+#              #
-#    Updated: 2025/08/05 12:10:28 by bolcay           ###   ########.fr        #
+#    Updated: 2025/08/11 16:40:58 by batuhan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = main.c player_movement.c utils.c initialize.c player.c 
 
 CC = cc
-CFLAGS = $(INCLUDE)
+CFLAGS = -Werror -Wextra -Wall $(INCLUDE)
 RM = rm -f
 RM_DIR = rm -rf
 NAME = cub3D

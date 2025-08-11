@@ -13,3 +13,6 @@ Thursday:
 	mostly did research about the DDA algorithm and started an experimental function for it.
 Friday:
 	also research about DDA and some experiments with it.
+11.08 Monday:
+	DDA research is done and now our program can cast a ray. it will be multiple rays in the future but for the moment there is only one.
+	Removed some commented functions as i no longer need them and made some of the functions norm friendly.

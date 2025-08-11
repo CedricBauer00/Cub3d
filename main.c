@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/11 15:24:57 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/11 16:41:17 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@ int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	int	i;
-	int	j;
 	t_game	*game;
 
-	i = 0;
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (0);
