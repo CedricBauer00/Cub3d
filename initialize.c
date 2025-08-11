@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:55:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/07 08:38:30 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/11 15:18:27 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 void	initialize(t_game *game)
 {
 	game->player->angle = PI / 2;
-	game->player->x = 127;
-	game->player->y = 126;
+	game->player->x = 253;
+	game->player->y = 253;
 }

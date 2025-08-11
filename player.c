@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/11 14:10:39 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/11 15:26:00 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,43 @@ void	draw_player_ex(t_game *game, mlx_image_t *image)
 	draw_ray3(game, image);
 }
 
-void	draw_ray_helper(mlx_image_t *image, int hx, int hy)
+void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy)
 {
+	int	i = 0;
+	int	j = 0;
+	double	xx;
+	double	yy;
+	int	x = game->player->x;
+	int	y = game->player->y;
+	int	steps = (int)fmax(fabs(hx - x), fabs(hy - y));
+	double	incx;
+	double	incy;
+
+	if (steps < 1)
+		steps = 1;
+	incx = (hx - x) / (double)steps;
+	incy = (hy - y) / (double)steps;
+	xx = x;
+	yy = y;
+	while (i <= steps)
+	{
+		mlx_put_pixel(image, (int)round(xx), (int)round(yy), 0xFF0000FF);
+		xx += incx;
+		yy += incy;
+		i++;
+	}
 }
 
 void	draw_ray3(t_game *game, mlx_image_t *image)
 {
 	double	rayDirX = cos(game->player->angle);
 	double	rayDirY = -sin(game->player->angle);
-	double	deltaDistX = fabs(32 / rayDirX);
-	double	deltaDistY = fabs(32 / rayDirY);
+	double	deltaDistX = fabs(1.0 / rayDirX);
+	double	deltaDistY = fabs(1.0 / rayDirY);
 	double	sideDistX;
 	double	sideDistY;
-	double	posX = game->player->x / 32;
-	double	posY = game->player->y / 32;
+	double	posX = (game->player->x + 4) / (double)64;
+	double	posY = (game->player->y + 4) / (double)64;
 	int		mapX = (int)posX;
 	int		mapY = (int)posY;
 	int		stepX;
@@ -75,6 +98,7 @@ void	draw_ray3(t_game *game, mlx_image_t *image)
 	int		i = 0;
 	int		j = 0;
 	int		side = -1;
+	int		check = 0;
 	
 	if (rayDirX == 0.0)
 		deltaDistX = 1e30;
@@ -82,7 +106,6 @@ void	draw_ray3(t_game *game, mlx_image_t *image)
 		deltaDistY = 1e30;
 	// printf("dx %f, dy %f\n", deltaDistX, deltaDistY);
 	// printf("rx %f, ry %f\n", rayDirX, rayDirY);
-	// don't forget to add a check for when raydirx or y is exactly 0
 	if (rayDirX > 0)
 	{
 		stepX = 1;
@@ -103,7 +126,7 @@ void	draw_ray3(t_game *game, mlx_image_t *image)
 		stepY = -1;
 		sideDistY = (posY - mapY) * deltaDistY;
 	}
-	while (1)
+	while (check == 0)
 	{
 		if (sideDistX < sideDistY)
 		{
@@ -120,15 +143,23 @@ void	draw_ray3(t_game *game, mlx_image_t *image)
 		if (mapX < 0 || mapY < 0 || mapX >= 8 || mapY >= 8)
 			break ;
 		if (game->map[mapY][mapX] == 1)
-			break ;
+			check = 1;
 		// mlx_put_pixel(image, mapX, mapY, 0xFF0000FF);
 	}
-	double	hitX = posX + rayDirX;
-	double	hitY = posY + rayDirY;
+	if (check == 0)
+		return ;
+	double	wallDist;
+	if (side == 0)
+		wallDist = (mapX - posX + (1 - stepX) / 2.0) / rayDirX;
+	else
+		wallDist = (mapY - posY + (1 - stepY) / 2.0) / rayDirY;
+	double	hitX = posX + rayDirX * wallDist;
+	double	hitY = posY + rayDirY * wallDist;
 
-	int		hx = (int)round(hitX * 32);
-	int		hy = (int)round(hitY * 32);
-	printf("hx = %d, hy = %d\n", hx, hy);
+	int		hx = (int)round(hitX * 64);
+	int		hy = (int)round(hitY * 64);
+	printf("hx = %d, hy = %d\n", hx / 64, hy / 64);
+	draw_ray_helper(game, image, hx, hy);
 }
 
 void	draw_ray2(t_game *game, mlx_image_t *image)
