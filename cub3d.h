@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/08 13:51:49 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/11 12:34:54 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		paint_map(t_game *game, mlx_image_t *image);
 void	draw_player_ex(t_game *game, mlx_image_t *image);
 void	draw_ray1(t_game *game, mlx_image_t *image);
 void	draw_ray2(t_game *game, mlx_image_t *image);
+void	draw_ray3(t_game *game, mlx_image_t *image);
 
 // 2D movement
 void	key(mlx_key_data_t keys, void *ptr);

@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/08 15:19:02 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/11 14:10:39 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,86 @@ void	draw_player_ex(t_game *game, mlx_image_t *image)
 		}
 		i++;
 	}
-	draw_ray2(game, image);
+	draw_ray3(game, image);
+}
+
+void	draw_ray_helper(mlx_image_t *image, int hx, int hy)
+{
+}
+
+void	draw_ray3(t_game *game, mlx_image_t *image)
+{
+	double	rayDirX = cos(game->player->angle);
+	double	rayDirY = -sin(game->player->angle);
+	double	deltaDistX = fabs(32 / rayDirX);
+	double	deltaDistY = fabs(32 / rayDirY);
+	double	sideDistX;
+	double	sideDistY;
+	double	posX = game->player->x / 32;
+	double	posY = game->player->y / 32;
+	int		mapX = (int)posX;
+	int		mapY = (int)posY;
+	int		stepX;
+	int		stepY;
+	int		px;
+	int		py;
+	int		i = 0;
+	int		j = 0;
+	int		side = -1;
+	
+	if (rayDirX == 0.0)
+		deltaDistX = 1e30;
+	if (rayDirY == 0.0)
+		deltaDistY = 1e30;
+	// printf("dx %f, dy %f\n", deltaDistX, deltaDistY);
+	// printf("rx %f, ry %f\n", rayDirX, rayDirY);
+	// don't forget to add a check for when raydirx or y is exactly 0
+	if (rayDirX > 0)
+	{
+		stepX = 1;
+		sideDistX = (mapX + 1 - posX) * deltaDistX;
+	}
+	else
+	{
+		stepX = -1;
+		sideDistX = (posX - mapX) * deltaDistX;
+	}
+	if (rayDirY > 0)
+	{
+		stepY = 1;
+		sideDistY = (mapY + 1 - posY) * deltaDistY;
+	}
+	else
+	{
+		stepY = -1;
+		sideDistY = (posY - mapY) * deltaDistY;
+	}
+	while (1)
+	{
+		if (sideDistX < sideDistY)
+		{
+			mapX += stepX;
+			sideDistX += deltaDistX;
+			side = 0;
+		}
+		else
+		{
+			mapY += stepY;
+			sideDistY += deltaDistY;
+			side = 1;
+		}
+		if (mapX < 0 || mapY < 0 || mapX >= 8 || mapY >= 8)
+			break ;
+		if (game->map[mapY][mapX] == 1)
+			break ;
+		// mlx_put_pixel(image, mapX, mapY, 0xFF0000FF);
+	}
+	double	hitX = posX + rayDirX;
+	double	hitY = posY + rayDirY;
+
+	int		hx = (int)round(hitX * 32);
+	int		hy = (int)round(hitY * 32);
+	printf("hx = %d, hy = %d\n", hx, hy);
 }
 
 void	draw_ray2(t_game *game, mlx_image_t *image)
