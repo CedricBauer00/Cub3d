@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/11 16:46:08 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/11 17:39:24 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@
 
 typedef struct s_player
 {
-	int		x;
+	int		x; // player coordinates.
 	int		y;
-	double	angle;
-	double	rayDirX;
+	double	angle; // direction we're looking at.
+	double	rayDirX; // the directions of the ray is being casted.
 	double	rayDirY;
-	double	deltaDistX;
+	double	deltaDistX; // amount of movement we need to do for the ray
 	double	deltaDistY;
-	int		mapX;
+	int		mapX; // these 2 is used when we are calculating the rays and therefore changing the location of where we are.
 	int		mapY;
-	double	posX;
+	double	posX; // this is also normal player coordinates but divided by the tile size.
 	double	posY;
-	double	sideDistX;
+	double	sideDistX; // determines which one to increase, x or y.
 	double	sideDistY;
-	int		stepX;
+	int		stepX; // determines the direction of the ray. up-down or left-right.
 	int		stepY;
 	mlx_image_t *image;
 	mlx_instance_t *inst;
@@ -64,12 +64,13 @@ int		paint_map(t_game *game, mlx_image_t *image);
 // this one is being used every time the character moves.
 // it prints the body of the character, the direction showing stick thing and the red ray that stops when it hits a wall.
 // i will add more rays to it to get a proper field of view.
-void	draw_player_ex(t_game *game, mlx_image_t *image);
+void	draw_player(t_game *game, mlx_image_t *image);
 // draw_ray function and its little helper are used to calculate the distance of the red ray.
 void	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check);
 void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy);
 int		ray_loop(t_game *game, t_player *p);
 void	ray_initializer(t_player *p);
+void    ray_initializer_2(t_player *p);
 
 // 2D movement
 

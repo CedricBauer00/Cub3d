@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/11 15:32:26 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/11 17:39:55 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	rotate_right(t_game *game)
 	game->player->angle -= SPEED;
 	if (game->player->angle < 0)
 		game->player->angle += 2 * PI;
-	draw_player_ex(game, game->player->image);
+	draw_player(game, game->player->image);
 }
 
 static void	rotate_left(t_game *game)
@@ -25,7 +25,7 @@ static void	rotate_left(t_game *game)
 	game->player->angle += SPEED;
 	if (game->player->angle > 2 * PI)
 		game->player->angle -= 2 * PI;
-	draw_player_ex(game, game->player->image);
+	draw_player(game, game->player->image);
 }
 
 void	key(mlx_key_data_t keys, void *ptr)
@@ -76,7 +76,7 @@ void	move_up(t_game *game)
 	game->player->x += (int)round(cos(angle) * 5);
 	game->player->y -= (int)round(sin(angle) * 5);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
-	draw_player_ex(game, game->player->image);
+	draw_player(game, game->player->image);
 }
 
 void	move_down(t_game *game)
@@ -100,7 +100,7 @@ void	move_down(t_game *game)
 	game->player->x -= (int)round(cos(angle) * 5);
 	game->player->y += (int)round(sin(angle) * 5);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
-	draw_player_ex(game, game->player->image);
+	draw_player(game, game->player->image);
 }
 
 void	move_right(t_game *game)
@@ -124,7 +124,7 @@ void	move_right(t_game *game)
 	game->player->x += (int)round(sin(angle) * 5);
 	game->player->y += (int)round(cos(angle) * 5);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
-	draw_player_ex(game, game->player->image);
+	draw_player(game, game->player->image);
 }
 
 void	move_left(t_game *game)
@@ -148,5 +148,5 @@ void	move_left(t_game *game)
 	game->player->x -= (int)round(sin(angle) * 5);
 	game->player->y -= (int)round(cos(angle) * 5);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
-	draw_player_ex(game, game->player->image);
+	draw_player(game, game->player->image);
 }
