@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/12 12:38:31 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/12 14:55:55 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define MOVE_S 5
 # define SPEED 0.05
 # define PI 3.1415926535897932
-# define RAY_N 512
+# define RAY_N WIDTH - 512
 
 typedef struct s_ray
 {
@@ -85,6 +85,7 @@ void	ray_initializer(t_player *p, double angle);
 void    ray_initializer_2(t_player *p);
 void	draw_multiple_ray(t_game *game, mlx_image_t *img);
 double	normalised_angle(double angle);
+void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int hx);
 
 // 2D movement
 

@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/12 12:37:44 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/12 15:01:30 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,24 @@ int	ray_loop(t_game *game, t_player *p)
 	return (side);
 }
 
+void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int hx)
+{
+	int	i;
+	int	j;
+
+	i = drawS;
+	j = 512 + drawE;
+	while (i < drawE)
+	{
+		if (check == 0)
+			mlx_put_pixel(img, j, i, 0x008000FF);
+		else
+			mlx_put_pixel(img, j, i, 0x90EE90FF);
+		i++;
+	}
+	// printf("e = %d, s = %d\n", drawE, drawS);
+}
+
 t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle)
 {
 	int		hx;
@@ -158,8 +176,12 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	double	wallDist;
 	double	hitX;
 	double	hitY;
+	int		lineH;
+	int		drawS;
+	int		drawE;
 	t_ray	ray;
 	
+	// printf("here!\n");
 	ray_initializer(p, angle);
 	check = ray_loop(game, p);
 	if (check == -1)
@@ -172,14 +194,22 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	hitY = p->posY + p->rayDirY * wallDist;
 	hx = (int)round(hitX * TS);
 	hy = (int)round(hitY * TS);
-	// printf("hx = %d, hy = %d\n", hx / 64, hy / 64);
 	ray.hit = 1;
 	ray.side = check;
 	ray.wall_dist = wallDist;
 	ray.hx = hx;
 	ray.hy = hy;
+	lineH = (int)(HEIGHT / wallDist);
+	drawS = -lineH / 2 + HEIGHT / 2;
+	if (drawS < 0)
+		drawS = 0;
+	drawE = lineH / 2 + HEIGHT / 2;
+	if (drawE >= HEIGHT)
+		drawE = HEIGHT - 1;
+	// printf("here!2\n");
+	draw_vertical(drawS, drawE, check, image, hx);
+	// printf("here!3\n");
 	return (ray);
-	// draw_ray_helper(game, image, hx, hy);
 }
 
 void	draw_multiple_ray(t_game *game, mlx_image_t *img)

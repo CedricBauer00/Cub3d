@@ -6,11 +6,11 @@
 #    By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/01 12:14:05 by bolcay            #+#    #+#              #
-#    Updated: 2025/08/11 20:09:23 by batuhan          ###   ########.fr        #
+#    Updated: 2025/08/12 13:47:08 by batuhan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c player_movement.c utils.c initialize.c player.c ray.c
+SRCS = main.c player_movement.c utils.c initialize.c player.c ray.c wall.c
 
 CC = cc
 CFLAGS = $(INCLUDE)

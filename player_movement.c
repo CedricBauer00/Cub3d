@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/12 12:31:43 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/12 15:00:06 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	move_up(t_game *game)
 	}
 	game->player->x += (int)round(cos(angle) * MOVE_S);
 	game->player->y -= (int)round(sin(angle) * MOVE_S);
-	printf("x = %d, y = %d\n", game->player->x, game->player->y);
+	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
 }
 
@@ -99,7 +99,7 @@ void	move_down(t_game *game)
 	}
 	game->player->x -= (int)round(cos(angle) * MOVE_S);
 	game->player->y += (int)round(sin(angle) * MOVE_S);
-	printf("x = %d, y = %d\n", game->player->x, game->player->y);
+	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
 }
 
@@ -123,7 +123,7 @@ void	move_right(t_game *game)
 	}
 	game->player->x += (int)round(sin(angle) * MOVE_S);
 	game->player->y += (int)round(cos(angle) * MOVE_S);
-	printf("x = %d, y = %d\n", game->player->x, game->player->y);
+	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
 }
 
@@ -147,6 +147,6 @@ void	move_left(t_game *game)
 	}
 	game->player->x -= (int)round(sin(angle) * MOVE_S);
 	game->player->y -= (int)round(cos(angle) * MOVE_S);
-	printf("x = %d, y = %d\n", game->player->x, game->player->y);
+	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
 }
