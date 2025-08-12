@@ -6,11 +6,20 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/11 17:41:02 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/12 12:37:44 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+double	normalised_angle(double angle)
+{
+	while (angle < 0)
+		angle += 2.0 * PI;
+	while (angle >= 2.0 * PI)
+		angle -= 2.0 * PI;
+	return (angle);
+}
 
 void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy)
 {
@@ -59,10 +68,10 @@ void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy)
 	sideDistX/Y are there to determine how much we need to move in the y and x axis.
 */
 
-void	ray_initializer(t_player *p)
+void	ray_initializer(t_player *p, double angle)
 {
-	p->rayDirX = cos(p->angle);
-	p->rayDirY = -sin(p->angle);
+	p->rayDirX = cos(angle);
+	p->rayDirY = -sin(angle);
 	if (p->rayDirX == 0.0)
 		p->deltaDistX = 1e30;
 	else
@@ -71,8 +80,8 @@ void	ray_initializer(t_player *p)
 		p->deltaDistY = 1e30;
 	else
 		p->deltaDistY = fabs(1.0 / p->rayDirY);
-	p->posX = (p->x + 4) / (double)64;
-	p->posY = (p->y + 4) / (double)64;
+	p->posX = (p->x + 4) / (double)TS;
+	p->posY = (p->y + 4) / (double)TS;
 	p->mapX = (int)p->posX;
 	p->mapY = (int)p->posY;
     ray_initializer_2(p);
@@ -142,27 +151,54 @@ int	ray_loop(t_game *game, t_player *p)
 	return (side);
 }
 
-void	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check)
+t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle)
 {
 	int		hx;
 	int		hy;
 	double	wallDist;
 	double	hitX;
 	double	hitY;
+	t_ray	ray;
 	
-	ray_initializer(p);
+	ray_initializer(p, angle);
 	check = ray_loop(game, p);
 	if (check == -1)
-		return ;
+		return (ray);
 	if (check == 0)
 		wallDist = (p->mapX - p->posX + (1 - p->stepX) / 2.0) / p->rayDirX;
 	else
 		wallDist = (p->mapY - p->posY + (1 - p->stepY) / 2.0) / p->rayDirY;
 	hitX = p->posX + p->rayDirX * wallDist;
 	hitY = p->posY + p->rayDirY * wallDist;
-	hx = (int)round(hitX * 64);
-	hy = (int)round(hitY * 64);
-	printf("hx = %d, hy = %d\n", hx / 64, hy / 64);
-	draw_ray_helper(game, image, hx, hy);
+	hx = (int)round(hitX * TS);
+	hy = (int)round(hitY * TS);
+	// printf("hx = %d, hy = %d\n", hx / 64, hy / 64);
+	ray.hit = 1;
+	ray.side = check;
+	ray.wall_dist = wallDist;
+	ray.hx = hx;
+	ray.hy = hy;
+	return (ray);
+	// draw_ray_helper(game, image, hx, hy);
 }
 
+void	draw_multiple_ray(t_game *game, mlx_image_t *img)
+{
+	double	fov;
+	double	start;
+	double	step;
+	int		i;
+	t_ray	ray;
+
+	fov = 60.0 * PI / 180;
+	start = game->player->angle - fov * 0.5;
+	step = fov / (double)(RAY_N - 1);
+	i = 0;
+	while (i < RAY_N)
+	{
+		ray = draw_ray(game, game->player, img, 0, start + step * i);
+		if (ray.hit)
+			draw_ray_helper(game, img, ray.hx, ray.hy);
+		i++;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/11 17:39:55 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/12 12:31:43 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,17 @@ void	move_up(t_game *game)
 	angle = game->player->angle;
 	x = game->player->x;
 	y = game->player->y;
-	x += (int)round(sin(angle) * 5);
-	y -= (int)round(cos(angle) * 5);
-	if (game->map[y / 64][x / 64] == 1)
+	x += (int)round(sin(angle) * MOVE_S);
+	y -= (int)round(cos(angle) * MOVE_S);
+	if (game->map[y / TS][x / TS] == 1)
 	{
 		printf("x = %d, y = %d\n", x, y);
-		printf("x = %d, y = %d\n", x / 64, y / 64);
+		printf("x = %d, y = %d\n", x / TS, y / TS);
 		printf("can't go that way\n");
 		return ;
 	}
-	game->player->x += (int)round(cos(angle) * 5);
-	game->player->y -= (int)round(sin(angle) * 5);
+	game->player->x += (int)round(cos(angle) * MOVE_S);
+	game->player->y -= (int)round(sin(angle) * MOVE_S);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
 }
@@ -88,17 +88,17 @@ void	move_down(t_game *game)
 	angle = game->player->angle;
 	x = game->player->x;
 	y = game->player->y;
-	x -= (int)round(cos(angle) * 5);
-	y += (int)round(sin(angle) * 5);
-	if (game->map[y / 64][x / 64] == 1)
+	x -= (int)round(cos(angle) * MOVE_S);
+	y += (int)round(sin(angle) * MOVE_S);
+	if (game->map[y / TS][x / TS] == 1)
 	{
 		printf("x = %d, y = %d\n", x, y);
-		printf("x = %d, y = %d\n", x / 64, y / 64);
+		printf("x = %d, y = %d\n", x / TS, y / TS);
 		printf("can't go that way\n");
 		return ;
 	}
-	game->player->x -= (int)round(cos(angle) * 5);
-	game->player->y += (int)round(sin(angle) * 5);
+	game->player->x -= (int)round(cos(angle) * MOVE_S);
+	game->player->y += (int)round(sin(angle) * MOVE_S);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
 }
@@ -112,17 +112,17 @@ void	move_right(t_game *game)
 	angle = game->player->angle;
 	x = game->player->x;
 	y = game->player->y;
-	x += (int)round(sin(angle) * 5);
-	y += (int)round(cos(angle) * 5);
-	if (game->map[y / 64][x / 64] == 1)
+	x += (int)round(sin(angle) * MOVE_S);
+	y += (int)round(cos(angle) * MOVE_S);
+	if (game->map[y / TS][x / TS] == 1)
 	{
 		printf("x = %d, y = %d\n", x, y);
-		printf("x = %d, y = %d\n", x / 64, y / 64);
+		printf("x = %d, y = %d\n", x / TS, y / TS);
 		printf("can't go that way\n");
 		return ;
 	}
-	game->player->x += (int)round(sin(angle) * 5);
-	game->player->y += (int)round(cos(angle) * 5);
+	game->player->x += (int)round(sin(angle) * MOVE_S);
+	game->player->y += (int)round(cos(angle) * MOVE_S);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
 }
@@ -136,17 +136,17 @@ void	move_left(t_game *game)
 	angle = game->player->angle;
 	x = game->player->x;
 	y = game->player->y;
-	x -= (int)round(sin(angle) * 5);
-	y -= (int)round(cos(angle) * 5);
-	if (game->map[y / 64][x / 64] == 1)
+	x -= (int)round(sin(angle) * MOVE_S);
+	y -= (int)round(cos(angle) * MOVE_S);
+	if (game->map[y / TS][x / TS] == 1)
 	{
 		printf("x = %d, y = %d\n", x, y);
-		printf("x = %d, y = %d\n", x / 64, y / 64);
+		printf("x = %d, y = %d\n", x / TS, y / TS);
 		printf("can't go that way\n");
 		return ;
 	}
-	game->player->x -= (int)round(sin(angle) * 5);
-	game->player->y -= (int)round(cos(angle) * 5);
+	game->player->x -= (int)round(sin(angle) * MOVE_S);
+	game->player->y -= (int)round(cos(angle) * MOVE_S);
 	printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
 }

@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/11 17:39:24 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/12 12:38:31 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,19 @@
 # define TS 64
 # define WIDTH 1024
 # define HEIGHT 512
+# define MOVE_S 5
 # define SPEED 0.05
 # define PI 3.1415926535897932
+# define RAY_N 512
+
+typedef struct s_ray
+{
+	int		hit;
+	int		hx;
+	int		hy;
+	int		side;
+	double	wall_dist;
+}	t_ray;
 
 typedef struct s_player
 {
@@ -53,6 +64,7 @@ typedef struct s_player
 typedef struct s_game
 {
 	int	map[8][8];
+	t_ray	*ray;
 	mlx_t	*mlx;
 	t_player *player;
 }	t_game;
@@ -66,11 +78,13 @@ int		paint_map(t_game *game, mlx_image_t *image);
 // i will add more rays to it to get a proper field of view.
 void	draw_player(t_game *game, mlx_image_t *image);
 // draw_ray function and its little helper are used to calculate the distance of the red ray.
-void	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check);
+t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle);
 void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy);
 int		ray_loop(t_game *game, t_player *p);
-void	ray_initializer(t_player *p);
+void	ray_initializer(t_player *p, double angle);
 void    ray_initializer_2(t_player *p);
+void	draw_multiple_ray(t_game *game, mlx_image_t *img);
+double	normalised_angle(double angle);
 
 // 2D movement
 

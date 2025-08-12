@@ -6,14 +6,14 @@
 #    By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/01 12:14:05 by bolcay            #+#    #+#              #
-#    Updated: 2025/08/11 17:35:49 by batuhan          ###   ########.fr        #
+#    Updated: 2025/08/11 20:09:23 by batuhan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = main.c player_movement.c utils.c initialize.c player.c ray.c
 
 CC = cc
-CFLAGS = -Werror -Wextra -Wall $(INCLUDE)
+CFLAGS = $(INCLUDE)
 RM = rm -f
 RM_DIR = rm -rf
 NAME = cub3D

@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/11 17:36:11 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/11 20:07:56 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	draw_player(t_game *game, mlx_image_t *image)
     d_x = game->player->x;
     d_y = game->player->y;
 	delete_image(image);
-	draw_ray(game, game->player, image, 0);
+	// draw_ray(game, game->player, image, 0);
+	draw_multiple_ray(game, image);
 	while (i < 20)
 	{
 		p_x = d_x + 4 + (int)round(cos(game->player->angle) * i);
