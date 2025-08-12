@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/12 14:55:55 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/12 15:31:57 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ int		paint_map(t_game *game, mlx_image_t *image);
 // i will add more rays to it to get a proper field of view.
 void	draw_player(t_game *game, mlx_image_t *image);
 // draw_ray function and its little helper are used to calculate the distance of the red ray.
-t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle);
+t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i);
 void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy);
 int		ray_loop(t_game *game, t_player *p);
 void	ray_initializer(t_player *p, double angle);
 void    ray_initializer_2(t_player *p);
 void	draw_multiple_ray(t_game *game, mlx_image_t *img);
 double	normalised_angle(double angle);
-void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int hx);
+void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int hx, int hy, int asd);
 
 // 2D movement
 

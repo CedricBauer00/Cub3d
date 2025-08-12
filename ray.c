@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/12 15:01:30 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/12 15:45:54 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,13 +151,13 @@ int	ray_loop(t_game *game, t_player *p)
 	return (side);
 }
 
-void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int hx)
+void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int hx, int hy, int asd)
 {
 	int	i;
 	int	j;
 
 	i = drawS;
-	j = 512 + drawE;
+	j = 1024 - asd;
 	while (i < drawE)
 	{
 		if (check == 0)
@@ -169,7 +169,7 @@ void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int hx)
 	// printf("e = %d, s = %d\n", drawE, drawS);
 }
 
-t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle)
+t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i)
 {
 	int		hx;
 	int		hy;
@@ -200,14 +200,14 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	ray.hx = hx;
 	ray.hy = hy;
 	lineH = (int)(HEIGHT / wallDist);
-	drawS = -lineH / 2 + HEIGHT / 2;
+	drawS = (HEIGHT - lineH) / 2;
 	if (drawS < 0)
 		drawS = 0;
-	drawE = lineH / 2 + HEIGHT / 2;
+	drawE = drawS + lineH - 1;
 	if (drawE >= HEIGHT)
 		drawE = HEIGHT - 1;
 	// printf("here!2\n");
-	draw_vertical(drawS, drawE, check, image, hx);
+	draw_vertical(drawS, drawE, check, image, hx, hy, i);
 	// printf("here!3\n");
 	return (ray);
 }
@@ -220,13 +220,13 @@ void	draw_multiple_ray(t_game *game, mlx_image_t *img)
 	int		i;
 	t_ray	ray;
 
-	fov = 60.0 * PI / 180;
+	fov = 90.0 * PI / 180;
 	start = game->player->angle - fov * 0.5;
 	step = fov / (double)(RAY_N - 1);
 	i = 0;
 	while (i < RAY_N)
 	{
-		ray = draw_ray(game, game->player, img, 0, start + step * i);
+		ray = draw_ray(game, game->player, img, 0, start + step * i, i);
 		if (ray.hit)
 			draw_ray_helper(game, img, ray.hx, ray.hy);
 		i++;

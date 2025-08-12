@@ -16,3 +16,6 @@ Friday:
 11.08 Monday:
 	DDA research is done and now our program can cast a ray. it will be multiple rays in the future but for the moment there is only one.
 	Removed some commented functions as i no longer need them and made some of the functions norm friendly.
+12.08 Tuesday
+	the program can now cast multiple rays and also i made the screen of the game wider so that on the right side we will have the 3d part of the program.
+	the 3d part is still being worked on as the floor or ceiling has not been set and there is a fish eye effect when the program prints out the walls.
