@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/12 15:45:54 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/13 16:57:39 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 double	normalised_angle(double angle)
 {
-	while (angle < 0)
+	if (angle < 0)
 		angle += 2.0 * PI;
-	while (angle >= 2.0 * PI)
+	if (angle >= 2.0 * PI)
 		angle -= 2.0 * PI;
 	return (angle);
 }
@@ -80,8 +80,8 @@ void	ray_initializer(t_player *p, double angle)
 		p->deltaDistY = 1e30;
 	else
 		p->deltaDistY = fabs(1.0 / p->rayDirY);
-	p->posX = (p->x + 4) / (double)TS;
-	p->posY = (p->y + 4) / (double)TS;
+	p->posX = (p->x) / (double)TS;
+	p->posY = (p->y) / (double)TS;
 	p->mapX = (int)p->posX;
 	p->mapY = (int)p->posY;
     ray_initializer_2(p);
@@ -157,7 +157,7 @@ void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int hx, in
 	int	j;
 
 	i = drawS;
-	j = 1024 - asd;
+	j = WIDTH - asd;
 	while (i < drawE)
 	{
 		if (check == 0)
@@ -179,6 +179,9 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	int		lineH;
 	int		drawS;
 	int		drawE;
+	double	angleDiff;
+	double	rawDist;
+	double	perpDist;
 	t_ray	ray;
 	
 	// printf("here!\n");
@@ -186,24 +189,37 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	check = ray_loop(game, p);
 	if (check == -1)
 		return (ray);
+	angleDiff = angle - p->angle;
+	// angleDiff = normalised_angle(angleDiff);
 	if (check == 0)
-		wallDist = (p->mapX - p->posX + (1 - p->stepX) / 2.0) / p->rayDirX;
+		perpDist = (p->mapX - p->posX + (1.0 - p->stepX) * 0.5) / p->rayDirX;
 	else
-		wallDist = (p->mapY - p->posY + (1 - p->stepY) / 2.0) / p->rayDirY;
-	hitX = p->posX + p->rayDirX * wallDist;
-	hitY = p->posY + p->rayDirY * wallDist;
+		perpDist = (p->mapY - p->posY + (1.0 - p->stepY) * 0.5) / p->rayDirY;
+	perpDist *= cos(angleDiff);
+	// perpDist = fabs(perpDist);
+	if (perpDist < 1e-6)
+		perpDist = 1e-6;
+	// if (check==0) printf("Xside  dir=(%.3f,%.3f) stepX=%d\n", p->rayDirX, p->rayDirY, p->stepX);
+	// else          printf("Yside  dir=(%.3f,%.3f) stepY=%d\n", p->rayDirX, p->rayDirY, p->stepY);
+	// if (check == 0)
+	// 	wallDist = (p->sideDistX - p->deltaDistX);
+	// else
+	// 	wallDist = (p->sideDistY - p->deltaDistY);
+	// wallDist *= cos(angleDiff);
+	hitX = p->posX + p->rayDirX * perpDist;
+	hitY = p->posY + p->rayDirY * perpDist;
 	hx = (int)round(hitX * TS);
 	hy = (int)round(hitY * TS);
 	ray.hit = 1;
 	ray.side = check;
-	ray.wall_dist = wallDist;
+	// ray.wall_dist = perpDist;
 	ray.hx = hx;
 	ray.hy = hy;
-	lineH = (int)(HEIGHT / wallDist);
-	drawS = (HEIGHT - lineH) / 2;
+	lineH = (int)(HEIGHT / perpDist);
+	drawS = -lineH / 2 + HEIGHT / 2;
 	if (drawS < 0)
 		drawS = 0;
-	drawE = drawS + lineH - 1;
+	drawE = lineH / 2 + HEIGHT / 2;
 	if (drawE >= HEIGHT)
 		drawE = HEIGHT - 1;
 	// printf("here!2\n");
