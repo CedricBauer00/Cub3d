@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/14 09:51:56 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/14 10:12:07 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,14 @@ int	main(int argc, char **argv)
 		return (gc_free_all(), -1);
 	gc_free(PARS);
 	//EXECUTION!
-	// if (execute_main(data.textures, data.map_info) < 0)
-	// 	return (printf("Error: Execution failed!\n"), -1);
+	if (execute_main(data.textures, data.map_info) < 0)
+		return (printf("Error: Execution failed!\n"), -1);
 	printf("Parsing wokred successfully!\n");
 	gc_free_all(); //	DELETE MLX TEXTURES with mlx_delete_texture(test) - DID NOT HAPPEN YET
 	return (0);
+}
+
+int execute_main(t_textures *textures, t_map *map_info)
+{
+	
 }
