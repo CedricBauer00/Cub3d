@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:18:04 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/08 11:45:23 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/14 09:21:29 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 t_which	*get_id(int id)
 {
-	t_which	*which = get_gc()->head;
+	t_which	*which;
+
+	which = get_gc()->head;
 	while (which)
 	{
 		if (which->id == id)
