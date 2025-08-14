@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:55:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/11 15:18:27 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/14 09:57:44 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	initialize(t_game *game)
 {
-	game->player->angle = PI / 2;
-	game->player->x = 253;
-	game->player->y = 253;
+	game->player->angle = PI / 2; 
+	game->player->x = 253; //map_info.player_x
+	game->player->y = 253; //map_info.player_y
 }
