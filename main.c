@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/12 12:38:02 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/14 14:47:57 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int ac, char **av)
 	paint_map(game, game->player->image);
 	game->player->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	draw_player(game, game->player->image);
-	mlx_image_to_window(game->mlx, game->player->image, 0, 0);
+	mlx_image_to_window(game->mlx, game->player->image, 0, 0); // this one is only used for the 2d map.
 	mlx_key_hook(game->mlx, key, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);

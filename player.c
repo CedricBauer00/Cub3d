@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/14 14:06:12 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/14 14:47:32 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	delete_image(mlx_image_t *image)
 }
 
 /*
-	this here is draws the yellow square we have in the 2d map.
+	this here is draws the yellow square that stands for the player we have in the 2d map.
 */
 
 static void	draw_player_helper(t_game *game, mlx_image_t *img)

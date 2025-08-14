@@ -6,11 +6,15 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/14 14:33:18 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/14 14:46:33 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+	here we have the normalised angle function. it's used to make sure the angle is between 0 and 2pi
+*/
 
 double	normalised_angle(double angle)
 {
@@ -20,6 +24,11 @@ double	normalised_angle(double angle)
 		angle -= 2.0 * PI;
 	return (angle);
 }
+
+/*
+	this functions basically draws the rays. i will work on it more because it doesn't 
+	fit the 42 norm at the moment.
+*/
 
 void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy)
 {
@@ -115,7 +124,8 @@ void    ray_initializer_2(t_player *p)
 	Here we keep moving till we hit a wall. Depending on which variable is behind we make movement.
 	if x is more than y we increase y and the other way around.
 
-	the side variable determins weather x or y was the last one to march forwards.
+	the side variable determins weather x or y was the last one to march forwards and also helps us when we draw the walls
+	cus it shows us which side of the wall we hit..
 
 	mapX is where we are currently at the map and stepX is there to put us into the right direction.
 	so if stepX is -1 it means we can only walk backwards in the x axis.
