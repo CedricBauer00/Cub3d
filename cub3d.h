@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/14 10:19:14 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/14 13:35:05 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 
 # define TS 64
 # define WIDTH 1024
-# define HEIGHT 512
+# define HEIGHT 720
 # define MOVE_S 5
 # define SPEED 0.05
 # define PI 3.1415926535897932
-# define RAY_N WIDTH - 512
+# define RAY_N WIDTH
 
 typedef struct s_ray
 {
@@ -38,6 +38,7 @@ typedef struct s_ray
 	int		hy;
 	int		side;
 	double	wall_dist;
+	double	raw_dist;  // Original distance for 2D ray drawing
 }	t_ray;
 
 typedef struct s_player
@@ -63,7 +64,7 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	int	map[8][8];
+	int	map[24][24];
 	t_ray	*ray;
 	mlx_t	*mlx;
 	t_player *player;
@@ -85,7 +86,7 @@ void	ray_initializer(t_player *p, double angle);
 void    ray_initializer_2(t_player *p);
 void	draw_multiple_ray(t_game *game, mlx_image_t *img);
 double	normalised_angle(double angle);
-void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int hx, int hy, int asd);
+void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i);
 
 // 2D movement
 

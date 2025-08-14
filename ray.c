@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/14 10:05:40 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/14 13:53:19 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	ray_initializer(t_player *p, double angle)
 		p->deltaDistY = 1e30;
 	else
 		p->deltaDistY = fabs(1.0 / p->rayDirY);
-	p->posX = (p->x) / (double)TS;
-	p->posY = (p->y) / (double)TS;
+	p->posX = (p->x + 4) / (double)TS;
+	p->posY = (p->y + 4) / (double)TS;
 	p->mapX = (int)p->posX;
 	p->mapY = (int)p->posY;
     ray_initializer_2(p);
@@ -143,30 +143,50 @@ int	ray_loop(t_game *game, t_player *p)
 			p->sideDistY += p->deltaDistY;
 			side = 1;
 		}
-		if (p->mapX < 0 || p->mapY < 0 || p->mapX >= 8 || p->mapY >= 8)
-			return (-1);
+		if (p->mapX < 0 || p->mapY < 0 || p->mapX >= 24 || p->mapY >= 24)
+			break ;
 		if (game->map[p->mapY][p->mapX] == 1)
 			break ;
 	}
 	return (side);
 }
 
-void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int hx, int hy, int asd)
+/*
+	Here we draw the 3d image. drawS is the beginning of the wall and drawE is the end.
+	Check is the side of the wall that we hit.
+	ray_i is the index of the array from the draw_multiple_ray function. and we substract it from the width cus otherwise the image feels inverted.
+	it can be fixed by changing the rotate left and right functions but when we add the 2d, it's inverted in the 2d map instead.
+	
+	we first draw till the first wall to have a sky. then depending on the side of the wall the ray hits we draw the wall.
+*/
+
+void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i)
 {
 	int	i;
 	int	j;
 
-	i = drawS;
-	j = WIDTH - asd;
+	i = 0;
+	j = WIDTH - ray_i;
+	if (j >= WIDTH)
+		return;
+	while (i < drawS)
+	{
+		mlx_put_pixel(img, j, i, 0x87CEEBFF);
+		i++;
+	}
 	while (i < drawE)
 	{
-		if (check == 0)
+		if (check != 0)
 			mlx_put_pixel(img, j, i, 0x008000FF);
 		else
 			mlx_put_pixel(img, j, i, 0x90EE90FF);
 		i++;
 	}
-	// printf("e = %d, s = %d\n", drawE, drawS);
+	// while (i < HEIGHT)
+	// {
+	// 	mlx_put_pixel(img, j, i, 0x000000FF);
+	// 	i++;
+	// }
 }
 
 t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i)
@@ -187,32 +207,25 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	// printf("here!\n");
 	ray_initializer(p, angle);
 	check = ray_loop(game, p);
-	if (check == -1)
-		return (ray);
 	angleDiff = angle - p->angle;
-	// angleDiff = normalised_angle(angleDiff);
+	angleDiff = normalised_angle(angleDiff);
+	if (angleDiff > PI)
+		angleDiff -= 2.0 * PI;
 	if (check == 0)
-		perpDist = (p->mapX - p->posX + (1.0 - p->stepX) * 0.5) / p->rayDirX;
+		rawDist = (p->mapX - p->posX + (1.0 - p->stepX) * 0.5) / p->rayDirX;
 	else
-		perpDist = (p->mapY - p->posY + (1.0 - p->stepY) * 0.5) / p->rayDirY;
-	perpDist *= cos(angleDiff);
-	// perpDist = fabs(perpDist);
+		rawDist = (p->mapY - p->posY + (1.0 - p->stepY) * 0.5) / p->rayDirY;
+	perpDist = rawDist * cos(angleDiff);
 	if (perpDist < 1e-6)
 		perpDist = 1e-6;
-	// if (check==0) printf("Xside  dir=(%.3f,%.3f) stepX=%d\n", p->rayDirX, p->rayDirY, p->stepX);
-	// else          printf("Yside  dir=(%.3f,%.3f) stepY=%d\n", p->rayDirX, p->rayDirY, p->stepY);
-	// if (check == 0)
-	// 	wallDist = (p->sideDistX - p->deltaDistX);
-	// else
-	// 	wallDist = (p->sideDistY - p->deltaDistY);
-	// wallDist *= cos(angleDiff);
-	hitX = p->posX + p->rayDirX * perpDist;
-	hitY = p->posY + p->rayDirY * perpDist;
+	hitX = p->posX + p->rayDirX * rawDist;
+	hitY = p->posY + p->rayDirY * rawDist;
 	hx = (int)round(hitX * TS);
 	hy = (int)round(hitY * TS);
 	ray.hit = 1;
 	ray.side = check;
-	// ray.wall_dist = perpDist;
+	ray.wall_dist = perpDist;
+	ray.raw_dist = rawDist;
 	ray.hx = hx;
 	ray.hy = hy;
 	lineH = (int)(HEIGHT / perpDist);
@@ -222,9 +235,7 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	drawE = lineH / 2 + HEIGHT / 2;
 	if (drawE >= HEIGHT)
 		drawE = HEIGHT - 1;
-	// printf("here!2\n");
-	draw_vertical(drawS, drawE, check, image, hx, hy, i);
-	// printf("here!3\n");
+	draw_vertical(drawS, drawE, check, image, i);
 	return (ray);
 }
 
@@ -236,15 +247,15 @@ void	draw_multiple_ray(t_game *game, mlx_image_t *img)
 	int		i;
 	t_ray	ray;
 
-	fov = 90.0 * PI / 180;
+	fov = 60.0 * PI / 180;
 	start = game->player->angle - fov * 0.5;
-	step = fov / (double)(RAY_N - 1);
+	step = fov / (double)RAY_N;
 	i = 0;
 	while (i < RAY_N)
 	{
 		ray = draw_ray(game, game->player, img, 0, start + step * i, i);
-		if (ray.hit)
-			draw_ray_helper(game, img, ray.hx, ray.hy);
+		// if (ray.hit)
+		// 	draw_ray_helper(game, img, ray.hx, ray.hy);
 		i++;
 	}
 }
