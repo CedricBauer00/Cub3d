@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/14 14:47:32 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/14 16:28:28 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 	we use this function to delete the drawn images whenever we want to draw something new.
 */
 
-static void	delete_image(mlx_image_t *image)
+void	delete_image(mlx_image_t *image)
 {
 	ft_memset(image->pixels, 0, image->width * image->height * sizeof(uint32_t));
 }

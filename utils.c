@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 13:09:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/14 13:29:41 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/14 16:28:48 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	paint_map(t_game *game, mlx_image_t *image)
 	int	k;
 	int	l;
 
+	// delete_image(game->player->minimap);
 	int	map[24][24] =
 	{
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -64,8 +65,8 @@ int	paint_map(t_game *game, mlx_image_t *image)
 	j = 0;
 	k = -1;
 	l = -1;
-	// image = mlx_new_image(game->mlx, 512, 512);
-	// while (i < 512)
+	// game->player->minimap = mlx_new_image(game->mlx, 200, 200);
+	// while (i < 200)
 	// {
 	// 	j = 0;
 	// 	k = -1;
@@ -76,7 +77,7 @@ int	paint_map(t_game *game, mlx_image_t *image)
 	// 			l++;
 	// 		continue ;
 	// 	}
-	// 	while (j < 512)
+	// 	while (j < 200)
 	// 	{
 	// 		if (j % TS == 0)
 	// 		{
@@ -89,11 +90,11 @@ int	paint_map(t_game *game, mlx_image_t *image)
 	// 		{
 	// 			if (map[l][k] == 1)
 	// 			{
-	// 				mlx_put_pixel(image, j, i, 0xFFFFFFFF);
+	// 				mlx_put_pixel(image, j, i, 0xFFFFFF80);
 	// 			}
 	// 			else if (map[l][k] == 0)
 	// 			{
-	// 				mlx_put_pixel(image, j, i, 0x000000FF);
+	// 				mlx_put_pixel(image, j, i, 0x00000080);
 	// 			}
 	// 			j++;
 	// 		}

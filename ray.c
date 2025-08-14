@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/14 14:46:33 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/14 16:41:51 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	ray_initializer(t_player *p, double angle)
 		p->deltaDistY = 1e30;
 	else
 		p->deltaDistY = fabs(1.0 / p->rayDirY);
-	p->posX = (p->x + 4) / (double)TS;
-	p->posY = (p->y + 4) / (double)TS;
+	p->posX = (p->x) / (double)TS;
+	p->posY = (p->y) / (double)TS;
 	p->mapX = (int)p->posX;
 	p->mapY = (int)p->posY;
     ray_initializer_2(p);
@@ -208,7 +208,6 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 {
 	int		hx;
 	int		hy;
-	double	wallDist;
 	double	hitX;
 	double	hitY;
 	int		lineH;
@@ -219,7 +218,6 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	double	perpDist;
 	t_ray	ray;
 	
-	// printf("here!\n");
 	ray_initializer(p, angle);
 	check = ray_loop(game, p);
 	angleDiff = angle - p->angle;

@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/14 14:50:47 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/14 16:22:00 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_player
 	int		stepX; // determines the direction of the ray. up-down or left-right.
 	int		stepY;
 	mlx_image_t *image;
+	mlx_image_t *minimap;
 	mlx_instance_t *inst;
 }	t_player;
 
@@ -74,6 +75,7 @@ typedef struct s_game
 
 // prints a 2d map to do some tests
 int		paint_map(t_game *game, mlx_image_t *image);
+void	delete_image(mlx_image_t *image);
 // this one is being used every time the character moves.
 // it prints the body of the character, the direction showing stick thing and the red ray that stops when it hits a wall.
 // i will add more rays to it to get a proper field of view.
