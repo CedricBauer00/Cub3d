@@ -6,11 +6,15 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/14 13:26:44 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/14 14:01:37 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+	these two functions blow are used to both rotate the players angle and to correct the angle if it goes out of bounds.
+*/
 
 static void	rotate_right(t_game *game)
 {
@@ -54,6 +58,18 @@ void	key(mlx_key_data_t keys, void *ptr)
 		// printf("x = %d, y = %d, angle = %f\n", game->player->x, game->player->y, game->player->angle);
 	}
 }
+
+/*
+	here at first we increase local x and y variables to check if the character will be out of bounds of the map.
+	if this happens, we get an error message and it prevents us from moving in that direction. if that's not the case
+	we move the player in that direction.
+
+	normally in the so_long project we had to increase/decrease x or y by 1 but here we want to be able to move in the direction
+	of the angle, therefore we calculate both cos and sin of the angle to get the correct direction and then multiply it by the
+	amount of movement we want to make.
+
+	draw player function is there to both draw the player in the 2d map and to go into the ray calculation/drawing progress.
+*/
 
 void	move_up(t_game *game)
 {

@@ -6,16 +6,24 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/14 13:21:27 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/14 14:06:12 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+	we use this function to delete the drawn images whenever we want to draw something new.
+*/
+
 static void	delete_image(mlx_image_t *image)
 {
 	ft_memset(image->pixels, 0, image->width * image->height * sizeof(uint32_t));
 }
+
+/*
+	this here is draws the yellow square we have in the 2d map.
+*/
 
 static void	draw_player_helper(t_game *game, mlx_image_t *img)
 {
@@ -38,6 +46,13 @@ static void	draw_player_helper(t_game *game, mlx_image_t *img)
 	// 	i++;
 	// }
 }
+
+/*
+	draw multiple rays function is where we start calculating the rays and also drawing them on the 2d map.
+	below it we see a while loop which is used to draw a yellow stick thingy to see the direction we're facing.
+
+	the last one is explained above
+*/
 
 void	draw_player(t_game *game, mlx_image_t *image)
 {
