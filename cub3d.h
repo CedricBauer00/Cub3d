@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/14 16:22:00 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/14 16:52:38 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,15 @@ typedef struct s_ray
 	int		hit;	   // if the ray hits a wall.
 	int		hx;		   // the x coordinate of the wall we're looking at.
 	int		hy;		   // the y coordinate of the wall we're looking at.
+	double	hitX;
+	double	hitY;
+	int		lineH;
+	int		drawS;
+	int		drawE;
+	double	angleDiff;
 	int		side;	   // the side of the wall we're looking at.
-	double	wall_dist; // the distance for the 3d drawing so that it won't have the fish eye effect.
-	double	raw_dist;  // original distance for 2D ray drawing
+	double	wallDist; // the distance for the 3d drawing so that it won't have the fish eye effect.
+	double	rawDist;  // original distance for 2D ray drawing
 }	t_ray;
 
 typedef struct s_player
@@ -83,6 +89,7 @@ void	draw_player(t_game *game, mlx_image_t *image);
 // draw_ray function and its little helper are used to calculate the distance of the red ray.
 t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i);
 void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy);
+void	draw_ray_init(t_player *p, t_ray *r, double angle, int check);
 int		ray_loop(t_game *game, t_player *p);
 void	ray_initializer(t_player *p, double angle);
 void    ray_initializer_2(t_player *p);

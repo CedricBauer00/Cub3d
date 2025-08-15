@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/14 16:41:51 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/15 11:30:36 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,57 +204,48 @@ void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i)
 	sense to do it then.
 */
 
+void	draw_ray_init(t_player *p, t_ray *r, double angle, int check)
+{
+	r->angleDiff = angle - p->angle;
+	r->angleDiff = normalised_angle(r->angleDiff);
+	if (r->angleDiff > PI)
+		r->angleDiff -= 2.0 * PI;
+	if (check == 0)
+		r->rawDist = (p->mapX - p->posX + (1.0 - p->stepX) * 0.5) / p->rayDirX;
+	else
+		r->rawDist = (p->mapY - p->posY + (1.0 - p->stepY) * 0.5) / p->rayDirY;
+	r->wallDist = r->rawDist * cos(r->angleDiff);
+	if (r->wallDist < 1e-6)
+		r->wallDist = 1e-6;
+}
+
 t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i)
 {
-	int		hx;
-	int		hy;
-	double	hitX;
-	double	hitY;
-	int		lineH;
-	int		drawS;
-	int		drawE;
-	double	angleDiff;
-	double	rawDist;
-	double	perpDist;
-	t_ray	ray;
+	t_ray	r;
 	
 	ray_initializer(p, angle);
 	check = ray_loop(game, p);
-	angleDiff = angle - p->angle;
-	angleDiff = normalised_angle(angleDiff);
-	if (angleDiff > PI)
-		angleDiff -= 2.0 * PI;
-	if (check == 0)
-		rawDist = (p->mapX - p->posX + (1.0 - p->stepX) * 0.5) / p->rayDirX;
-	else
-		rawDist = (p->mapY - p->posY + (1.0 - p->stepY) * 0.5) / p->rayDirY;
-	perpDist = rawDist * cos(angleDiff);
-	if (perpDist < 1e-6)
-		perpDist = 1e-6;
-	hitX = p->posX + p->rayDirX * rawDist;
-	hitY = p->posY + p->rayDirY * rawDist;
-	hx = (int)round(hitX * TS);
-	hy = (int)round(hitY * TS);
-	ray.hit = 1;
-	ray.side = check;
-	ray.wall_dist = perpDist;
-	ray.raw_dist = rawDist;
-	ray.hx = hx;
-	ray.hy = hy;
-	lineH = (int)(HEIGHT / perpDist);
-	drawS = -lineH / 2 + HEIGHT / 2;
-	if (drawS < 0)
-		drawS = 0;
-	drawE = lineH / 2 + HEIGHT / 2;
-	if (drawE >= HEIGHT)
-		drawE = HEIGHT - 1;
-	draw_vertical(drawS, drawE, check, image, i);
-	return (ray);
+	draw_ray_init(p, &r, angle, check);
+	r.hitX = p->posX + p->rayDirX * r.rawDist;
+	r.hitY = p->posY + p->rayDirY * r.rawDist;
+	r.hx = (int)round(r.hitX * TS);
+	r.hy = (int)round(r.hitY * TS);
+	r.hit = 1;
+	r.side = check;
+	r.lineH = (int)(HEIGHT / r.wallDist);
+	r.drawS = -r.lineH / 2 + HEIGHT / 2;
+	if (r.drawS < 0)
+		r.drawS = 0;
+	r.drawE = r.lineH / 2 + HEIGHT / 2;
+	if (r.drawE >= HEIGHT)
+		r.drawE = HEIGHT - 1;
+	draw_vertical(r.drawS, r.drawE, check, image, i);
+	return (r);
 }
 
 /*
 	so we have a few variables here. fov is the field of view. we have to do the calculations below because we need to convert the fov to radians.
-	the reason why it's 60 degrees is that the human fov is the same. 
+	the reason why it's 60 degrees is that it looks nicer? idk, i saw others do the same. 
 
 	the start variable is being calculated that way because if we would just add the fov to the game we would have the fov start from the middle of the
 	character and expand to the right or left depending on how the calculation is being made in the later functions. but when we substract the half of the 
