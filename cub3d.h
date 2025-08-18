@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/18 14:41:01 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/18 15:10:46 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ typedef struct s_seen
 // printing stuff on the map
 
 // prints a 2d map to do some tests
-void	draw_minimap(t_game *game, mlx_image_t *image);
+void	draw_minimap(t_game *game);
 int		paint_map(t_game *game, mlx_image_t *image);
 void	delete_image(mlx_image_t *image);
 // this one is being used every time the character moves.

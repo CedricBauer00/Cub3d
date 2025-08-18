@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/15 13:01:10 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/18 15:10:47 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	move_up(t_game *game)
 	game->player->y -= (int)round(sin(angle) * MOVE_S);
 	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
+	draw_minimap(game);
 }
 
 void	move_down(t_game *game)
@@ -70,6 +71,7 @@ void	move_down(t_game *game)
 	game->player->y += (int)round(sin(angle) * MOVE_S);
 	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
+	draw_minimap(game);
 }
 
 void	move_right(t_game *game)
@@ -94,6 +96,7 @@ void	move_right(t_game *game)
 	game->player->y += (int)round(cos(angle) * MOVE_S);
 	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
+	draw_minimap(game);
 }
 
 void	move_left(t_game *game)
@@ -118,4 +121,5 @@ void	move_left(t_game *game)
 	game->player->y -= (int)round(cos(angle) * MOVE_S);
 	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
 	draw_player(game, game->player->image);
+	draw_minimap(game);
 }

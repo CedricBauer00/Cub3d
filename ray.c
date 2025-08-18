@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/18 14:41:16 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/18 15:10:43 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,5 +192,4 @@ void	draw_multiple_ray(t_game *game, mlx_image_t *img)
 		// 	draw_ray_helper(game, img, ray.hx, ray.hy);
 		i++;
 	}
-	draw_minimap(game, img);
 }

@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/15 12:34:36 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/18 15:13:18 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	draw_player_helper(t_game *game, mlx_image_t *img)
 	// 	j = 0;
 	// 	while (j < 8)
 	// 	{
-	// 		mlx_put_pixel(img, d_x + i, d_y + j, 0xFFFF00FF);
+	// 		mlx_put_pixel(img, d_x + i - 4, d_y + j - 4, 0xFFFF00FF);
 	// 		j++;
 	// 	}
 	// 	i++;
