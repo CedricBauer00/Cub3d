@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/14 16:52:38 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/18 14:41:01 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,64 @@ typedef struct s_game
 	t_player *player;
 }	t_game;
 
+// parsing files
+
+typedef struct s_textures
+{
+	//textures
+	mlx_texture_t	*no_text;
+	mlx_texture_t	*so_text;
+	mlx_texture_t	*we_text;
+	mlx_texture_t	*ea_text;
+
+	//floor/ceeling
+	uint32_t	f_clr;
+	uint32_t	c_clr;
+}	t_textures;
+
+typedef struct s_map
+{
+	int		hight;
+	int		width;
+	char	**map;
+
+	//player position 
+	float		x_pos;
+	float		y_pos;
+	char		plr_dir;
+}	t_map;
+
+typedef struct s_configs
+{
+	char		**lines;
+	int			lcount;
+	char		**txtrs;
+	t_textures	*textures;
+	int			where_color_is;
+
+	//map
+	int		m_hight;
+	int		m_width;
+	char	**map;
+	t_map	*map_info;
+}	t_configs;
+
+typedef struct s_seen
+{
+	int	no;
+	int	so;
+	int	we;
+	int	ea;
+	int	f;
+	int	c;
+}	t_seen;
+
+
+
 // printing stuff on the map
 
 // prints a 2d map to do some tests
+void	draw_minimap(t_game *game, mlx_image_t *image);
 int		paint_map(t_game *game, mlx_image_t *image);
 void	delete_image(mlx_image_t *image);
 // this one is being used every time the character moves.
@@ -107,6 +162,10 @@ void	move_left(t_game *game);
 void	move_right(t_game *game);
 void	move_up(t_game *game);
 void	move_down(t_game *game);
+
+// rotation functions.
+void	rotate_right(t_game *game);
+void	rotate_left(t_game *game);
 
 // a small initializing function
 void	initialize(t_game *game);

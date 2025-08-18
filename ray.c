@@ -6,24 +6,11 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/15 11:30:36 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/18 14:41:16 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/*
-	here we have the normalised angle function. it's used to make sure the angle is between 0 and 2pi
-*/
-
-double	normalised_angle(double angle)
-{
-	if (angle < 0)
-		angle += 2.0 * PI;
-	if (angle >= 2.0 * PI)
-		angle -= 2.0 * PI;
-	return (angle);
-}
 
 /*
 	this functions basically draws the rays. i will work on it more because it doesn't 
@@ -35,8 +22,8 @@ void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy)
 	int	i = 0;
 	double	xx;
 	double	yy;
-	int	x = game->player->x + 4;
-	int	y = game->player->y + 4;
+	int	x = game->player->x;
+	int	y = game->player->y;
 	int	steps = (int)fmax(abs(hx - x), abs(hy - y));
 	double	incx;
 	double	incy;
@@ -53,70 +40,6 @@ void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy)
 		xx += incx;
 		yy += incy;
 		i++;
-	}
-}
-/*
-	Here we have the first part of the calculations made for the ray.
-	we have the ray as a straight line and since we know the tile size and 
-	where it's pointed to, using cos and sin functions we can determine the
-	movements of our character.(sin is set as minus because it grows downwards)
-
-	Then we use the fabs function to make the number we want to assign positive
-	if it's negative.
-	We need to calculate delta distances because depending on
-	the angle of the ray, the amount of movement in the x and y directions changes
-	and if it's 0 we set the deltaDirX/Y to 1e30(infinity) because otherwise we would try to
-	divide a number by 0 which is not possible.
-
-	We add 4 to the coordinants because of how i draw stuff but i will be changing that.
-	Then we divide them by 64 because for the moment our tile size is 64.
-	For example the map is 512 x 512 long because it was built pixel by pixel,
-	if x is 134 we know that x is actually 2, which helps us see where we are on the map by using something like map[y][x].
-
-	the if statements down at the bottom are for the directions we need to follow.
-	sideDistX/Y are there to determine how much we need to move in the y and x axis.
-*/
-
-void	ray_initializer(t_player *p, double angle)
-{
-	p->rayDirX = cos(angle);
-	p->rayDirY = -sin(angle);
-	if (p->rayDirX == 0.0)
-		p->deltaDistX = 1e30;
-	else
-		p->deltaDistX = fabs(1.0 / p->rayDirX);
-	if (p->rayDirY == 0.0)
-		p->deltaDistY = 1e30;
-	else
-		p->deltaDistY = fabs(1.0 / p->rayDirY);
-	p->posX = (p->x) / (double)TS;
-	p->posY = (p->y) / (double)TS;
-	p->mapX = (int)p->posX;
-	p->mapY = (int)p->posY;
-    ray_initializer_2(p);
-}
-
-void    ray_initializer_2(t_player *p)
-{
-    if (p->rayDirX > 0)
-	{
-		p->stepX = 1;
-		p->sideDistX = (p->mapX + 1 - p->posX) * p->deltaDistX;
-	}
-	else
-	{
-		p->stepX = -1;
-		p->sideDistX = (p->posX - p->mapX) * p->deltaDistX;
-	}
-	if (p->rayDirY > 0)
-	{
-		p->stepY = 1;
-		p->sideDistY = (p->mapY + 1 - p->posY) * p->deltaDistY;
-	}
-	else
-	{
-		p->stepY = -1;
-		p->sideDistY = (p->posY - p->mapY) * p->deltaDistY;
 	}
 }
 
@@ -204,21 +127,6 @@ void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i)
 	sense to do it then.
 */
 
-void	draw_ray_init(t_player *p, t_ray *r, double angle, int check)
-{
-	r->angleDiff = angle - p->angle;
-	r->angleDiff = normalised_angle(r->angleDiff);
-	if (r->angleDiff > PI)
-		r->angleDiff -= 2.0 * PI;
-	if (check == 0)
-		r->rawDist = (p->mapX - p->posX + (1.0 - p->stepX) * 0.5) / p->rayDirX;
-	else
-		r->rawDist = (p->mapY - p->posY + (1.0 - p->stepY) * 0.5) / p->rayDirY;
-	r->wallDist = r->rawDist * cos(r->angleDiff);
-	if (r->wallDist < 1e-6)
-		r->wallDist = 1e-6;
-}
-
 t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i)
 {
 	t_ray	r;
@@ -284,4 +192,5 @@ void	draw_multiple_ray(t_game *game, mlx_image_t *img)
 		// 	draw_ray_helper(game, img, ray.hx, ray.hy);
 		i++;
 	}
+	draw_minimap(game, img);
 }

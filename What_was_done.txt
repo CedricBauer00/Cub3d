@@ -1,3 +1,10 @@
+Things need to be done:
+	- adding mouse movement.
+	- adding textures to the walls.
+	- adding a 2D map to the right/left corner.
+	- making the wall collision more accurate.
+	- merging the branches.
+
 Created a 2D map cus i like having something visual when working on projects.
 
 For now the 2D map only shows our movements and the direction we're facing.
@@ -19,3 +26,10 @@ Friday:
 12.08 Tuesday
 	the program can now cast multiple rays and also i made the screen of the game wider so that on the right side we will have the 3d part of the program.
 	the 3d part is still being worked on as the floor or ceiling has not been set and there is a fish eye effect when the program prints out the walls.
+13.08 Wednesday
+	spent a lot of time trying to fix the fish eye without achieving anything
+14.08 Thursday
+	the fish eye effect is fixed and for the moment removed the 2d map. increased the map size to be able to test the pov properly.
+	added more comments to the functions to explain what's going on.
+18.08 Monday
+	
