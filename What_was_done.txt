@@ -32,4 +32,5 @@ Friday:
 	the fish eye effect is fixed and for the moment removed the 2d map. increased the map size to be able to test the pov properly.
 	added more comments to the functions to explain what's going on.
 18.08 Monday
-	
+	added a minimap on the left corner. for the moment it doesn't have anything in it that
+	represents the player character but it will be added soon.
