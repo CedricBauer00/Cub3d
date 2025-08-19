@@ -1,9 +1,7 @@
 Things need to be done:
 	- adding mouse movement.
 	- adding textures to the walls.
-	- adding a 2D map to the right/left corner.
-	- making the wall collision more accurate.
-	- merging the branches.
+	- adding the fov effect to the minimap using the rays.
 
 Created a 2D map cus i like having something visual when working on projects.
 
