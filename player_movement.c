@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/18 15:10:47 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/19 14:30:23 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	move_up(t_game *game)
 	y = game->player->y;
 	x += (int)round(sin(angle) * MOVE_S);
 	y -= (int)round(cos(angle) * MOVE_S);
-	if (game->map[y / TS][x / TS] == 1)
+	if (game->map[y / TS][x / TS] == '1')
 	{
 		printf("x = %d, y = %d\n", x, y);
 		printf("x = %d, y = %d\n", x / TS, y / TS);
@@ -60,7 +60,7 @@ void	move_down(t_game *game)
 	y = game->player->y;
 	x -= (int)round(cos(angle) * MOVE_S);
 	y += (int)round(sin(angle) * MOVE_S);
-	if (game->map[y / TS][x / TS] == 1)
+	if (game->map[y / TS][x / TS] == '1')
 	{
 		printf("x = %d, y = %d\n", x, y);
 		printf("x = %d, y = %d\n", x / TS, y / TS);
@@ -85,7 +85,7 @@ void	move_right(t_game *game)
 	y = game->player->y;
 	x += (int)round(sin(angle) * MOVE_S);
 	y += (int)round(cos(angle) * MOVE_S);
-	if (game->map[y / TS][x / TS] == 1)
+	if (game->map[y / TS][x / TS] == '1')
 	{
 		printf("x = %d, y = %d\n", x, y);
 		printf("x = %d, y = %d\n", x / TS, y / TS);
@@ -110,7 +110,7 @@ void	move_left(t_game *game)
 	y = game->player->y;
 	x -= (int)round(sin(angle) * MOVE_S);
 	y -= (int)round(cos(angle) * MOVE_S);
-	if (game->map[y / TS][x / TS] == 1)
+	if (game->map[y / TS][x / TS] == '1')
 	{
 		printf("x = %d, y = %d\n", x, y);
 		printf("x = %d, y = %d\n", x / TS, y / TS);

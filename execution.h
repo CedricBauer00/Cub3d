@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/19 12:57:52 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/19 14:35:16 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	int	map[24][24];
+	// int	map[24][24];
+	char	**map;
+	int		mwidth;
+	int		mheight;
 	t_ray	*ray;
 	mlx_t	*mlx;
 	t_player *player;
@@ -115,7 +118,7 @@ void	rotate_right(t_game *game);
 void	rotate_left(t_game *game);
 
 // a small initializing function
-void	initialize(t_game *game);
+void	initialize(t_map *maps, t_game *game);
 int		execute_main(t_configs *data);
 
 #endif
