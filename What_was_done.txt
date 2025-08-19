@@ -2,6 +2,7 @@ Things need to be done:
 	- adding mouse movement.
 	- adding textures to the walls.
 	- adding the fov effect to the minimap using the rays.
+	- adding the player facing directions.
 
 Created a 2D map cus i like having something visual when working on projects.
 

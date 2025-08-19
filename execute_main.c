@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/19 14:40:03 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/19 17:43:05 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ int execute_main(t_configs *data)
 	if (!game->mlx)
 		return (0);
 	initialize(data->map_info, game);
-	// paint_map(game, game->player->image);
-	// printf("colour1 %u colour2 %u\n", data->textures->c_clr, data->textures->f_clr);
 	game->player->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->player->minimap = mlx_new_image(game->mlx, WIDTH / 3, HEIGHT / 3);
-	// paint_map(game, game->player->image);
 	draw_player(game, game->player->image);
-	draw_minimap(game);
+	draw_minimap(game, game->player->minimap, 0, -1);
 	mlx_image_to_window(game->mlx, game->player->image, 0, 0);
 	mlx_image_to_window(game->mlx, game->player->minimap, 10, 10);
 	mlx_key_hook(game->mlx, key, game);

@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:34:41 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/19 15:18:31 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/19 17:41:11 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,44 +49,21 @@ void	draw_character(t_game *game, mlx_image_t *minimap)
     }
 }
 
-void	draw_minimap(t_game *game)
+void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l)
 {
-    int i = 0;
-    int j = 0;
-    int k = -1;
-    int l = -1;
-    
-    mlx_image_t *minimap = game->player->minimap;
-    
-    while (i < (int)minimap->height)
-    {
-        j = 0;
-        while (j < (int)minimap->width)
-        {
-            mlx_put_pixel(minimap, j, i, 0x00000000);
-            j++;
-        }
-        i++;
-    }
-    
-    i = 0;
-    l = -1;
+    int k;
+	int	j;
+	
     while (i < (int)minimap->height && l < 24)
     {
         j = 0;
         k = -1;
-        if (i % (TS / 7) == 0)
-        {
-            if (l < 24)
-                l++;
-        }
+        if (i % (TS / 7) == 0 && l < 24)
+            l++;
         while (j < (int)minimap->width && k < 24)
         {
-            if (j % (TS / 5) == 0)
-            {
-                if (k < 24)
-                    k++;
-            }
+            if (j % (TS / 5) == 0 && k < 24)
+                k++;
             if (l >= 0 && k >= 0 && l < 24 && k < 24)
             {
                 if (game->map[l][k] == '1')
