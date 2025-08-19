@@ -145,7 +145,8 @@ SOURCES = main.c \
 		../ray.c \
 		../rotation.c \
 		../utils.c \
-		../wall.c
+		../wall.c \
+		../wall_check.c \
 
 OBJECTS := $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 

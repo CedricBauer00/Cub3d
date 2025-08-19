@@ -34,3 +34,7 @@ Friday:
 18.08 Monday
 	added a minimap on the left corner. for the moment it doesn't have anything in it that
 	represents the player character but it will be added soon.
+19.08 Tuesday
+	started to use the map and the height + width of the map from parsing and changed to checks accordingly.
+	added the player character to the minimap.
+	player character has a decent wall collision now.

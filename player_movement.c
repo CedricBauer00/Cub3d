@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/19 17:08:08 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/19 17:11:07 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,98 +23,6 @@
 
 	draw player function is there to both draw the player in the 2d map and to go into the ray calculation/drawing progress.
 */
-
-static int	wall_check_up(t_game *g, int x, int y)
-{
-	int		i;
-	int		j;
-	int		new_x;
-	int		new_y;
-	double	angle;
-
-	angle = g->player->angle;
-	i = 1;
-	while (i <= MOVE_S + 3)
-	{
-		new_x = g->player->x + (int)round(cos(angle) * i);
-		new_y = g->player->y - (int)round(sin(angle) * i);
-		if (g->map[new_y / TS][new_x / TS] == '1')
-			return (-1);
-		i++;
-	}
-	if (g->map[new_y / TS][new_x / TS] == '1')
-		return (-1);
-	return (0);
-}
-
-static int	wall_check_down(t_game *g, int x, int y)
-{
-	int		i;
-	int		j;
-	int		new_x;
-	int		new_y;
-	double	angle;
-
-	angle = g->player->angle;
-	i = 1;
-	while (i <= MOVE_S + 3)
-	{
-		new_x = g->player->x - (int)round(cos(angle) * i);
-		new_y = g->player->y + (int)round(sin(angle) * i);
-		if (g->map[new_y / TS][new_x / TS] == '1')
-			return (-1);
-		i++;
-	}
-	if (g->map[new_y / TS][new_x / TS] == '1')
-		return (-1);
-	return (0);
-}
-
-static int	wall_check_right(t_game *g, int x, int y)
-{
-	int		i;
-	int		j;
-	int		new_x;
-	int		new_y;
-	double	angle;
-
-	angle = g->player->angle;
-	i = 1;
-	while (i <= MOVE_S + 3)
-	{
-		new_x = g->player->x + (int)round(sin(angle) * i);
-		new_y = g->player->y + (int)round(cos(angle) * i);
-		if (g->map[new_y / TS][new_x / TS] == '1')
-			return (-1);
-		i++;
-	}
-	if (g->map[new_y / TS][new_x / TS] == '1')
-		return (-1);
-	return (0);
-}
-
-static int	wall_check_left(t_game *g, int x, int y)
-{
-	int		i;
-	int		j;
-	int		new_x;
-	int		new_y;
-	double	angle;
-
-	angle = g->player->angle;
-	i = 1;
-	while (i <= MOVE_S + 3)
-	{
-		new_x = g->player->x - (int)round(sin(angle) * i);
-		new_y = g->player->y - (int)round(cos(angle) * i);
-		if (g->map[new_y / TS][new_x / TS] == '1')
-			return (-1);
-		i++;
-	}
-	if (g->map[new_y / TS][new_x / TS] == '1')
-		return (-1);
-	return (0);
-}
 
 void	move_up(t_game *game)
 {
@@ -164,30 +72,6 @@ void	move_down(t_game *game)
 	draw_minimap(game);
 }
 
-void	move_right(t_game *game)
-{
-	double	angle;
-	int		new_x;
-	int		new_y;
-	int		buffer;
-
-	buffer = 8;
-	angle = game->player->angle;
-	new_x = game->player->x + (int)round(sin(angle) * MOVE_S);
-	new_y = game->player->y + (int)round(cos(angle) * MOVE_S);
-	if (wall_check_right(game, game->player->x, game->player->y) == -1)
-	{
-		printf("x = %d, y = %d\n", new_x, new_y);
-		printf("x = %d, y = %d\n", new_x / TS, new_y / TS);
-		printf("can't go that way\n");
-		return ;
-	}
-	game->player->x = new_x;
-	game->player->y = new_y;
-	draw_player(game, game->player->image);
-	draw_minimap(game);
-}
-
 void	move_left(t_game *game)
 {
 	double	angle;
@@ -200,6 +84,30 @@ void	move_left(t_game *game)
 	new_x = game->player->x - (int)round(sin(angle) * MOVE_S);
 	new_y = game->player->y - (int)round(cos(angle) * MOVE_S);
 	if (wall_check_left(game, game->player->x, game->player->y) == -1)
+	{
+		printf("x = %d, y = %d\n", new_x, new_y);
+		printf("x = %d, y = %d\n", new_x / TS, new_y / TS);
+		printf("can't go that way\n");
+		return ;
+	}
+	game->player->x = new_x;
+	game->player->y = new_y;
+	draw_player(game, game->player->image);
+	draw_minimap(game);
+}
+
+void	move_right(t_game *game)
+{
+	double	angle;
+	int		new_x;
+	int		new_y;
+	int		buffer;
+
+	buffer = 8;
+	angle = game->player->angle;
+	new_x = game->player->x + (int)round(sin(angle) * MOVE_S);
+	new_y = game->player->y + (int)round(cos(angle) * MOVE_S);
+	if (wall_check_right(game, game->player->x, game->player->y) == -1)
 	{
 		printf("x = %d, y = %d\n", new_x, new_y);
 		printf("x = %d, y = %d\n", new_x / TS, new_y / TS);

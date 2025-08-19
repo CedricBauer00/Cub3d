@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/19 14:35:16 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/19 17:10:36 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,16 @@ void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i)
 void	key(mlx_key_data_t keys, void *ptr);
 
 // movement functions.
-void	move_left(t_game *game);
-void	move_right(t_game *game);
 void	move_up(t_game *game);
 void	move_down(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+
+// wall collision check for the movement functions.
+int		wall_check_up(t_game *g, int x, int y);
+int		wall_check_down(t_game *g, int x, int y);
+int		wall_check_left(t_game *g, int x, int y);
+int		wall_check_right(t_game *g, int x, int y);
 
 // rotation functions.
 void	rotate_right(t_game *game);
