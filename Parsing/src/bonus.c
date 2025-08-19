@@ -6,11 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:52:28 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/11 15:52:58 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/19 12:45:02 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../cub3d.h"
 
 int	check_doors(t_configs *data, char **map, int i, int j)
 {

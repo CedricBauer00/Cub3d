@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 09:46:20 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/19 09:47:18 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/19 12:58:11 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef PARSING_H
+# define PARSING_H
 
 # include <unistd.h>
 # include <stdio.h>
@@ -45,8 +45,8 @@ typedef struct s_map
 	char			**map;
 
 	//player position 
-	float			x_pos;
-	float			y_pos;
+	double			x_pos;
+	double			y_pos;
 	char			plr_dir;
 }	t_map;
 

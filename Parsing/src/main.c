@@ -6,11 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/19 10:09:32 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/19 12:59:04 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../cub3d.h"
 
 int	allocate_lines(char *argv1, t_configs *data)
 {
@@ -128,8 +128,8 @@ int	main(int argc, char **argv)
 		return (gc_free_all(), -1);
 	gc_free(PARS);
 	//EXECUTION!
-	// if (execute_main(data.textures, data.map_info) < 0)
-	// 	return (printf("Error: Execution failed!\n"), -1);
+	if (execute_main(&data) < 0)
+		return (printf("Error: Execution failed!\n"), -1);
 	printf("Parsing wokred successfully!\n");
 	gc_free_all(); //	DELETE MLX TEXTURES with mlx_delete_texture(test) - DID NOT HAPPEN YET
 	return (0);

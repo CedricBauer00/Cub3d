@@ -133,7 +133,19 @@ SOURCES = main.c \
 		flood_fill.c \
 		check_map.c \
 		process_texture.c \
-		bonus.c
+		bonus.c \
+		../execute_main.c \
+		../hooks.c \
+		../initialize.c \
+		../minimap.c \
+		../parsing_files.c \
+		../player_movement.c \
+		../player.c \
+		../ray_init.c \
+		../ray.c \
+		../rotation.c \
+		../utils.c \
+		../wall.c
 
 OBJECTS := $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 

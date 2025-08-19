@@ -6,11 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 12:20:07 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/19 09:44:27 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/19 12:45:31 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../cub3d.h"
 
 int	get_player(t_configs *data, int i, int j, char c)
 {
