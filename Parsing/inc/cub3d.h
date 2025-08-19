@@ -1,17 +1,29 @@
-#ifndef CUB3D_H
-#define CUB3D_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/19 09:46:20 by cbauer            #+#    #+#             */
+/*   Updated: 2025/08/19 09:47:18 by cbauer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <math.h>
-#include "../gc/gc.h"
-#include <MLX42/MLX42.h>
-#include "../get_next_line/get_next_line.h"
-#include "../libft/libft.h"
+#ifndef CUB3D_H
+# define CUB3D_H
+
+# include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <string.h>
+# include <stdbool.h>
+# include <math.h>
+# include "../gc/gc.h"
+# include <MLX42/MLX42.h>
+# include "../get_next_line/get_next_line.h"
+# include "../libft/libft.h"
 
 typedef struct s_textures
 {
@@ -22,35 +34,35 @@ typedef struct s_textures
 	mlx_texture_t	*ea_text;
 
 	//floor/ceeling
-	uint32_t	f_clr;
-	uint32_t	c_clr;
+	uint32_t		f_clr;
+	uint32_t		c_clr;
 }	t_textures;
 
 typedef struct s_map
 {
-	int		hight;
-	int		width;
-	char	**map;
+	int				hight;
+	int				width;
+	char			**map;
 
 	//player position 
-	float		x_pos;
-	float		y_pos;
-	char		plr_dir;
+	float			x_pos;
+	float			y_pos;
+	char			plr_dir;
 }	t_map;
 
 typedef struct s_configs
 {
-	char		**lines;
-	int			lcount;
-	char		**txtrs;
-	t_textures	*textures;
-	int			where_color_is;
+	char			**lines;
+	int				lcount;
+	char			**txtrs;
+	t_textures		*textures;
+	int				where_color_is;
 
 	//map
-	int		m_hight;
-	int		m_width;
-	char	**map;
-	t_map	*map_info;
+	int				m_hight;
+	int				m_width;
+	char			**map;
+	t_map			*map_info;
 }	t_configs;
 
 typedef struct s_seen

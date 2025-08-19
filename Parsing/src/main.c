@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/14 10:12:07 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/19 10:09:32 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	allocate_lines(char *argv1, t_configs *data)
 	if (fd < 0)
 	{
 		return (printf("\033[31m!Error: Could not read from file!"),
-		printf("Try another one.\n\033[0m"), -1);
+			printf("Try another one.\n\033[0m"), -1);
 	}
 	str = get_next_line(fd);
 	while (str != NULL)
@@ -33,7 +33,7 @@ int	allocate_lines(char *argv1, t_configs *data)
 	}
 	if (data->lcount < 9)
 		return (printf("Error: Too little lines!\n"), -1);
-	data->lines = (char **)gc_malloc(sizeof(char *) * (data->lcount + 1), PARS); 
+	data->lines = (char **)gc_malloc(sizeof(char *) * (data->lcount + 1), PARS);
 	if (!data->lines)
 		return (close(fd), -1);
 	data->lines[data->lcount] = NULL;
@@ -47,7 +47,7 @@ int	init_lines(char *argv1, t_configs *data, int fd, char *tmp)
 	if (fd < 0)
 	{
 		return (printf("\033[31mError: Could not read from file!"),
-		printf("Try another one.\n\033[0m"), -1);
+			printf("Try another one.\n\033[0m"), -1);
 	}
 	allocate_lines(argv1, data);
 	tmp = get_next_line(fd);
@@ -56,7 +56,7 @@ int	init_lines(char *argv1, t_configs *data, int fd, char *tmp)
 	{
 		if (check_empty_line(tmp) == true) // if true, increment count
 			data->lines[data->lcount++] = gc_substr(tmp, 0,
-				ft_strlen(tmp), PARS); 
+				ft_strlen(tmp), PARS);
 		if (!data->lines[data->lcount - 1])
 			return (free(tmp), -1);
 		free(tmp);
@@ -117,7 +117,7 @@ int	seperate(t_configs *data)
 
 int	main(int argc, char **argv)
 {
-	t_configs data;
+	t_configs	data;
 
 	if (argc != 2)
 		return (printf("Error: Too many/few arguments!\n"), -1);
@@ -128,14 +128,14 @@ int	main(int argc, char **argv)
 		return (gc_free_all(), -1);
 	gc_free(PARS);
 	//EXECUTION!
-	if (execute_main(data.textures, data.map_info) < 0)
-		return (printf("Error: Execution failed!\n"), -1);
+	// if (execute_main(data.textures, data.map_info) < 0)
+	// 	return (printf("Error: Execution failed!\n"), -1);
 	printf("Parsing wokred successfully!\n");
 	gc_free_all(); //	DELETE MLX TEXTURES with mlx_delete_texture(test) - DID NOT HAPPEN YET
 	return (0);
 }
 
-int execute_main(t_textures *textures, t_map *map_info)
-{
-	
-}
+// int execute_main(t_textures *textures, t_map *map_info)
+// {
+
+// }

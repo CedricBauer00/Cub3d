@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 12:09:33 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/11 14:52:11 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/19 09:40:45 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 int	flood_fill(t_configs *data, int y, int x, char **map)
 {
 	if (x < 0 || y < 0 || y >= data->m_hight || x >= data->m_width
-			|| map[y][x] == ' ')
+		|| map[y][x] == ' ')
 		return (-1);
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return (0);
 	map[y][x] = 'F';
 	if (flood_fill(data, y, x + 1, map) < 0)
-		return(-1);
+		return (-1);
 	if (flood_fill(data, y, x - 1, map) < 0)
-		return(-1);
+		return (-1);
 	if (flood_fill(data, y + 1, x, map) < 0)
-		return(-1);
+		return (-1);
 	if (flood_fill(data, y - 1, x, map) < 0)
-		return(-1);
+		return (-1);
 	return (0);
 }
 
@@ -48,7 +48,7 @@ int	set_up_fl(t_configs *data)
 		i++;
 	}
 	if (flood_fill(data, data->map_info->y_pos,
-		data->map_info->x_pos, subst_map) < 0)
+			data->map_info->x_pos, subst_map) < 0)
 		return (printf("Error: Map wall is invalid!\n"), -1);
 	return (0);
 }

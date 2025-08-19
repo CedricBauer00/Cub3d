@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:57:23 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/07 14:16:16 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/19 09:51:23 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ void	gc_free_helper(t_gc *list)
 		free(gc_temp);
 	}
 }
-

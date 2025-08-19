@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 17:46:07 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/11 15:49:20 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/19 09:37:14 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ void	init_data(t_configs	*data)
 
 int	correct_name(char *argv1)
 {
-	int		i;
-	int		j;
+	int	i;
 
-	j = 0;
 	i = ft_strlen(argv1);
 	if (i <= 4)
 		return (printf("Error: Map name too short!\n"), -1);
