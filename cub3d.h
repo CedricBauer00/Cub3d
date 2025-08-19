@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/18 15:10:46 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/19 12:03:42 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ typedef struct s_textures
 
 typedef struct s_map
 {
-	int		hight;
-	int		width;
-	char	**map;
+	int			hight;
+	int			width;
+	char		**map;
 
 	//player position 
-	float		x_pos;
-	float		y_pos;
+	double		x_pos;
+	double		y_pos;
 	char		plr_dir;
 }	t_map;
 
