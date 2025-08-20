@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 13:09:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/15 13:06:23 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/19 13:40:28 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double	normalised_angle(double angle)
 	return (angle);
 }
 
-int	paint_map(t_game *game, mlx_image_t *image)
+int	paint_map(t_map *map_info, t_game *game, mlx_image_t *image)
 {
 	int	i;
 	int	j;

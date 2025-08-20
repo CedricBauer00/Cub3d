@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+         #
+#    By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/01 12:14:05 by bolcay            #+#    #+#              #
-#    Updated: 2025/08/18 14:40:02 by batuhan          ###   ########.fr        #
+#    Updated: 2025/08/20 10:06:29 by cbauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,11 @@ $(NAME): $(MLX42_LIB) $(LIBFT_LIB) $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean: 
-	$(RM_DIR) $(OBJS)
+	@$(RM_DIR) $(OBJS)
 
 fclean: clean
-		$(RM) $(NAME)
-		make fclean -C $(LIBFT_DIR)
+		@$(RM) $(NAME)
+		@make fclean -C $(LIBFT_DIR) --silent
 
 re: fclean all
 

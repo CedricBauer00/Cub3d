@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/19 12:57:52 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/19 13:40:49 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ typedef struct s_game
 
 // prints a 2d map to do some tests
 void	draw_minimap(t_game *game);
-int		paint_map(t_game *game, mlx_image_t *image);
+// int		paint_map(t_game *game, mlx_image_t *image);
+int	paint_map(t_map *map_info, t_game *game, mlx_image_t *image);
+
 void	delete_image(mlx_image_t *image);
 // this one is being used every time the character moves.
 // it prints the body of the character, the direction showing stick thing and the red ray that stops when it hits a wall.
@@ -115,7 +117,7 @@ void	rotate_right(t_game *game);
 void	rotate_left(t_game *game);
 
 // a small initializing function
-void	initialize(t_game *game);
+void	initialize(t_configs *data, t_game *game);
 int		execute_main(t_configs *data);
 
 #endif
