@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/18 15:10:43 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/19 14:36:03 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ int	ray_loop(t_game *game, t_player *p)
 			p->sideDistY += p->deltaDistY;
 			side = 1;
 		}
-		if (p->mapX < 0 || p->mapY < 0 || p->mapX >= 24 || p->mapY >= 24)
+		if (p->mapX < 0 || p->mapY < 0 || p->mapX >= game->mwidth || p->mapY >= game->mheight)
 			break ;
-		if (game->map[p->mapY][p->mapX] == 1)
+		if (game->map[p->mapY][p->mapX] == '1')
 			break ;
 	}
 	return (side);

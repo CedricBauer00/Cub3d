@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/18 15:10:47 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/19 17:42:24 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,99 +27,95 @@
 void	move_up(t_game *game)
 {
 	double	angle;
-	int		x;
-	int		y;
+	int		new_x;
+	int		new_y;
+	int		buffer;
 
+	buffer = 8;
 	angle = game->player->angle;
-	x = game->player->x;
-	y = game->player->y;
-	x += (int)round(sin(angle) * MOVE_S);
-	y -= (int)round(cos(angle) * MOVE_S);
-	if (game->map[y / TS][x / TS] == 1)
+	new_x = game->player->x + (int)round(cos(angle) * MOVE_S);
+	new_y = game->player->y - (int)round(sin(angle) * MOVE_S);
+	if (wall_check_up(game, game->player->x, game->player->y) == -1)
 	{
-		printf("x = %d, y = %d\n", x, y);
-		printf("x = %d, y = %d\n", x / TS, y / TS);
+		printf("x = %d, y = %d\n", new_x, new_y);
+		printf("x = %d, y = %d\n", new_x / TS, new_y / TS);
 		printf("can't go that way\n");
 		return ;
 	}
-	game->player->x += (int)round(cos(angle) * MOVE_S);
-	game->player->y -= (int)round(sin(angle) * MOVE_S);
-	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
+	game->player->x = new_x;
+	game->player->y = new_y;
 	draw_player(game, game->player->image);
-	draw_minimap(game);
+	draw_minimap(game, game->player->minimap, 0, -1);
 }
 
 void	move_down(t_game *game)
 {
 	double	angle;
-	int		x;
-	int		y;
+	int		new_x;
+	int		new_y;
+	int		buffer;
 
+	buffer = 8;
 	angle = game->player->angle;
-	x = game->player->x;
-	y = game->player->y;
-	x -= (int)round(cos(angle) * MOVE_S);
-	y += (int)round(sin(angle) * MOVE_S);
-	if (game->map[y / TS][x / TS] == 1)
+	new_x = game->player->x - (int)round(cos(angle) * MOVE_S);
+	new_y = game->player->y + (int)round(sin(angle) * MOVE_S);
+	if (wall_check_down(game, game->player->x, game->player->y) == -1)
 	{
-		printf("x = %d, y = %d\n", x, y);
-		printf("x = %d, y = %d\n", x / TS, y / TS);
+		printf("x = %d, y = %d\n", new_x, new_y);
+		printf("x = %d, y = %d\n", new_x / TS, new_y / TS);
 		printf("can't go that way\n");
 		return ;
 	}
-	game->player->x -= (int)round(cos(angle) * MOVE_S);
-	game->player->y += (int)round(sin(angle) * MOVE_S);
-	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
+	game->player->x = new_x;
+	game->player->y = new_y;
 	draw_player(game, game->player->image);
-	draw_minimap(game);
-}
-
-void	move_right(t_game *game)
-{
-	double	angle;
-	int		x;
-	int		y;
-
-	angle = game->player->angle;
-	x = game->player->x;
-	y = game->player->y;
-	x += (int)round(sin(angle) * MOVE_S);
-	y += (int)round(cos(angle) * MOVE_S);
-	if (game->map[y / TS][x / TS] == 1)
-	{
-		printf("x = %d, y = %d\n", x, y);
-		printf("x = %d, y = %d\n", x / TS, y / TS);
-		printf("can't go that way\n");
-		return ;
-	}
-	game->player->x += (int)round(sin(angle) * MOVE_S);
-	game->player->y += (int)round(cos(angle) * MOVE_S);
-	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
-	draw_player(game, game->player->image);
-	draw_minimap(game);
+	draw_minimap(game, game->player->minimap, 0, -1);
 }
 
 void	move_left(t_game *game)
 {
 	double	angle;
-	int		x;
-	int		y;
+	int		new_x;
+	int		new_y;
+	int		buffer;
 
+	buffer = 8;
 	angle = game->player->angle;
-	x = game->player->x;
-	y = game->player->y;
-	x -= (int)round(sin(angle) * MOVE_S);
-	y -= (int)round(cos(angle) * MOVE_S);
-	if (game->map[y / TS][x / TS] == 1)
+	new_x = game->player->x - (int)round(sin(angle) * MOVE_S);
+	new_y = game->player->y - (int)round(cos(angle) * MOVE_S);
+	if (wall_check_left(game, game->player->x, game->player->y) == -1)
 	{
-		printf("x = %d, y = %d\n", x, y);
-		printf("x = %d, y = %d\n", x / TS, y / TS);
+		printf("x = %d, y = %d\n", new_x, new_y);
+		printf("x = %d, y = %d\n", new_x / TS, new_y / TS);
 		printf("can't go that way\n");
 		return ;
 	}
-	game->player->x -= (int)round(sin(angle) * MOVE_S);
-	game->player->y -= (int)round(cos(angle) * MOVE_S);
-	// printf("x = %d, y = %d\n", game->player->x, game->player->y);
+	game->player->x = new_x;
+	game->player->y = new_y;
 	draw_player(game, game->player->image);
-	draw_minimap(game);
+	draw_minimap(game, game->player->minimap, 0, -1);
+}
+
+void	move_right(t_game *game)
+{
+	double	angle;
+	int		new_x;
+	int		new_y;
+	int		buffer;
+
+	buffer = 8;
+	angle = game->player->angle;
+	new_x = game->player->x + (int)round(sin(angle) * MOVE_S);
+	new_y = game->player->y + (int)round(cos(angle) * MOVE_S);
+	if (wall_check_right(game, game->player->x, game->player->y) == -1)
+	{
+		printf("x = %d, y = %d\n", new_x, new_y);
+		printf("x = %d, y = %d\n", new_x / TS, new_y / TS);
+		printf("can't go that way\n");
+		return ;
+	}
+	game->player->x = new_x;
+	game->player->y = new_y;
+	draw_player(game, game->player->image);
+	draw_minimap(game, game->player->minimap, 0, -1);
 }

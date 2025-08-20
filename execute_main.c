@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/19 13:40:14 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/20 10:08:06 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ int execute_main(t_configs *data)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "game", true);
 	if (!game->mlx)
 		return (0);
-	initialize(data, game);
-	// paint_map(game, game->player->image);
+	initialize(data->map_info, game);
 	game->player->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->player->minimap = mlx_new_image(game->mlx, WIDTH / 3, HEIGHT / 3);
-	paint_map(data->map_info, game, game->player->image);
 	draw_player(game, game->player->image);
-	draw_minimap(game);
+	draw_minimap(game, game->player->minimap, 0, -1);
 	mlx_image_to_window(game->mlx, game->player->image, 0, 0);
 	mlx_image_to_window(game->mlx, game->player->minimap, 10, 10);
 	mlx_key_hook(game->mlx, key, game);

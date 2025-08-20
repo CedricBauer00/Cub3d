@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 13:00:48 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/18 15:10:53 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/19 17:42:15 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	rotate_right(t_game *game)
 	if (game->player->angle < 0)
 		game->player->angle += 2 * PI;
 	draw_player(game, game->player->image);
-	draw_minimap(game);
+	draw_minimap(game, game->player->minimap, 0, -1);
 }
 
 void	rotate_left(t_game *game)
@@ -31,5 +31,5 @@ void	rotate_left(t_game *game)
 	if (game->player->angle > 2 * PI)
 		game->player->angle -= 2 * PI;
 	draw_player(game, game->player->image);
-	draw_minimap(game);
+	draw_minimap(game, game->player->minimap, 0, -1);
 }

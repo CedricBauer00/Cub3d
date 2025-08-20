@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/19 13:40:49 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/20 10:08:13 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	int	map[24][24];
+	// int	map[24][24];
+	char	**map;
+	int		mwidth;
+	int		mheight;
 	t_ray	*ray;
 	mlx_t	*mlx;
 	t_player *player;
@@ -81,10 +84,8 @@ typedef struct s_game
 // printing stuff on the map
 
 // prints a 2d map to do some tests
-void	draw_minimap(t_game *game);
-// int		paint_map(t_game *game, mlx_image_t *image);
-int	paint_map(t_map *map_info, t_game *game, mlx_image_t *image);
-
+void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l);
+int		paint_map(t_game *game, mlx_image_t *image);
 void	delete_image(mlx_image_t *image);
 // this one is being used every time the character moves.
 // it prints the body of the character, the direction showing stick thing and the red ray that stops when it hits a wall.
@@ -107,17 +108,23 @@ void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i)
 void	key(mlx_key_data_t keys, void *ptr);
 
 // movement functions.
-void	move_left(t_game *game);
-void	move_right(t_game *game);
 void	move_up(t_game *game);
 void	move_down(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+
+// wall collision check for the movement functions.
+int		wall_check_up(t_game *g, int x, int y);
+int		wall_check_down(t_game *g, int x, int y);
+int		wall_check_left(t_game *g, int x, int y);
+int		wall_check_right(t_game *g, int x, int y);
 
 // rotation functions.
 void	rotate_right(t_game *game);
 void	rotate_left(t_game *game);
 
 // a small initializing function
-void	initialize(t_configs *data, t_game *game);
+void	initialize(t_map *maps, t_game *game);
 int		execute_main(t_configs *data);
 
 #endif

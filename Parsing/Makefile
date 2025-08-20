@@ -99,7 +99,7 @@ GREEN = \033[0;32m
 DEFAULT = \033[0m
 
 LDFLAGS = -L$(LIBFT_DIR) -lft
-CFLAGS = -Ilibft -I $(MLX_DIR)/include/ -I $(GC_DIR) -Iinc #-g -fsanitize=address #del
+CFLAGS = -Ilibft -Wextra -Wall -Werror -I $(MLX_DIR)/include/ -I $(GC_DIR) -Iinc #-g -fsanitize=address #del
 MLX_FLAGS = -L./MLX/build -lmlx42 -lglfw -ldl -lm
 
 RM = rm -f
@@ -145,7 +145,8 @@ SOURCES = main.c \
 		../ray.c \
 		../rotation.c \
 		../utils.c \
-		../wall.c
+		../wall.c \
+		../wall_check.c \
 
 OBJECTS := $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gc.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:18:04 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/14 09:21:29 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/19 13:53:01 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	gc_free_all(void)
 	{
 		temp = which;
 		which = which->next;
-		free(temp);
 		gc_free_helper(temp->list);
+		free(temp);
 	}
 	get_gc()->head = NULL;
 }
