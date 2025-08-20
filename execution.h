@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/20 10:08:13 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/20 11:41:09 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define HEIGHT 720
 # define MOVE_S 5
 # define SPEED 0.05
+# define ROT_SPEED 0.008
 # define PI 3.1415926535897932
 # define RAY_N WIDTH
 
@@ -85,7 +86,9 @@ typedef struct s_game
 
 // prints a 2d map to do some tests
 void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l);
-int		paint_map(t_game *game, mlx_image_t *image);
+// int		paint_map(t_game *game, mlx_image_t *image);
+int		paint_map(t_map *map_info, t_game *game, mlx_image_t *image);
+
 void	delete_image(mlx_image_t *image);
 // this one is being used every time the character moves.
 // it prints the body of the character, the direction showing stick thing and the red ray that stops when it hits a wall.

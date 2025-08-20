@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/20 10:08:06 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/20 11:31:52 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int execute_main(t_configs *data)
 	mlx_image_to_window(game->mlx, game->player->image, 0, 0);
 	mlx_image_to_window(game->mlx, game->player->minimap, 10, 10);
 	mlx_key_hook(game->mlx, key, game);
-	// mlx_cursor_hook(game->mlx, cursor, game); will be added for the bonus part
+	mlx_cursor_hook(game->mlx, cursor, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
 	return (0);

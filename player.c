@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/18 15:13:18 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/20 10:54:49 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ static void	draw_player_helper(t_game *game, mlx_image_t *img)
 	i = 0;
 	d_x = game->player->x;
 	d_y = game->player->y;
-	// while (i < 8)
-	// {
-	// 	j = 0;
-	// 	while (j < 8)
-	// 	{
-	// 		mlx_put_pixel(img, d_x + i - 4, d_y + j - 4, 0xFFFF00FF);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
+	while (i < 8)
+	{
+		j = 0;
+		while (j < 8)
+		{
+			mlx_put_pixel(img, d_x + i - 4, d_y + j - 4, 0xFFFF00FF);
+			j++;
+		}
+		i++;
+	}
 }
 
 /*
@@ -68,12 +68,12 @@ void	draw_player(t_game *game, mlx_image_t *image)
 	delete_image(image);
 	// draw_ray(game, game->player, image, 0);
 	draw_multiple_ray(game, image);
-	// while (i < 20)
-	// {
-	// 	p_x = d_x + 4 + (int)round(cos(game->player->angle) * i);
-	// 	p_y = d_y + 4 - (int)round(sin(game->player->angle) * i);
-	// 	mlx_put_pixel(image, p_x, p_y, 0xFFFF00FF);
-	// 	i++;
-	// }
+	while (i < 20)
+	{
+		p_x = d_x + 4 + (int)round(cos(game->player->angle) * i);
+		p_y = d_y + 4 - (int)round(sin(game->player->angle) * i);
+		mlx_put_pixel(image, p_x, p_y, 0xFFFF00FF);
+		i++;
+	}
 	draw_player_helper(game, image);
 }

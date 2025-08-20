@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:08:52 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/19 17:10:49 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/20 11:04:07 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	wall_check_up(t_game *g, int x, int y)
 {
+	(void)x;
+	(void)y;
 	int		i;
-	int		j;
+	// int		j;
 	int		new_x;
 	int		new_y;
 	double	angle;
@@ -37,8 +39,10 @@ int	wall_check_up(t_game *g, int x, int y)
 
 int	wall_check_down(t_game *g, int x, int y)
 {
+	(void)x;
+	(void)y;
 	int		i;
-	int		j;
+	// int		j;
 	int		new_x;
 	int		new_y;
 	double	angle;
@@ -60,8 +64,10 @@ int	wall_check_down(t_game *g, int x, int y)
 
 int	wall_check_left(t_game *g, int x, int y)
 {
+	(void)x;
+	(void)y;
 	int		i;
-	int		j;
+	// int		j;
 	int		new_x;
 	int		new_y;
 	double	angle;
@@ -83,8 +89,10 @@ int	wall_check_left(t_game *g, int x, int y)
 
 int	wall_check_right(t_game *g, int x, int y)
 {
+	(void)x;
+	(void)y;
 	int		i;
-	int		j;
+	// int		j;
 	int		new_x;
 	int		new_y;
 	double	angle;

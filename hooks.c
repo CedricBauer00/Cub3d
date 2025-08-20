@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/20 10:21:10 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/20 12:41:56 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,14 @@ void	key(mlx_key_data_t keys, void *ptr)
 
 void	cursor(double xpos, double ypos, void *ptr)
 {
-	t_game *game;
-	
+	t_game	*game;
+	double	old_x;
+	double	diff;
+	double	old_plane_x;
+
+	(void)ypos;
 	game = (t_game *)ptr;
+	diff = (xpos - game->mlx->width / 2) * ROT_SPEED; // maybe 2.0
+	old_x = game->player->rayDirX;
+	
 }
