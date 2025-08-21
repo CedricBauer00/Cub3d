@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/20 11:41:09 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/21 11:11:19 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ typedef struct s_player
 	mlx_image_t *image;
 	mlx_image_t *minimap;
 	mlx_instance_t *inst;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }	t_player;
 
 typedef struct s_game
@@ -129,5 +133,6 @@ void	rotate_left(t_game *game);
 // a small initializing function
 void	initialize(t_map *maps, t_game *game);
 int		execute_main(t_configs *data);
+void	cursor(double xpos, double ypos, void *ptr);
 
 #endif
