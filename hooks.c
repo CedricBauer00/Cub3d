@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/21 11:11:30 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/21 11:54:03 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,13 @@ void	cursor(double xpos, double ypos, void *ptr)
 		rotate_left(game);
 }
 
-// double plane_x = -dir_y * 0.66;
-// double plane_y = dir_x * 0.66;
-
-// void    mouse_move(double xpos, double ypos, void *param)
+// void	update_frame(t_game *game)
 // {
-//     t_game  *g;
-//     float   delta_x;
-//     float   theta;
-//     float   old_dir_x;
-//     float   old_plane_x;
-//     (void)ypos;
-//     g = (t_game *)param;
-//     ypos = 0;
-//     delta_x = (float)xpos - g->mlx->width / 2.0f;
-//     theta = delta_x * ROT_SPEED;
-//     old_dir_x = g->player.dir_x;
-//     old_plane_x = g->player.plane_x;
-//     g->player.dir_x = g->player.dir_x * cos(theta) - g->player.dir_y * sin(theta);
-//     g->player.dir_y = old_dir_x * sin(theta) + g->player.dir_y * cos(theta);
-//     g->player.plane_x = g->player.plane_x * cos(theta) - g->player.plane_y * sin(theta);
-//     g->player.plane_y = old_plane_x * sin(theta) + g->player.plane_y * cos(theta);
-//     mlx_set_mouse_pos(g->mlx, WIDTH / 2, HEIGHT / 2);
+	
+// 	// update position of player accordingly to the key input
+// 	//update raycasting
+// 	//update floor
+// 	//update wall
+// 	//update ceiling
+// 	// updates frame continously
 // }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:34:41 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/19 17:41:11 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/21 12:05:04 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,17 @@ void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l)
     int k;
 	int	j;
 	
-    while (i < (int)minimap->height && l < 24)
+    while (i < (int)minimap->height && l < game->mheight)
     {
         j = 0;
         k = -1;
-        if (i % (TS / 7) == 0 && l < 24)
+        if (i % (TS / 7) == 0 && l < game->mheight)
             l++;
-        while (j < (int)minimap->width && k < 24)
+        while (j < (int)minimap->width && k < game->mwidth)
         {
-            if (j % (TS / 5) == 0 && k < 24)
+            if (j % (TS / 5) == 0 && k < game->mwidth)
                 k++;
-            if (l >= 0 && k >= 0 && l < 24 && k < 24)
+            if (l >= 0 && k >= 0 && l < game->mheight && k < game->mwidth)
             {
                 if (game->map[l][k] == '1')
                     mlx_put_pixel(minimap, j, i, 0xFFFFFFAA);
@@ -75,5 +75,6 @@ void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l)
         }
         i++;
     }
+    printf("this\n");
 	draw_character(game, minimap);
 }

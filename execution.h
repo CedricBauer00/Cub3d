@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/21 11:11:19 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/21 11:28:19 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ typedef struct s_ray
 
 typedef struct s_player
 {
-	int		x; // player coordinates.
-	int		y;
+	double	x; // player coordinates.
+	double	y;
 	double	angle; // direction we're looking at.
 	double	rayDirX; // the directions of the ray is being casted.
 	double	rayDirY;
