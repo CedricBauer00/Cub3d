@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/22 12:59:19 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/22 13:20:44 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	cursor(double xpos, double ypos, void *ptr)
 	game->player->plane_x = old_plane_x * cos(diff) - game->player->plane_y * sin(diff);
 	game->player->plane_y = old_plane_x * sin(diff) + game->player->plane_y * cos(diff);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
 	game->player->angle -= diff;
 }
 
