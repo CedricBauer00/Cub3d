@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/22 12:42:13 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/22 12:59:19 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,7 @@ void	update_frame(void *ptr)
 	check_move(game, game->s, 's');
 	check_move(game, game->d, 'd');
 	draw_player(game, game->player->image);
-	// draw_minimap(game, game->player->minimap, 0 , -1);
-	mlx_image_to_window(game->mlx, game->player->image, 0, 0);
-	// mlx_image_to_window(game->mlx, game->player->minimap, 10, 10);
+	draw_minimap(game, game->player->minimap, 0 , -1);
 	// update position of player accordingly to the key input
 	//update raycasting
 	//update floor
