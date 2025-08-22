@@ -40,4 +40,5 @@ Friday:
 22.08 Friday
 	did a small tweak to the mouse stuff for the mouse to be invisible.
 	now a texture can be put on a wall buuuuut it definetly needs work.
+	added the arrow rotations to the new movement loop.
 		
