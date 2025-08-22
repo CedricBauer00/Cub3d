@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/22 11:09:16 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/22 11:51:20 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ typedef struct s_game
 	t_ray	*ray;
 	mlx_t	*mlx;
 	t_player *player;
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
 }	t_game;
 
 // printing stuff on the map
@@ -135,5 +139,6 @@ void	initialize(t_map *maps, t_game *game);
 int		execute_main(t_configs *data);
 void	cursor(double xpos, double ypos, void *ptr);
 void	update_frame(void *ptr);
+void	check_move(t_game *game, bool move, char c);
 
 #endif

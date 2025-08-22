@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:34:41 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/21 12:05:04 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/22 12:40:47 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l)
         }
         i++;
     }
-    printf("this\n");
 	draw_character(game, minimap);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/19 14:36:03 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/22 12:46:52 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,11 @@ void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i)
 			mlx_put_pixel(img, j, i, 0x90EE90FF);
 		i++;
 	}
-	// while (i < HEIGHT)
-	// {
-	// 	mlx_put_pixel(img, j, i, 0x000000FF);
-	// 	i++;
-	// }
+	while (i < HEIGHT)
+	{
+		mlx_put_pixel(img, j, i, 0x000000FF);
+		i++;
+	}
 }
 
 /*
