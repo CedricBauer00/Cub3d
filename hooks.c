@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/21 11:54:03 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/22 11:27:22 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ void	key(mlx_key_data_t keys, void *ptr)
 
 	game = (t_game *)ptr;
 	signal = keys.key;
-	if (keys.action == MLX_PRESS || keys.action == MLX_REPEAT)
-	{
-		if (signal == MLX_KEY_ESCAPE)
+	// if (keys.action == MLX_PRESS || keys.action == MLX_REPEAT)
+	// {
+		if (signal == MLX_KEY_ESCAPE && keys.action == MLX_PRESS)
 			exit(1);
-		else if (signal == MLX_KEY_W)
+		if (signal == MLX_KEY_W && (keys.action == MLX_PRESS || keys.action == MLX_REPEAT))
 			move_up(game);
-		else if (signal == MLX_KEY_A)
+		if (signal == MLX_KEY_A && (keys.action == MLX_PRESS || keys.action == MLX_REPEAT))
 			move_left(game);
-		else if (signal == MLX_KEY_S)
+		if (signal == MLX_KEY_S && (keys.action == MLX_PRESS || keys.action == MLX_REPEAT))
 			move_down(game);
-		else if (signal == MLX_KEY_D)
+		if (signal == MLX_KEY_D && (keys.action == MLX_PRESS || keys.action == MLX_REPEAT))
 			move_right(game);
-		else if (signal == MLX_KEY_LEFT)
+		if (signal == MLX_KEY_LEFT && (keys.action == MLX_PRESS || keys.action == MLX_REPEAT))
 			rotate_left(game);
-		else if (signal == MLX_KEY_RIGHT)
+		else if (signal == MLX_KEY_RIGHT && (keys.action == MLX_PRESS || keys.action == MLX_REPEAT))
 			rotate_right(game);
 		// printf("x = %d, y = %d, angle = %f\n", game->player->x, game->player->y, game->player->angle);
-	}
+	// }
 }
 
 void	cursor(double xpos, double ypos, void *ptr)
@@ -56,19 +56,28 @@ void	cursor(double xpos, double ypos, void *ptr)
 	game->player->plane_x = old_plane_x * cos(diff) - game->player->plane_y * sin(diff);
 	game->player->plane_y = old_plane_x * sin(diff) + game->player->plane_y * cos(diff);
 	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
-	if (diff > 0)
-		rotate_right(game);
-	else if (diff < 0)
-		rotate_left(game);
+	game->player->angle -= diff;
+
+	// if (diff > 0)
+	// 	game->player->angle -= diff;
+	// else if (diff < 0)
+	// 	game->player->angle += diff;
 }
 
-// void	update_frame(t_game *game)
-// {
+void	update_frame(void *ptr)
+{
+	t_game	*game;
+
+	game = (t_game *)ptr;
 	
-// 	// update position of player accordingly to the key input
-// 	//update raycasting
-// 	//update floor
-// 	//update wall
-// 	//update ceiling
-// 	// updates frame continously
-// }
+	draw_player(game, game->player->image);
+	draw_minimap(game, game->player->minimap, 0 , -1);
+	mlx_image_to_window(game->mlx, game->player->image, 0, 0);
+	mlx_image_to_window(game->mlx, game->player->minimap, 10, 10);
+	// update position of player accordingly to the key input
+	//update raycasting
+	//update floor
+	//update wall
+	//update ceiling
+	// updates frame continously
+}

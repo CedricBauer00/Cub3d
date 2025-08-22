@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/21 12:03:51 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/22 10:48:19 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,12 @@ int execute_main(t_configs *data)
 	game->player->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->player->minimap = mlx_new_image(game->mlx, WIDTH / 3, HEIGHT / 3);
 	draw_player(game, game->player->image);
-	printf("here!\n");
-	
 	draw_minimap(game, game->player->minimap, 0, -1);
-	printf("here2!\n");
-	
 	mlx_image_to_window(game->mlx, game->player->image, 0, 0);
 	mlx_image_to_window(game->mlx, game->player->minimap, 10, 10);
-	printf("here3!\n");
-	
 	mlx_key_hook(game->mlx, key, game);
-	printf("here4!\n");
-	
 	mlx_cursor_hook(game->mlx, cursor, game);
-	// mlx_loop_hook(game->mlx, update_frame, game);// which keeps updating the frame over and over
+	mlx_loop_hook(game->mlx, update_frame, game);// which keeps updating the frame over and over
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
 	return (0);

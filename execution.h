@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/21 11:28:19 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/22 11:09:16 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define HEIGHT 720
 # define MOVE_S 5
 # define SPEED 0.05
-# define ROT_SPEED 0.008
+# define ROT_SPEED 0.003
 # define PI 3.1415926535897932
 # define RAY_N WIDTH
 
@@ -134,5 +134,6 @@ void	rotate_left(t_game *game);
 void	initialize(t_map *maps, t_game *game);
 int		execute_main(t_configs *data);
 void	cursor(double xpos, double ypos, void *ptr);
+void	update_frame(void *ptr);
 
 #endif

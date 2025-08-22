@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/19 17:42:24 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/22 11:14:59 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	move_up(t_game *game)
 	}
 	game->player->x = new_x;
 	game->player->y = new_y;
-	draw_player(game, game->player->image);
-	draw_minimap(game, game->player->minimap, 0, -1);
+	// draw_player(game, game->player->image);
+	// draw_minimap(game, game->player->minimap, 0, -1);
 }
 
 void	move_down(t_game *game)
@@ -68,8 +68,8 @@ void	move_down(t_game *game)
 	}
 	game->player->x = new_x;
 	game->player->y = new_y;
-	draw_player(game, game->player->image);
-	draw_minimap(game, game->player->minimap, 0, -1);
+	// draw_player(game, game->player->image);
+	// draw_minimap(game, game->player->minimap, 0, -1);
 }
 
 void	move_left(t_game *game)
@@ -92,8 +92,8 @@ void	move_left(t_game *game)
 	}
 	game->player->x = new_x;
 	game->player->y = new_y;
-	draw_player(game, game->player->image);
-	draw_minimap(game, game->player->minimap, 0, -1);
+	// draw_player(game, game->player->image);
+	// draw_minimap(game, game->player->minimap, 0, -1);
 }
 
 void	move_right(t_game *game)
@@ -116,6 +116,6 @@ void	move_right(t_game *game)
 	}
 	game->player->x = new_x;
 	game->player->y = new_y;
-	draw_player(game, game->player->image);
-	draw_minimap(game, game->player->minimap, 0, -1);
+	// draw_player(game, game->player->image);
+	// draw_minimap(game, game->player->minimap, 0, -1);
 }
