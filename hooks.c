@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/22 13:20:44 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/22 20:48:46 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ void	key(mlx_key_data_t keys, void *ptr)
 			game->s = keys.action != MLX_RELEASE;
 		if (keys.key == MLX_KEY_D)
 			game->d = keys.action != MLX_RELEASE;
-		if (signal == MLX_KEY_LEFT && (keys.action == MLX_PRESS
-			|| keys.action == MLX_REPEAT))
-			rotate_left(game);
-		else if (signal == MLX_KEY_RIGHT && (keys.action == MLX_PRESS
-			|| keys.action == MLX_REPEAT))
-			rotate_right(game);
+		if (keys.key == MLX_KEY_LEFT)
+			game->l = keys.action != MLX_RELEASE;
+		else if (keys.key == MLX_KEY_RIGHT)
+			game->r = keys.action != MLX_RELEASE;
 		// printf("x = %d, y = %d, angle = %f\n", game->player->x, game->player->y, game->player->angle);
 	// }
 }
@@ -62,6 +60,24 @@ void	cursor(double xpos, double ypos, void *ptr)
 	game->player->angle -= diff;
 }
 
+void	check_rotation(t_game *game, bool move, char c)
+{
+	if (!move)
+		return ;
+	if (c == 'r')
+	{
+		game->player->angle -= SPEED;
+		if (game->player->angle < 0)
+			game->player->angle += 2 * PI;
+	}
+	if (c == 'l')
+	{
+		game->player->angle += SPEED;
+		if (game->player->angle > 2 * PI)
+			game->player->angle -= 2 * PI;
+	}
+}
+
 void	update_frame(void *ptr)
 {
 	t_game	*game;
@@ -71,6 +87,8 @@ void	update_frame(void *ptr)
 	check_move(game, game->a, 'a');
 	check_move(game, game->s, 's');
 	check_move(game, game->d, 'd');
+	check_rotation(game, game->l, 'l');
+	check_rotation(game, game->r, 'r');
 	draw_player(game, game->player->image);
 	draw_minimap(game, game->player->minimap, 0 , -1);
 	// update position of player accordingly to the key input

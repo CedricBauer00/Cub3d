@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/22 17:48:42 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/22 20:48:10 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define WIDTH 1024
 # define HEIGHT 720
 # define MOVE_S 5
-# define SPEED 0.05
+# define SPEED 0.03
 # define ROT_SPEED 0.003
 # define PI 3.1415926535897932
 # define RAY_N WIDTH
@@ -92,6 +92,8 @@ typedef struct s_game
 	bool	a;
 	bool	s;
 	bool	d;
+	bool	r;
+	bool	l;
 }	t_game;
 
 // printing stuff on the map
