@@ -37,3 +37,7 @@ Friday:
 	started to use the map and the height + width of the map from parsing and changed to checks accordingly.
 	added the player character to the minimap.
 	player character has a decent wall collision now.
+22.08 Friday
+	did a small tweak to the mouse stuff for the mouse to be invisible.
+	now a texture can be put on a wall buuuuut it definetly needs work.
+		

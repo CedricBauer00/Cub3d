@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/22 12:46:52 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/22 18:41:34 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,28 @@ int	ray_loop(t_game *game, t_player *p)
 	we first draw till the first wall to have a sky. then depending on the side of the wall the ray hits we draw the wall.
 */
 
-void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i)
+uint32_t	texture_colour(mlx_texture_t *img, int x, int y)
+{
+	int	i;
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+	uint8_t	a;
+
+	i = (y * img->width + x) * img->bytes_per_pixel;
+	r = img->pixels[i];
+	g = img->pixels[i + 1];
+	b = img->pixels[i + 2];
+	a = img->pixels[i + 3];
+	
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i, t_game *game)
 {
 	int	i;
 	int	j;
+	uint32_t	colour;
 
 	i = 0;
 	j = WIDTH - ray_i;
@@ -109,15 +127,16 @@ void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i)
 	}
 	while (i < drawE)
 	{
-		if (check != 0)
-			mlx_put_pixel(img, j, i, 0x008000FF);
-		else
-			mlx_put_pixel(img, j, i, 0x90EE90FF);
+		colour = texture_colour(game->tex, i % 64, j % 64);
+		// if (check != 0)
+		mlx_put_pixel(img, j, i, colour);
+		// else
+		// 	mlx_put_pixel(img, j, i, colour + 1);
 		i++;
 	}
 	while (i < HEIGHT)
 	{
-		mlx_put_pixel(img, j, i, 0x000000FF);
+		mlx_put_pixel(img, j, i, 0x333333FF);
 		i++;
 	}
 }
@@ -147,7 +166,7 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	r.drawE = r.lineH / 2 + HEIGHT / 2;
 	if (r.drawE >= HEIGHT)
 		r.drawE = HEIGHT - 1;
-	draw_vertical(r.drawS, r.drawE, check, image, i);
+	draw_vertical(r.drawS, r.drawE, check, image, i, game);
 	return (r);
 }
 

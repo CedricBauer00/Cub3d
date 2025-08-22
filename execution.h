@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/22 11:51:20 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/22 17:48:42 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ typedef struct s_game
 	char	**map;
 	int		mwidth;
 	int		mheight;
+	uint32_t	sky;
+	uint32_t	floor;
+	mlx_texture_t	*tex;
+	mlx_image_t	*img;
 	t_ray	*ray;
 	mlx_t	*mlx;
 	t_player *player;
@@ -111,7 +115,7 @@ void	ray_initializer(t_player *p, double angle);
 void    ray_initializer_2(t_player *p);
 void	draw_multiple_ray(t_game *game, mlx_image_t *img);
 double	normalised_angle(double angle);
-void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i);
+void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i, t_game *game);
 
 // movement
 
