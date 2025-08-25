@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:32:36 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/25 13:33:15 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/25 14:32:28 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,45 @@ uint32_t	shade_colour(uint32_t colour)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
+static void	draw_vertical_init(t_ray r, int check, t_game *g, t_tex *t)
+{
+	if (check == 0)
+		t->wallX = r.hitY;
+	else
+		t->wallX = r.hitX;
+	t->wallX -= floor(t->wallX);
+	t->texX = (int)(t->wallX * (double)g->tex->width);
+	if ((check == 0 && g->player->rayDirX > 0) || (check == 1 && g->player->rayDirY < 0))
+		t->texX = g->tex->width - t->texX - 1;
+	t->step = 1.0 * g->tex->height / r.lineH;
+	t->texPos = (r.drawS - HEIGHT / 2 + r.lineH / 2) * t->step;
+}
+
+void	draw_vertical(t_game *g, t_ray r, int check, int ray_i)
+{
+	int	i;
+	int	j;
+	t_tex	*t;
+	uint32_t	colour;
+
+	i = 0;
+	j = WIDTH - ray_i;
+	t = g->text;
+	if (j >= WIDTH)
+		return;
+	draw_vertical_init(r, check, g, t);
+	while (i < r.drawS)
+		mlx_put_pixel(g->player->image, j, i++, 0x87CEEBFF);
+	while (i < r.drawE)
+	{
+		t->texY = (int)t->texPos % g->tex->height;
+		t->texPos += t->step;
+		colour = texture_colour(g->tex, t->texX, t->texY);
+		if (check == 0)
+			colour = shade_colour(colour);
+		mlx_put_pixel(g->player->image, j, i, colour);
+		i++;
+	}
+	while (i < HEIGHT)
+		mlx_put_pixel(g->player->image, j, i++, 0x333333FF);
+}

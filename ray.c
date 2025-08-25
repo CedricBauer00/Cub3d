@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/25 13:43:02 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/25 14:32:14 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,55 +92,6 @@ int	ray_loop(t_game *game, t_player *p)
 	
 	we first draw till the first wall to have a sky. then depending on the side of the wall the ray hits we draw the wall.
 */
-
-void	draw_texture(t_game *g)
-{
-
-}
-
-void	draw_vertical(t_game *g, t_ray r, int check, int ray_i)
-{
-	int	i;
-	int	j;
-	t_tex	*t;
-	uint32_t	colour;
-
-	i = 0;
-	j = WIDTH - ray_i;
-	t = g->text;
-	if (j >= WIDTH)
-		return;
-	if (check == 0)
-		t->wallX = r.hitY;
-	else
-		t->wallX = r.hitX;
-	t->wallX -= floor(t->wallX);
-	t->texX = (int)(t->wallX * (double)g->tex->width);
-	if ((check == 0 && g->player->rayDirX > 0) || (check == 1 && g->player->rayDirY < 0))
-		t->texX = g->tex->width - t->texX - 1;
-	t->step = 1.0 * g->tex->height / r.lineH;
-	t->texPos = (r.drawS - HEIGHT / 2 + r.lineH / 2) * t->step;
-	while (i < r.drawS)
-	{
-		mlx_put_pixel(g->player->image, j, i, 0x87CEEBFF);
-		i++;
-	}
-	while (i < r.drawE)
-	{
-		t->texY = (int)t->texPos % g->tex->height;
-		t->texPos += t->step;
-		colour = texture_colour(g->tex, t->texX, t->texY);
-		if (check == 0)
-			colour = shade_colour(colour);
-		mlx_put_pixel(g->player->image, j, i, colour);
-		i++;
-	}
-	while (i < HEIGHT)
-	{
-		mlx_put_pixel(g->player->image, j, i, 0x333333FF);
-		i++;
-	}
-}
 
 t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i)
 {
