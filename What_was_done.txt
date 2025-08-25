@@ -1,8 +1,8 @@
 Things need to be done:
-	- adding mouse movement.
 	- adding textures to the walls.
 	- adding the fov effect to the minimap using the rays.
 	- adding the player facing directions.
+	- converting the colours.
 
 Created a 2D map cus i like having something visual when working on projects.
 
@@ -41,4 +41,24 @@ Friday:
 	did a small tweak to the mouse stuff for the mouse to be invisible.
 	now a texture can be put on a wall buuuuut it definetly needs work.
 	added the arrow rotations to the new movement loop.
-		
+
+25.08 Monday
+	the walls correctly draw the texture.
+	depending on the side the wall is facing it has a darker colour to enhance the 3d effect.
+
+	things to do:
+		make the correct calculations for the textures.
+	notes:
+		there will be 4 sides for the textures which means i probably need to add 4 different functions for each side
+		and then merge them in a main function and call that.
+
+		the calculations will be done with the hit.x/y variables since we need to put the texture to the point
+		where it hits.
+
+
+
+compass directions:
+	N = up
+	S = down
+	W = left
+	E = right

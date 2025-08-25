@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/22 18:08:03 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/25 13:42:59 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ int execute_main(t_configs *data)
 		return (0);
 	game->player = gc_malloc(sizeof(t_player), EXEC);
 	if (!game->player)
+		return (0);
+	game->text = gc_malloc(sizeof(t_tex), EXEC);
+	if (!game->tex)
 		return (0);
 	game->ray = gc_malloc(sizeof(t_ray), EXEC);
 	if (!game->ray)

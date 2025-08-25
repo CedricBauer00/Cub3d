@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/22 18:41:34 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/25 13:43:02 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,58 +93,54 @@ int	ray_loop(t_game *game, t_player *p)
 	we first draw till the first wall to have a sky. then depending on the side of the wall the ray hits we draw the wall.
 */
 
-uint32_t	texture_colour(mlx_texture_t *img, int x, int y)
+void	draw_texture(t_game *g)
 {
-	int	i;
-	uint8_t	r;
-	uint8_t	g;
-	uint8_t	b;
-	uint8_t	a;
 
-	i = (y * img->width + x) * img->bytes_per_pixel;
-	r = img->pixels[i];
-	g = img->pixels[i + 1];
-	b = img->pixels[i + 2];
-	a = img->pixels[i + 3];
-	
-	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i, t_game *game)
+void	draw_vertical(t_game *g, t_ray r, int check, int ray_i)
 {
 	int	i;
 	int	j;
+	t_tex	*t;
 	uint32_t	colour;
 
 	i = 0;
 	j = WIDTH - ray_i;
+	t = g->text;
 	if (j >= WIDTH)
 		return;
-	while (i < drawS)
+	if (check == 0)
+		t->wallX = r.hitY;
+	else
+		t->wallX = r.hitX;
+	t->wallX -= floor(t->wallX);
+	t->texX = (int)(t->wallX * (double)g->tex->width);
+	if ((check == 0 && g->player->rayDirX > 0) || (check == 1 && g->player->rayDirY < 0))
+		t->texX = g->tex->width - t->texX - 1;
+	t->step = 1.0 * g->tex->height / r.lineH;
+	t->texPos = (r.drawS - HEIGHT / 2 + r.lineH / 2) * t->step;
+	while (i < r.drawS)
 	{
-		mlx_put_pixel(img, j, i, 0x87CEEBFF);
+		mlx_put_pixel(g->player->image, j, i, 0x87CEEBFF);
 		i++;
 	}
-	while (i < drawE)
+	while (i < r.drawE)
 	{
-		colour = texture_colour(game->tex, i % 64, j % 64);
-		// if (check != 0)
-		mlx_put_pixel(img, j, i, colour);
-		// else
-		// 	mlx_put_pixel(img, j, i, colour + 1);
+		t->texY = (int)t->texPos % g->tex->height;
+		t->texPos += t->step;
+		colour = texture_colour(g->tex, t->texX, t->texY);
+		if (check == 0)
+			colour = shade_colour(colour);
+		mlx_put_pixel(g->player->image, j, i, colour);
 		i++;
 	}
 	while (i < HEIGHT)
 	{
-		mlx_put_pixel(img, j, i, 0x333333FF);
+		mlx_put_pixel(g->player->image, j, i, 0x333333FF);
 		i++;
 	}
 }
-
-/*
-	for the moment i will be leaving the explanation empty here cus i need to reduce the lines of the function so i think it would make more
-	sense to do it then.
-*/
 
 t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i)
 {
@@ -155,6 +151,7 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	draw_ray_init(p, &r, angle, check);
 	r.hitX = p->posX + p->rayDirX * r.rawDist;
 	r.hitY = p->posY + p->rayDirY * r.rawDist;
+	// printf("hitx= %f\n", r.hitX);
 	r.hx = (int)round(r.hitX * TS);
 	r.hy = (int)round(r.hitY * TS);
 	r.hit = 1;
@@ -166,7 +163,7 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	r.drawE = r.lineH / 2 + HEIGHT / 2;
 	if (r.drawE >= HEIGHT)
 		r.drawE = HEIGHT - 1;
-	draw_vertical(r.drawS, r.drawE, check, image, i, game);
+	draw_vertical(game, r, check, i);
 	return (r);
 }
 

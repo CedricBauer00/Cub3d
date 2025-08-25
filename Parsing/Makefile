@@ -147,6 +147,7 @@ SOURCES = main.c \
 		../utils.c \
 		../wall.c \
 		../wall_check.c \
+		../texture.c \
 
 OBJECTS := $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 

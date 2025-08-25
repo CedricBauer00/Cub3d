@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/22 20:48:10 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/25 13:42:52 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,16 @@ typedef struct s_ray
 	double	rawDist;  // original distance for 2D ray drawing
 }	t_ray;
 
+typedef struct s_tex
+{
+	int		texX;
+	int		texY;
+	double	wallX;
+	double	step;
+	double	texPos;
+} t_tex;
+
+
 typedef struct s_player
 {
 	double	x; // player coordinates.
@@ -86,6 +96,7 @@ typedef struct s_game
 	mlx_texture_t	*tex;
 	mlx_image_t	*img;
 	t_ray	*ray;
+	t_tex	*text;
 	mlx_t	*mlx;
 	t_player *player;
 	bool	w;
@@ -117,7 +128,12 @@ void	ray_initializer(t_player *p, double angle);
 void    ray_initializer_2(t_player *p);
 void	draw_multiple_ray(t_game *game, mlx_image_t *img);
 double	normalised_angle(double angle);
-void	draw_vertical(int drawS, int drawE, int check, mlx_image_t *img, int ray_i, t_game *game);
+void	draw_vertical(t_game *g, t_ray r, int check, int ray_i);
+
+// texture 
+
+uint32_t	texture_colour(mlx_texture_t *img, int x, int y);
+uint32_t	shade_colour(uint32_t colour);
 
 // movement
 
