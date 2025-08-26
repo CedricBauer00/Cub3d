@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/25 13:42:52 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/26 13:08:02 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,15 @@ typedef struct s_ray
 
 typedef struct s_tex
 {
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*we;
+	mlx_texture_t	*ea;
+	
+	mlx_image_t		*noT;
+	mlx_image_t		*soT;
+	mlx_image_t		*weT;
+	mlx_image_t		*eaT;
 	int		texX;
 	int		texY;
 	double	wallX;
@@ -93,10 +102,10 @@ typedef struct s_game
 	int		mheight;
 	uint32_t	sky;
 	uint32_t	floor;
-	mlx_texture_t	*tex;
-	mlx_image_t	*img;
+	// mlx_texture_t	*tex;
+	// mlx_image_t	*img;
 	t_ray	*ray;
-	t_tex	*text;
+	t_tex	*tex;
 	mlx_t	*mlx;
 	t_player *player;
 	bool	w;

@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/25 14:23:57 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/26 13:58:20 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@ static void	ft_uppercase_hex(unsigned int nbr, int i, int check)
 	}
 }
 
+void	init_texture(t_configs *d, t_game *g)
+{
+	g->tex->no = mlx_load_png("pngs/wall_1.png");
+	g->tex->so = mlx_load_png("pngs/wall_2.png");
+	g->tex->we = mlx_load_png("pngs/wall_3.png");
+	g->tex->ea = mlx_load_png("pngs/wall_4.png");
+
+	g->tex->noT = mlx_texture_to_image(g->mlx, g->tex->no);
+	g->tex->soT = mlx_texture_to_image(g->mlx, g->tex->so);
+	g->tex->weT = mlx_texture_to_image(g->mlx, g->tex->we);
+	g->tex->eaT = mlx_texture_to_image(g->mlx, g->tex->ea);
+}
+
 int execute_main(t_configs *data)
 {
 	t_game	*game;
@@ -43,7 +56,7 @@ int execute_main(t_configs *data)
 	game->player = gc_malloc(sizeof(t_player), EXEC);
 	if (!game->player)
 		return (0);
-	game->text = gc_malloc(sizeof(t_tex), EXEC);
+	game->tex = gc_malloc(sizeof(t_tex), EXEC);
 	if (!game->tex)
 		return (0);
 	game->ray = gc_malloc(sizeof(t_ray), EXEC);
@@ -52,13 +65,10 @@ int execute_main(t_configs *data)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "game", true);
 	if (!game->mlx)
 		return (0);
+	init_texture(data, game);
 	game->sky = data->textures->c_clr;
 	game->floor = data->textures->f_clr;
 	initialize(data->map_info, game);
-	game->tex = mlx_load_png("pngs/wall_1.png");
-	game->img = mlx_texture_to_image(game->mlx, game->tex);
-	// printf("%u\n", game->tex->height);
-	// printf("%u and %u\n", data->textures->no_text->height, data->textures->no_text->width);
 	game->player->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->player->minimap = mlx_new_image(game->mlx, WIDTH / 3, HEIGHT / 3);
 	draw_player(game, game->player->image);
