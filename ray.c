@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/26 15:05:30 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/26 15:22:46 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,12 @@ int	ray_loop(t_game *game, t_player *p)
 	the wall the ray hits we draw the wall.
 */
 
-t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i)
+t_ray	draw_ray(t_game *game, mlx_image_t *image, int check, double angle)
 {
-	t_ray	r;
+	t_ray		r;
+	t_player	*p;
 
+	p = game->player;
 	ray_initializer(p, angle);
 	check = ray_loop(game, p);
 	draw_ray_init(p, &r, angle, check);
@@ -121,7 +123,7 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	r.draw_e = r.line_h / 2 + HEIGHT / 2;
 	if (r.draw_e >= HEIGHT)
 		r.draw_e = HEIGHT - 1;
-	draw_vertical(game, r, check, i);
+	draw_vertical(game, r, check, game->ray_i);
 	return (r);
 }
 
@@ -140,7 +142,8 @@ t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double 
 	to be able to explain it better.
 
 	the last variable is called step. the reason why we have this variable is to
-	calculate how often the rays will be casted. let's say fov is 50 and we have
+	calculate how often the rays will be casted. let's say fov is 50 a
+	- converting the colours.nd we have
 	5 rays. this means we will be putting a ray every 10 degrees.
 
 	in draw_ray function there is a calculation made, which is start + step * i.
@@ -169,7 +172,8 @@ void	draw_multiple_ray(t_game *game, mlx_image_t *img)
 	i = 0;
 	while (i < RAY_N)
 	{
-		ray = draw_ray(game, game->player, img, 0, start + step * i, i);
+		game->ray_i = i;
+		ray = draw_ray(game, img, 0, start + step * i);
 		i++;
 	}
 }

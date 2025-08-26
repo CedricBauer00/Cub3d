@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/26 14:58:23 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/26 15:22:17 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct s_game
 	char		**map;
 	int			mwidth;
 	int			mheight;
+	int			ray_i;
 	t_ray		*ray;
 	t_tex		*tex;
 	mlx_t		*mlx;
@@ -125,7 +126,7 @@ void		delete_image(mlx_image_t *image);
 void		draw_player(t_game *game, mlx_image_t *image);
 // draw_ray function and its little helper are used to calculate
 // the distance of the red ray.
-t_ray		draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i);
+t_ray		draw_ray(t_game *game, mlx_image_t *image, int check, double angle);
 void		draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy);
 void		draw_ray_init(t_player *p, t_ray *r, double angle, int check);
 int			ray_loop(t_game *game, t_player *p);
