@@ -136,16 +136,12 @@ SOURCES = main.c \
 		bonus.c \
 		../execute_main.c \
 		../hooks.c \
-		../initialize.c \
 		../minimap.c \
-		../parsing_files.c \
 		../player_movement.c \
 		../player.c \
 		../ray_init.c \
 		../ray.c \
-		../rotation.c \
 		../utils.c \
-		../wall.c \
 		../wall_check.c \
 		../texture.c \
 

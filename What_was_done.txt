@@ -56,6 +56,8 @@ Friday:
 26.08 Tuesday
 	the textures do go to the right sides of the wall.
 	arranged most files to be norm friendly.
+	removed some files and merged some with others.
+	added some explanations for the function to the library.
 
 
 compass directions:

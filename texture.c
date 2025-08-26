@@ -6,13 +6,13 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:32:36 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/26 14:50:17 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/26 16:18:09 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-uint32_t	texture_colour(mlx_texture_t *img, int x, int y)
+uint32_t	texture_colour(mlx_texture_t *img, int x, int y, int check)
 {
 	int		i;
 	uint8_t	r;
@@ -25,6 +25,8 @@ uint32_t	texture_colour(mlx_texture_t *img, int x, int y)
 	g = img->pixels[i + 1];
 	b = img->pixels[i + 2];
 	a = img->pixels[i + 3];
+	if (check == 0)
+		return (shade_colour(r << 24 | g << 16 | b << 8 | a));
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
@@ -96,9 +98,7 @@ void	draw_vertical(t_game *g, t_ray r, int check, int ray_i)
 	{
 		t->tex_y = (int)t->tex_pos % tex->height;
 		t->tex_pos += t->step;
-		colour = texture_colour(tex, t->tex_x, t->tex_y);
-		if (check == 0)
-			colour = shade_colour(colour);
+		colour = texture_colour(tex, t->tex_x, t->tex_y, check);
 		mlx_put_pixel(g->player->image, j, i, colour);
 		i++;
 	}
