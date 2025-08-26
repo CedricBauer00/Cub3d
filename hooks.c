@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/22 20:48:46 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/08/26 15:11:19 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,20 @@ void	key(mlx_key_data_t keys, void *ptr)
 
 	game = (t_game *)ptr;
 	signal = keys.key;
-	// if (keys.action == MLX_PRESS || keys.action == MLX_REPEAT)
-	// {
-		if (signal == MLX_KEY_ESCAPE && keys.action == MLX_PRESS)
-			exit(1);
-		if (keys.key == MLX_KEY_W)
-			game->w = keys.action != MLX_RELEASE;
-		if (keys.key == MLX_KEY_A)
-			game->a = keys.action != MLX_RELEASE;
-		if (keys.key == MLX_KEY_S)
-			game->s = keys.action != MLX_RELEASE;
-		if (keys.key == MLX_KEY_D)
-			game->d = keys.action != MLX_RELEASE;
-		if (keys.key == MLX_KEY_LEFT)
-			game->l = keys.action != MLX_RELEASE;
-		else if (keys.key == MLX_KEY_RIGHT)
-			game->r = keys.action != MLX_RELEASE;
-		// printf("x = %d, y = %d, angle = %f\n", game->player->x, game->player->y, game->player->angle);
-	// }
+	if (signal == MLX_KEY_ESCAPE && keys.action == MLX_PRESS)
+		exit(1);
+	if (keys.key == MLX_KEY_W)
+		game->w = keys.action != MLX_RELEASE;
+	if (keys.key == MLX_KEY_A)
+		game->a = keys.action != MLX_RELEASE;
+	if (keys.key == MLX_KEY_S)
+		game->s = keys.action != MLX_RELEASE;
+	if (keys.key == MLX_KEY_D)
+		game->d = keys.action != MLX_RELEASE;
+	if (keys.key == MLX_KEY_LEFT)
+		game->l = keys.action != MLX_RELEASE;
+	else if (keys.key == MLX_KEY_RIGHT)
+		game->r = keys.action != MLX_RELEASE;
 }
 
 void	cursor(double xpos, double ypos, void *ptr)
@@ -78,6 +74,13 @@ void	check_rotation(t_game *game, bool move, char c)
 	}
 }
 
+// update position of player accordingly to the key input
+//update raycasting
+//update floor
+//update wall
+//update ceiling
+// ->> updates frame continously
+
 void	update_frame(void *ptr)
 {
 	t_game	*game;
@@ -90,55 +93,32 @@ void	update_frame(void *ptr)
 	check_rotation(game, game->l, 'l');
 	check_rotation(game, game->r, 'r');
 	draw_player(game, game->player->image);
-	draw_minimap(game, game->player->minimap, 0 , -1);
-	// update position of player accordingly to the key input
-	//update raycasting
-	//update floor
-	//update wall
-	//update ceiling
-	// ->> updates frame continously
+	draw_minimap(game, game->player->minimap, 0, -1);
 }
 
 void	choose_move(t_game *game, char c, int *new_x, int *new_y)
 {
+	double	a;
+
+	a = game->player->angle;
 	if (c == 'w')
 	{
-		*new_x = game->player->x + (int)round(cos(game->player->angle) * MOVE_S);
-		*new_y = game->player->y - (int)round(sin(game->player->angle) * MOVE_S);
+		*new_x = game->player->x + (int)round(cos(a) * MOVE_S);
+		*new_y = game->player->y - (int)round(sin(a) * MOVE_S);
 	}
 	if (c == 's')
 	{
-		*new_x = game->player->x - (int)round(cos(game->player->angle) * MOVE_S);
-		*new_y = game->player->y + (int)round(sin(game->player->angle) * MOVE_S);
+		*new_x = game->player->x - (int)round(cos(a) * MOVE_S);
+		*new_y = game->player->y + (int)round(sin(a) * MOVE_S);
 	}
 	if (c == 'a')
 	{
-		*new_x = game->player->x - (int)round(sin(game->player->angle) * MOVE_S);
-		*new_y = game->player->y - (int)round(cos(game->player->angle) * MOVE_S);
+		*new_x = game->player->x - (int)round(sin(a) * MOVE_S);
+		*new_y = game->player->y - (int)round(cos(a) * MOVE_S);
 	}
 	if (c == 'd')
 	{
-		*new_x = game->player->x + (int)round(sin(game->player->angle) * MOVE_S);
-		*new_y = game->player->y + (int)round(cos(game->player->angle) * MOVE_S);
+		*new_x = game->player->x + (int)round(sin(a) * MOVE_S);
+		*new_y = game->player->y + (int)round(cos(a) * MOVE_S);
 	}
-}
-
-void	check_move(t_game *game, bool move, char c)
-{
-	int	new_x;
-	int	new_y;
-
-	if (!move)
-		return ;
-	choose_move(game, c, &new_x, &new_y);
-	if (c == 'a' && wall_check_left(game, game->player->x, game->player->y) == -1)
-		return ;
-	if (c == 'd' && wall_check_right(game, game->player->x, game->player->y) == -1)
-		return ;
-	if (c == 'w' && wall_check_up(game, game->player->x, game->player->y) == -1)
-		return ;
-	if (c == 's' && wall_check_down(game, game->player->x, game->player->y) == -1)
-		return ;
-	game->player->x = new_x;
-	game->player->y = new_y;
 }

@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/26 14:32:51 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/26 14:58:23 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ typedef struct s_ray
 	int		hit;	   // if the ray hits a wall.
 	int		hx;		   // the x coordinate of the wall we're looking at.
 	int		hy;		   // the y coordinate of the wall we're looking at.
-	double	hitX;
-	double	hitY;
-	int		lineH;
-	int		drawS;
-	int		drawE;
-	double	angleDiff;
+	double	hit_x;
+	double	hit_y;
+	int		line_h;
+	int		draw_s;
+	int		draw_e;
+	double	angle_diff;
 	int		side;	   // the side of the wall we're looking at.
-	double	wallDist; // the distance for the 3d drawing so that it won't have the fish eye effect.
-	double	rawDist;  // original distance for 2D ray drawing
+	double	wall_dist; // the distance for the 3d drawing so that it won't have the fish eye effect.
+	double	raw_dist;  // original distance for 2D ray drawing
 }	t_ray;
 
 typedef struct s_tex
@@ -55,89 +55,85 @@ typedef struct s_tex
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
-	
-	mlx_image_t		*noT;
-	mlx_image_t		*soT;
-	mlx_image_t		*weT;
-	mlx_image_t		*eaT;
-	int		texX;
-	int		texY;
-	double	wallX;
-	double	step;
-	double	texPos;
-} t_tex;
 
+	mlx_image_t		*no_tex;
+	mlx_image_t		*so_tex;
+	mlx_image_t		*we_tex;
+	mlx_image_t		*ea_tex;
+	uint32_t		sky;
+	uint32_t		floor;
+	int				tex_x;
+	int				tex_y;
+	double			wall_x;
+	double			step;
+	double			tex_pos;
+}	t_tex;
 
 typedef struct s_player
 {
-	double	x; // player coordinates.
-	double	y;
-	double	angle; // direction we're looking at.
-	double	rayDirX; // the directions of the ray is being casted.
-	double	rayDirY;
-	double	deltaDistX; // amount of movement we need to do for the ray
-	double	deltaDistY;
-	int		mapX; // these 2 is used when we are calculating the rays and therefore changing the location of where we are.
-	int		mapY;
-	double	posX; // this is also normal player coordinates but divided by the tile size.
-	double	posY;
-	double	sideDistX; // determines which one to increase, x or y.
-	double	sideDistY;
-	int		stepX; // determines the direction of the ray. up-down or left-right.
-	int		stepY;
-	mlx_image_t *image;
-	mlx_image_t *minimap;
-	mlx_instance_t *inst;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
+	double			x; // player coordinates.
+	double			y;
+	double			angle; // direction we're looking at.
+	double			ray_dir_x; // the directions of the ray is being casted.
+	double			ray_dir_y;
+	double			delta_dist_x; // amount of movement we need to do for the ray
+	double			delta_dist_y;
+	int				map_x; // these 2 is used when we are calculating the rays and therefore changing the location of where we are.
+	int				map_y;
+	double			pos_x; // this is also normal player coordinates but divided by the tile size.
+	double			pos_y;
+	double			side_dist_x; // determines which one to increase, x or y.
+	double			side_dist_y;
+	int				step_x; // determines the direction of the ray. up-down or left-right.
+	int				step_y;
+	mlx_image_t		*image;
+	mlx_image_t		*minimap;
+	mlx_instance_t	*inst;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 }	t_player;
 
 typedef struct s_game
 {
-	// int	map[24][24];
-	char	**map;
-	int		mwidth;
-	int		mheight;
-	uint32_t	sky;
-	uint32_t	floor;
-	// mlx_texture_t	*tex;
-	// mlx_image_t	*img;
-	t_ray	*ray;
-	t_tex	*tex;
-	mlx_t	*mlx;
-	t_player *player;
-	bool	w;
-	bool	a;
-	bool	s;
-	bool	d;
-	bool	r;
-	bool	l;
+	char		**map;
+	int			mwidth;
+	int			mheight;
+	t_ray		*ray;
+	t_tex		*tex;
+	mlx_t		*mlx;
+	t_player	*player;
+	bool		w;
+	bool		a;
+	bool		s;
+	bool		d;
+	bool		r;
+	bool		l;
 }	t_game;
 
 // printing stuff on the map
 
 // prints a 2d map to do some tests
-void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l);
-// int		paint_map(t_game *game, mlx_image_t *image);
-int		paint_map(t_map *map_info, t_game *game, mlx_image_t *image);
+void		draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l);
 
-void	delete_image(mlx_image_t *image);
+void		delete_image(mlx_image_t *image);
 // this one is being used every time the character moves.
-// it prints the body of the character, the direction showing stick thing and the red ray that stops when it hits a wall.
+// it prints the body of the character, the direction showing stick thing and
+// the red ray that stops when it hits a wall.
 // i will add more rays to it to get a proper field of view.
-void	draw_player(t_game *game, mlx_image_t *image);
-// draw_ray function and its little helper are used to calculate the distance of the red ray.
-t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i);
-void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy);
-void	draw_ray_init(t_player *p, t_ray *r, double angle, int check);
-int		ray_loop(t_game *game, t_player *p);
-void	ray_initializer(t_player *p, double angle);
-void    ray_initializer_2(t_player *p);
-void	draw_multiple_ray(t_game *game, mlx_image_t *img);
-double	normalised_angle(double angle);
-void	draw_vertical(t_game *g, t_ray r, int check, int ray_i);
+void		draw_player(t_game *game, mlx_image_t *image);
+// draw_ray function and its little helper are used to calculate
+// the distance of the red ray.
+t_ray		draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i);
+void		draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy);
+void		draw_ray_init(t_player *p, t_ray *r, double angle, int check);
+int			ray_loop(t_game *game, t_player *p);
+void		ray_initializer(t_player *p, double angle);
+void		ray_initializer_2(t_player *p);
+void		draw_multiple_ray(t_game *game, mlx_image_t *img);
+double		normalised_angle(double angle);
+void		draw_vertical(t_game *g, t_ray r, int check, int ray_i);
 
 // texture 
 
@@ -147,31 +143,33 @@ uint32_t	shade_colour(uint32_t colour);
 
 // movement
 
-// this functions takes gets the signal of the keys you press and does something depending on which key was pressed.
-void	key(mlx_key_data_t keys, void *ptr);
+// this functions takes gets the signal of the keys you press and does something
+// depending on which key was pressed.
+void		key(mlx_key_data_t keys, void *ptr);
 
 // movement functions.
-void	move_up(t_game *game);
-void	move_down(t_game *game);
-void	move_left(t_game *game);
-void	move_right(t_game *game);
+void		move_up(t_game *game);
+void		move_down(t_game *game);
+void		move_left(t_game *game);
+void		move_right(t_game *game);
 
 // wall collision check for the movement functions.
-int		wall_check_up(t_game *g);
-int		wall_check_down(t_game *g);
-int		wall_check_left(t_game *g);
-int		wall_check_right(t_game *g);
+int			wall_check_up(t_game *g);
+int			wall_check_down(t_game *g);
+int			wall_check_left(t_game *g);
+int			wall_check_right(t_game *g);
 
 // rotation functions.
-void	rotate_right(t_game *game);
-void	rotate_left(t_game *game);
+void		rotate_right(t_game *game);
+void		rotate_left(t_game *game);
 
 // a small initializing function
-int		execute_malloc(t_game *game);
-void	initialize(t_map *maps, t_game *game);
-int		execute_main(t_configs *data);
-void	cursor(double xpos, double ypos, void *ptr);
-void	update_frame(void *ptr);
-void	check_move(t_game *game, bool move, char c);
+int			execute_malloc(t_game *game);
+void		initialize(t_map *maps, t_game *game);
+int			execute_main(t_configs *data);
+void		cursor(double xpos, double ypos, void *ptr);
+void		update_frame(void *ptr);
+void		check_move(t_game *game, bool move, char c);
+void		choose_move(t_game *game, char c, int *new_x, int *new_y);
 
 #endif

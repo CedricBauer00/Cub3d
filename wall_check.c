@@ -6,11 +6,31 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:08:52 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/26 14:33:39 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/26 14:55:34 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	check_move(t_game *game, bool move, char c)
+{
+	int	new_x;
+	int	new_y;
+
+	if (!move)
+		return ;
+	choose_move(game, c, &new_x, &new_y);
+	if (c == 'a' && wall_check_left(game) == -1)
+		return ;
+	if (c == 'd' && wall_check_right(game) == -1)
+		return ;
+	if (c == 'w' && wall_check_up(game) == -1)
+		return ;
+	if (c == 's' && wall_check_down(game) == -1)
+		return ;
+	game->player->x = new_x;
+	game->player->y = new_y;
+}
 
 int	wall_check_up(t_game *g)
 {

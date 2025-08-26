@@ -1,5 +1,4 @@
 Things need to be done:
-	- adding textures to the walls.
 	- adding the fov effect to the minimap using the rays.
 	- adding the player facing directions.
 	- converting the colours.
@@ -17,26 +16,34 @@ There is a problem with the wall collision. it doesn't calculate things correctl
 
 Thursday:
 	mostly did research about the DDA algorithm and started an experimental function for it.
+
 Friday:
 	also research about DDA and some experiments with it.
+
 11.08 Monday:
 	DDA research is done and now our program can cast a ray. it will be multiple rays in the future but for the moment there is only one.
 	Removed some commented functions as i no longer need them and made some of the functions norm friendly.
+
 12.08 Tuesday
 	the program can now cast multiple rays and also i made the screen of the game wider so that on the right side we will have the 3d part of the program.
 	the 3d part is still being worked on as the floor or ceiling has not been set and there is a fish eye effect when the program prints out the walls.
+
 13.08 Wednesday
-	spent a lot of time trying to fix the fish eye without achieving anything
+	spent a lot of time trying to fix the fish eye without achieving anything.
+
 14.08 Thursday
 	the fish eye effect is fixed and for the moment removed the 2d map. increased the map size to be able to test the pov properly.
 	added more comments to the functions to explain what's going on.
+
 18.08 Monday
 	added a minimap on the left corner. for the moment it doesn't have anything in it that
 	represents the player character but it will be added soon.
+
 19.08 Tuesday
 	started to use the map and the height + width of the map from parsing and changed to checks accordingly.
 	added the player character to the minimap.
 	player character has a decent wall collision now.
+
 22.08 Friday
 	did a small tweak to the mouse stuff for the mouse to be invisible.
 	now a texture can be put on a wall buuuuut it definetly needs work.
@@ -46,15 +53,9 @@ Friday:
 	the walls correctly draw the texture.
 	depending on the side the wall is facing it has a darker colour to enhance the 3d effect.
 
-	things to do:
-		make the correct calculations for the textures.
-	notes:
-		there will be 4 sides for the textures which means i probably need to add 4 different functions for each side
-		and then merge them in a main function and call that.
-
-		the calculations will be done with the hit.x/y variables since we need to put the texture to the point
-		where it hits.
-
+26.08 Tuesday
+	the textures do go to the right sides of the wall.
+	arranged most files to be norm friendly.
 
 
 compass directions:

@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/26 14:39:30 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/26 14:51:23 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	execute_main(t_configs *data)
 	if (!game->mlx)
 		return (-1);
 	init_texture(data, game);
-	game->sky = data->textures->c_clr;
-	game->floor = data->textures->f_clr;
+	// game->sky = data->textures->c_clr;
+	// game->floor = data->textures->f_clr;
 	initialize(data->map_info, game);
 	game->player->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->player->minimap = mlx_new_image(game->mlx, WIDTH / 3, HEIGHT / 3);
@@ -78,10 +78,10 @@ void	init_texture(t_configs *d, t_game *g)
 	g->tex->so = mlx_load_png("pngs/wall_2.png");
 	g->tex->we = mlx_load_png("pngs/wall_3.png");
 	g->tex->ea = mlx_load_png("pngs/wall_4.png");
-	g->tex->noT = mlx_texture_to_image(g->mlx, g->tex->no);
-	g->tex->soT = mlx_texture_to_image(g->mlx, g->tex->so);
-	g->tex->weT = mlx_texture_to_image(g->mlx, g->tex->we);
-	g->tex->eaT = mlx_texture_to_image(g->mlx, g->tex->ea);
+	g->tex->no_tex = mlx_texture_to_image(g->mlx, g->tex->no);
+	g->tex->so_tex = mlx_texture_to_image(g->mlx, g->tex->so);
+	g->tex->we_tex = mlx_texture_to_image(g->mlx, g->tex->we);
+	g->tex->ea_tex = mlx_texture_to_image(g->mlx, g->tex->ea);
 }
 
 int	execute_malloc(t_game *game)
