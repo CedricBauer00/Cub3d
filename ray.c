@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/25 14:32:14 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/26 14:30:54 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int	ray_loop(t_game *game, t_player *p)
 			p->sideDistY += p->deltaDistY;
 			side = 1;
 		}
-		if (p->mapX < 0 || p->mapY < 0 || p->mapX >= game->mwidth || p->mapY >= game->mheight)
+		if (p->mapX < 0 || p->mapY < 0 || p->mapX >= game->mwidth
+			|| p->mapY >= game->mheight)
 			break ;
 		if (game->map[p->mapY][p->mapX] == '1')
 			break ;
@@ -96,13 +97,12 @@ int	ray_loop(t_game *game, t_player *p)
 t_ray	draw_ray(t_game *game, t_player *p, mlx_image_t *image, int check, double angle, int i)
 {
 	t_ray	r;
-	
+
 	ray_initializer(p, angle);
 	check = ray_loop(game, p);
 	draw_ray_init(p, &r, angle, check);
 	r.hitX = p->posX + p->rayDirX * r.rawDist;
 	r.hitY = p->posY + p->rayDirY * r.rawDist;
-	// printf("hitx= %f\n", r.hitX);
 	r.hx = (int)round(r.hitX * TS);
 	r.hy = (int)round(r.hitY * TS);
 	r.hit = 1;
@@ -155,8 +155,6 @@ void	draw_multiple_ray(t_game *game, mlx_image_t *img)
 	while (i < RAY_N)
 	{
 		ray = draw_ray(game, game->player, img, 0, start + step * i, i);
-		// if (ray.hit)
-		// 	draw_ray_helper(game, img, ray.hx, ray.hy);
 		i++;
 	}
 }

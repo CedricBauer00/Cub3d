@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:32:36 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/26 13:58:07 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/26 14:31:39 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 uint32_t	texture_colour(mlx_texture_t *img, int x, int y)
 {
-	int	i;
+	int		i;
 	uint8_t	r;
 	uint8_t	g;
 	uint8_t	b;
@@ -25,7 +25,6 @@ uint32_t	texture_colour(mlx_texture_t *img, int x, int y)
 	g = img->pixels[i + 1];
 	b = img->pixels[i + 2];
 	a = img->pixels[i + 3];
-	
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
@@ -37,10 +36,9 @@ uint32_t	shade_colour(uint32_t colour)
 	uint8_t	a;
 
 	r = (colour >> 24) / 2;
-	g = (colour >> 16) / 2;
-	b = (colour >> 8) / 2;
+	g = ((colour >> 16) % 256) / 2;
+	b = ((colour >> 8) % 256) / 2;
 	a = colour % 256;
-
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
@@ -70,7 +68,8 @@ static void	draw_vertical_init(t_ray r, int check, t_game *g, t_tex *t)
 		t->wallX = r.hitX;
 	t->wallX -= floor(t->wallX);
 	t->texX = (int)(t->wallX * (double)g->tex->no->width);
-	if ((check == 0 && g->player->rayDirX > 0) || (check == 1 && g->player->rayDirY < 0))
+	if ((check == 0 && g->player->rayDirX > 0)
+		|| (check == 1 && g->player->rayDirY < 0))
 		t->texX = g->tex->no->width - t->texX - 1;
 	t->step = 1.0 * g->tex->no->height / r.lineH;
 	t->texPos = (r.drawS - HEIGHT / 2 + r.lineH / 2) * t->step;
@@ -78,10 +77,10 @@ static void	draw_vertical_init(t_ray r, int check, t_game *g, t_tex *t)
 
 void	draw_vertical(t_game *g, t_ray r, int check, int ray_i)
 {
-	int	i;
-	int	j;
-	t_tex	*t;
-	uint32_t	colour;
+	int				i;
+	int				j;
+	t_tex			*t;
+	uint32_t		colour;
 	mlx_texture_t	*tex;
 
 	i = 0;
@@ -89,7 +88,7 @@ void	draw_vertical(t_game *g, t_ray r, int check, int ray_i)
 	t = g->tex;
 	tex = check_sides(g, t, check);
 	if (j >= WIDTH)
-		return;
+		return ;
 	draw_vertical_init(r, check, g, t);
 	while (i < r.drawS)
 		mlx_put_pixel(g->player->image, j, i++, 0x87CEEBFF);
@@ -98,8 +97,8 @@ void	draw_vertical(t_game *g, t_ray r, int check, int ray_i)
 		t->texY = (int)t->texPos % tex->height;
 		t->texPos += t->step;
 		colour = texture_colour(tex, t->texX, t->texY);
-		// if (check == 0)
-		// 	colour = shade_colour(colour);
+		if (check == 0)
+			colour = shade_colour(colour);
 		mlx_put_pixel(g->player->image, j, i, colour);
 		i++;
 	}

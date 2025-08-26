@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/22 11:14:59 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/26 14:35:03 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	move_up(t_game *game)
 	angle = game->player->angle;
 	new_x = game->player->x + (int)round(cos(angle) * MOVE_S);
 	new_y = game->player->y - (int)round(sin(angle) * MOVE_S);
-	if (wall_check_up(game, game->player->x, game->player->y) == -1)
+	if (wall_check_up(game) == -1)
 	{
 		printf("x = %d, y = %d\n", new_x, new_y);
 		printf("x = %d, y = %d\n", new_x / TS, new_y / TS);
@@ -44,8 +44,6 @@ void	move_up(t_game *game)
 	}
 	game->player->x = new_x;
 	game->player->y = new_y;
-	// draw_player(game, game->player->image);
-	// draw_minimap(game, game->player->minimap, 0, -1);
 }
 
 void	move_down(t_game *game)
@@ -59,7 +57,7 @@ void	move_down(t_game *game)
 	angle = game->player->angle;
 	new_x = game->player->x - (int)round(cos(angle) * MOVE_S);
 	new_y = game->player->y + (int)round(sin(angle) * MOVE_S);
-	if (wall_check_down(game, game->player->x, game->player->y) == -1)
+	if (wall_check_down(game) == -1)
 	{
 		printf("x = %d, y = %d\n", new_x, new_y);
 		printf("x = %d, y = %d\n", new_x / TS, new_y / TS);
@@ -68,8 +66,6 @@ void	move_down(t_game *game)
 	}
 	game->player->x = new_x;
 	game->player->y = new_y;
-	// draw_player(game, game->player->image);
-	// draw_minimap(game, game->player->minimap, 0, -1);
 }
 
 void	move_left(t_game *game)
@@ -83,7 +79,7 @@ void	move_left(t_game *game)
 	angle = game->player->angle;
 	new_x = game->player->x - (int)round(sin(angle) * MOVE_S);
 	new_y = game->player->y - (int)round(cos(angle) * MOVE_S);
-	if (wall_check_left(game, game->player->x, game->player->y) == -1)
+	if (wall_check_left(game) == -1)
 	{
 		printf("x = %d, y = %d\n", new_x, new_y);
 		printf("x = %d, y = %d\n", new_x / TS, new_y / TS);
@@ -92,8 +88,6 @@ void	move_left(t_game *game)
 	}
 	game->player->x = new_x;
 	game->player->y = new_y;
-	// draw_player(game, game->player->image);
-	// draw_minimap(game, game->player->minimap, 0, -1);
 }
 
 void	move_right(t_game *game)
@@ -107,7 +101,7 @@ void	move_right(t_game *game)
 	angle = game->player->angle;
 	new_x = game->player->x + (int)round(sin(angle) * MOVE_S);
 	new_y = game->player->y + (int)round(cos(angle) * MOVE_S);
-	if (wall_check_right(game, game->player->x, game->player->y) == -1)
+	if (wall_check_right(game) == -1)
 	{
 		printf("x = %d, y = %d\n", new_x, new_y);
 		printf("x = %d, y = %d\n", new_x / TS, new_y / TS);
@@ -116,6 +110,4 @@ void	move_right(t_game *game)
 	}
 	game->player->x = new_x;
 	game->player->y = new_y;
-	// draw_player(game, game->player->image);
-	// draw_minimap(game, game->player->minimap, 0, -1);
 }

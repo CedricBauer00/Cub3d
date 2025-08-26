@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/26 13:08:02 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/26 14:32:51 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ void	draw_vertical(t_game *g, t_ray r, int check, int ray_i);
 
 // texture 
 
+void		init_texture(t_configs *d, t_game *g);
 uint32_t	texture_colour(mlx_texture_t *img, int x, int y);
 uint32_t	shade_colour(uint32_t colour);
 
@@ -156,16 +157,17 @@ void	move_left(t_game *game);
 void	move_right(t_game *game);
 
 // wall collision check for the movement functions.
-int		wall_check_up(t_game *g, int x, int y);
-int		wall_check_down(t_game *g, int x, int y);
-int		wall_check_left(t_game *g, int x, int y);
-int		wall_check_right(t_game *g, int x, int y);
+int		wall_check_up(t_game *g);
+int		wall_check_down(t_game *g);
+int		wall_check_left(t_game *g);
+int		wall_check_right(t_game *g);
 
 // rotation functions.
 void	rotate_right(t_game *game);
 void	rotate_left(t_game *game);
 
 // a small initializing function
+int		execute_malloc(t_game *game);
 void	initialize(t_map *maps, t_game *game);
 int		execute_main(t_configs *data);
 void	cursor(double xpos, double ypos, void *ptr);
