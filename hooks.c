@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/27 10:29:37 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/27 13:11:14 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	update_frame(void *ptr)
 	check_move(game, game->a, 'a');
 	check_move(game, game->s, 's');
 	check_move(game, game->d, 'd');
-	// check_rotation(game, game->l, 'l');
-	// check_rotation(game, game->r, 'r');
+	check_rotation(game, game->l, 'l');
+	check_rotation(game, game->r, 'r');
 	draw_player(game);
 	draw_minimap(game, game->player->minimap, 0, -1);
 }

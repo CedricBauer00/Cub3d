@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 13:09:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/27 12:07:31 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/27 13:21:44 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,26 @@ void	initialize(t_map *maps, t_game *game)
 	game->map = maps->map;
 	game->mwidth = maps->width;
 	game->mheight = maps->hight;
-	game->player->angle = PI / 2;
+	if (maps->plr_dir == 'N')
+		game->player->angle = PI / 2;
+	if (maps->plr_dir == 'S')
+		game->player->angle = PI / 2 + PI;
+	if (maps->plr_dir == 'W')
+		game->player->angle = PI;
+	if (maps->plr_dir == 'E')
+		game->player->angle = PI * PI;
 	game->player->x = maps->x_pos * TS + 32;
 	game->player->y = maps->y_pos * TS + 32;
 	game->player->dir_x = cos(game->player->angle);
 	game->player->dir_y = sin(game->player->angle);
 	game->player->plane_x = -game->player->dir_y * 0.66;
 	game->player->plane_y = game->player->dir_x * 0.66;
+	game->a = false;
+	game->s = false;
+	game->d = false;
+	game->w = false;
+	game->l = false;
+	game->r = false;
 }
 
 /*

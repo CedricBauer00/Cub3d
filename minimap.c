@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:34:41 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/26 14:39:03 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 13:25:20 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l)
 			{
 				if (game->map[l][k] == '1')
 					mlx_put_pixel(minimap, j, i, 0xFFFFFFAA);
-				else if (game->map[l][k] == '0' || game->map[l][k] == 'N')
+				else if (game->map[l][k] == '0' || game->map[l][k] == 'N'
+					|| game->map[l][k] == 'S' || game->map[l][k] == 'W'
+					|| game->map[l][k] == 'E')
 					mlx_put_pixel(minimap, j, i, 0x000000AA);
 			}
 			j++;
