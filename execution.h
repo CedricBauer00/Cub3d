@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/27 13:16:59 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 14:19:31 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,9 @@ double		normalised_angle(double angle);
 void		draw_vertical(t_game *g, t_ray r, int check, int ray_i);
 
 // texture 
+
+// deletes the textures
+void	delete_textures(t_game *g);
 
 // initialises the pngs
 void		init_texture(t_configs *d, t_game *g);

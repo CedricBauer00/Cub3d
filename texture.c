@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:32:36 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/27 11:12:21 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/27 14:07:43 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	draw_vertical(t_game *g, t_ray r, int check, int ray_i)
 		return ;
 	draw_vertical_init(r, check, g, t);
 	while (i < r.draw_s)
-		mlx_put_pixel(g->player->image, j, i++, 0x87CEEBFF);
+		mlx_put_pixel(g->player->image, j, i++, g->tex->sky);
 	while (i < r.draw_e)
 	{
 		t->tex_y = (int)t->tex_pos % tex->height;
@@ -103,5 +103,5 @@ void	draw_vertical(t_game *g, t_ray r, int check, int ray_i)
 		i++;
 	}
 	while (i < HEIGHT)
-		mlx_put_pixel(g->player->image, j, i++, 0x333333FF);
+		mlx_put_pixel(g->player->image, j, i++, g->tex->floor);
 }

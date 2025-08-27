@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:34:41 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/27 13:25:20 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 13:57:22 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_character(t_game *game, mlx_image_t *minimap)
 	int	i;
 	int	j;
 
-	minix = (game->player->x * (TS / 5)) / TS;
+	minix = (game->player->x * (TS / 7)) / TS;
 	miniy = (game->player->y * (TS / 7)) / TS;
 	in_bounds_check(minimap, &minix, &miniy);
 	i = -2;
@@ -62,7 +62,7 @@ void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l)
 			l++;
 		while (j < (int)minimap->width && k < game->mwidth)
 		{
-			if (j % (TS / 5) == 0 && k < game->mwidth)
+			if (j % (TS / 7) == 0 && k < game->mwidth)
 				k++;
 			if (l >= 0 && k >= 0 && l < game->mheight && k < game->mwidth)
 			{

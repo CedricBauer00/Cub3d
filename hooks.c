@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/27 13:11:14 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 14:21:07 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void	key(mlx_key_data_t keys, void *ptr)
 	game = (t_game *)ptr;
 	signal = keys.key;
 	if (signal == MLX_KEY_ESCAPE && keys.action == MLX_PRESS)
-		exit(1);
+	{
+		delete_textures(game);
+		gc_free_all();
+		exit(0);
+	}
 	if (keys.key == MLX_KEY_W)
 		game->w = keys.action != MLX_RELEASE;
 	if (keys.key == MLX_KEY_A)
