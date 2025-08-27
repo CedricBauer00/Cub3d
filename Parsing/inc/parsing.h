@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 09:46:20 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/19 12:58:11 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/27 12:24:31 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@ typedef struct s_map
 	char			plr_dir;
 }	t_map;
 
+typedef struct s_animation
+{
+	mlx_texture_t	**frames;
+	int				f_count;
+	int				current_f;
+	int				f_delay;
+	int				frame_timer; //maybe not needed
+}	t_animation;
+
 typedef struct s_configs
 {
 	char			**lines;
@@ -63,6 +72,7 @@ typedef struct s_configs
 	int				m_width;
 	char			**map;
 	t_map			*map_info;
+	t_animation		*animation;
 }	t_configs;
 
 typedef struct s_seen

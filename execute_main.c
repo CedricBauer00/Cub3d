@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/26 16:31:52 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 11:12:59 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	game_start(t_game *game, t_configs *data)
 	initialize(data->map_info, game);
 	game->player->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->player->minimap = mlx_new_image(game->mlx, WIDTH / 3, HEIGHT / 3);
-	draw_player(game, game->player->image);
+	draw_player(game);
 	draw_minimap(game, game->player->minimap, 0, -1);
 	mlx_image_to_window(game->mlx, game->player->image, 0, 0);
 	mlx_image_to_window(game->mlx, game->player->minimap, 10, 10);
@@ -78,13 +78,13 @@ int	execute_main(t_configs *data)
 
 void	init_texture(t_configs *d, t_game *g)
 {
-	(void)d;
-	g->tex->no = mlx_load_png("pngs/wall_1.png");
-	g->tex->so = mlx_load_png("pngs/wall_2.png");
-	g->tex->we = mlx_load_png("pngs/wall_3.png");
-	g->tex->ea = mlx_load_png("pngs/wall_4.png");
-	g->tex->no_tex = mlx_texture_to_image(g->mlx, g->tex->no);
-	g->tex->so_tex = mlx_texture_to_image(g->mlx, g->tex->so);
-	g->tex->we_tex = mlx_texture_to_image(g->mlx, g->tex->we);
-	g->tex->ea_tex = mlx_texture_to_image(g->mlx, g->tex->ea);
+	// (void)d;
+	g->tex->no = d->textures->no_text;
+	g->tex->so = d->textures->so_text;
+	g->tex->we = d->textures->we_text;
+	g->tex->ea = d->textures->ea_text;
+	g->tex->no_tex = mlx_texture_to_image(g->mlx, d->textures->no_text);
+	g->tex->so_tex = mlx_texture_to_image(g->mlx, d->textures->so_text);
+	g->tex->we_tex = mlx_texture_to_image(g->mlx, d->textures->we_text);
+	g->tex->ea_tex = mlx_texture_to_image(g->mlx, d->textures->ea_text);
 }

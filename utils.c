@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 13:09:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/26 16:30:49 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 12:07:31 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	initialize(t_map *maps, t_game *game)
 	game->mwidth = maps->width;
 	game->mheight = maps->hight;
 	game->player->angle = PI / 2;
-	game->player->x = 10 * TS + 32;
-	game->player->y = 10 * TS + 32;
+	game->player->x = maps->x_pos * TS + 32;
+	game->player->y = maps->y_pos * TS + 32;
 	game->player->dir_x = cos(game->player->angle);
 	game->player->dir_y = sin(game->player->angle);
 	game->player->plane_x = -game->player->dir_y * 0.66;

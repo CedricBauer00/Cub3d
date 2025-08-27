@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/27 10:17:01 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/27 10:21:29 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	ray_loop(t_game *game, t_player *p)
 	the wall the ray hits we draw the wall.
 */
 
-t_ray	draw_ray(t_game *game, mlx_image_t *image, int check, double angle)
+t_ray	draw_ray(t_game *game, int check, double angle)
 {
 	t_ray		r;
 	t_player	*p;
@@ -158,7 +158,7 @@ t_ray	draw_ray(t_game *game, mlx_image_t *image, int check, double angle)
 	the minimap most probably.
 */
 
-void	draw_multiple_ray(t_game *game, mlx_image_t *img)
+void	draw_multiple_ray(t_game *game)
 {
 	double	fov;
 	double	start;
@@ -173,7 +173,7 @@ void	draw_multiple_ray(t_game *game, mlx_image_t *img)
 	while (i < RAY_N)
 	{
 		game->ray_i = i;
-		ray = draw_ray(game, img, 0, start + step * i);
+		ray = draw_ray(game, 0, start + step * i);
 		i++;
 	}
 }

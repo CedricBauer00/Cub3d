@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 11:51:36 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/19 12:45:14 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/27 11:06:55 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,13 @@ int	check_textures(t_configs *data, int i, char *path, int error)
 		else
 		{
 			if (data->txtrs[i][0] == 'N')
-				error = process_texture(data, path, data->txtrs[i][0] < 0);
+				error = process_texture(data, path, data->txtrs[i][0]);
 			if (data->txtrs[i][0] == 'S')
-				error = process_texture(data, path, data->txtrs[i][0] < 0);
+				error = process_texture(data, path, data->txtrs[i][0]);
 			if (data->txtrs[i][0] == 'W')
-				error = process_texture(data, path, data->txtrs[i][0] < 0);
+				error = process_texture(data, path, data->txtrs[i][0]);
 			if (data->txtrs[i][0] == 'E')
-				error = process_texture(data, path, data->txtrs[i][0] < 0);
+				error = process_texture(data, path, data->txtrs[i][0]);
 		}
 		if (error < 0)
 			return (-1);

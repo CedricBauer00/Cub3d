@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/26 15:10:05 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 10:22:13 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	delete_image(mlx_image_t *image)
 	the last one is explained above
 */
 
-void	draw_player(t_game *game, mlx_image_t *image)
+void	draw_player(t_game *game)
 {
 	// delete_image(image);
-	draw_multiple_ray(game, image);
+	draw_multiple_ray(game);
 }

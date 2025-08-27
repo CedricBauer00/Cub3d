@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/26 16:41:27 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 10:22:25 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,10 @@ void		draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l);
 void		delete_image(mlx_image_t *image);
 // where the first calculation stuff starts for the rays.
 // also it's the start of the drawing process too.
-void		draw_player(t_game *game, mlx_image_t *image);
+void		draw_player(t_game *game);
 // draw_ray function and its little helper are used to calculate
 // the distance of the red ray.
-t_ray		draw_ray(t_game *game, mlx_image_t *image, int check, double angle);
+t_ray		draw_ray(t_game *game, int check, double angle);
 // it was used to draw the rays of the other 2d map we had before.
 void		draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy);
 // more calculations.
@@ -134,7 +134,7 @@ void		ray_initializer(t_player *p, double angle);
 // calculations used for the ray stuff.
 void		ray_initializer_2(t_player *p);
 // looping to draw the rays for RAY_N amount of times.
-void		draw_multiple_ray(t_game *game, mlx_image_t *img);
+void		draw_multiple_ray(t_game *game);
 // fixes the angle if it's more than 2 PI's or less than 0.
 double		normalised_angle(double angle);
 // this is where the actual drawing on the screen part starts.
