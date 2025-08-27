@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/27 14:21:07 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 16:34:32 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	key(mlx_key_data_t keys, void *ptr)
 		gc_free_all();
 		exit(0);
 	}
+	if (keys.key == MLX_KEY_E && keys.action == MLX_PRESS)
+		open_door(game);
 	if (keys.key == MLX_KEY_W)
 		game->w = keys.action != MLX_RELEASE;
 	if (keys.key == MLX_KEY_A)

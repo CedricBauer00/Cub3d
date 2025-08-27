@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/27 14:19:46 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 15:36:59 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ void	init_texture(t_configs *d, t_game *g)
 	g->tex->so = d->textures->so_text;
 	g->tex->we = d->textures->we_text;
 	g->tex->ea = d->textures->ea_text;
+	g->tex->door = mlx_load_png("pngs/door_1.png");
 }

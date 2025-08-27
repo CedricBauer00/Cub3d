@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/27 14:19:31 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 16:34:46 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_tex
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	mlx_texture_t	*door;
 
 	mlx_image_t		*no_tex;
 	mlx_image_t		*so_tex;
@@ -174,6 +175,9 @@ int			wall_check_right(t_game *g);
 // rotation functions.
 void		rotate_right(t_game *game);
 void		rotate_left(t_game *game);
+
+// this function checks if there is a door ahead of the character and opens/closes it.
+void		open_door(t_game *g);
 
 // cursor function
 void		cursor(double xpos, double ypos, void *ptr);

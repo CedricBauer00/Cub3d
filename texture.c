@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:32:36 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/27 14:07:43 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 16:42:07 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,16 @@ uint32_t	shade_colour(uint32_t colour)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-mlx_texture_t	*check_sides(t_game *g, t_tex *t, int side)
+mlx_texture_t	*check_sides(t_game *g, t_tex *t, int side, t_ray ray)
 {
+	int	x;
+	int	y;
+
+	(void)ray;
+	x = g->player->map_x;
+	y = g->player->map_y;
+	if (g->map[y][x] == '2')
+		return (t->door);
 	if (side == 0)
 	{
 		if (g->player->ray_dir_x > 0)
@@ -88,7 +96,7 @@ void	draw_vertical(t_game *g, t_ray r, int check, int ray_i)
 	i = 0;
 	j = WIDTH - ray_i;
 	t = g->tex;
-	tex = check_sides(g, t, check);
+	tex = check_sides(g, t, check, r);
 	if (j >= WIDTH)
 		return ;
 	draw_vertical_init(r, check, g, t);

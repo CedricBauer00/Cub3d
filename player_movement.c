@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/26 15:01:09 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 16:37:54 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ void	move_up(t_game *game)
 	double	angle;
 	int		new_x;
 	int		new_y;
-	int		buffer;
 
-	buffer = 8;
 	angle = game->player->angle;
 	new_x = game->player->x + (int)round(cos(angle) * MOVE_S);
 	new_y = game->player->y - (int)round(sin(angle) * MOVE_S);
@@ -57,9 +55,7 @@ void	move_down(t_game *game)
 	double	angle;
 	int		new_x;
 	int		new_y;
-	int		buffer;
 
-	buffer = 8;
 	angle = game->player->angle;
 	new_x = game->player->x - (int)round(cos(angle) * MOVE_S);
 	new_y = game->player->y + (int)round(sin(angle) * MOVE_S);
@@ -79,9 +75,7 @@ void	move_left(t_game *game)
 	double	angle;
 	int		new_x;
 	int		new_y;
-	int		buffer;
 
-	buffer = 8;
 	angle = game->player->angle;
 	new_x = game->player->x - (int)round(sin(angle) * MOVE_S);
 	new_y = game->player->y - (int)round(cos(angle) * MOVE_S);
@@ -101,9 +95,7 @@ void	move_right(t_game *game)
 	double	angle;
 	int		new_x;
 	int		new_y;
-	int		buffer;
 
-	buffer = 8;
 	angle = game->player->angle;
 	new_x = game->player->x + (int)round(sin(angle) * MOVE_S);
 	new_y = game->player->y + (int)round(cos(angle) * MOVE_S);

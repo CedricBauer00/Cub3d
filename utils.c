@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 13:09:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/27 14:18:29 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 15:21:14 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	delete_textures(t_game *g)
 	mlx_delete_texture(g->tex->so);
 	mlx_delete_texture(g->tex->we);
 	mlx_delete_texture(g->tex->ea);
+	mlx_delete_texture(g->tex->door);
 }
 
 /*
