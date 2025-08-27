@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/27 10:22:25 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/27 12:52:12 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,13 @@ typedef struct s_player
 	double			plane_y;
 }	t_player;
 
+typedef struct	s_animation
+{
+	mlx_texture_t	*gun_text;
+	int				gun_offset;
+	bool			gun_movement;
+}	t_aniamtion;
+
 typedef struct s_game
 {
 	char		**map;
@@ -111,6 +118,7 @@ typedef struct s_game
 	bool		d;
 	bool		r;
 	bool		l;
+	t_aniamtion	*gun_anim;
 }	t_game;
 
 // prints a 2d map.
