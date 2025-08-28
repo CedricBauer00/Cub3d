@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/27 12:52:12 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/28 11:20:27 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,5 +194,13 @@ void		initialize(t_map *maps, t_game *game);
 // the functions used in the beginning of the execution.
 int			game_start(t_game *game, t_configs *data);
 int			execute_main(t_configs *data);
+
+// ----------------------------------------------------------------------
+//							Animation.c
+// ----------------------------------------------------------------------
+
+int			init_animation(t_game *g);
+void		move_gun(t_game *g);
+void		draw_gun(t_game *g);
 
 #endif
