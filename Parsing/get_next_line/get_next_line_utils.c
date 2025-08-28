@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:28:54 by ialiev            #+#    #+#             */
-/*   Updated: 2025/08/27 16:37:38 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/28 11:38:32 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_writeremainder(char **buf, int *linebreakpos)
 	int		j;
 
 	c = 0;
-	if (*linebreakpos > 0)
+	if (linebreakpos > 0)
 		c = linebreakpos[0] + 1;
 	i = gnl_strlen((*buf), 2, linebreakpos[0]);
 	line = (char *)malloc((i + 1) * sizeof(char));
