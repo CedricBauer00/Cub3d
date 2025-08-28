@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:34:41 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/26 14:39:03 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/27 15:45:46 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_character(t_game *game, mlx_image_t *minimap)
 	int	i;
 	int	j;
 
-	minix = (game->player->x * (TS / 5)) / TS;
+	minix = (game->player->x * (TS / 7)) / TS;
 	miniy = (game->player->y * (TS / 7)) / TS;
 	in_bounds_check(minimap, &minix, &miniy);
 	i = -2;
@@ -62,13 +62,15 @@ void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l)
 			l++;
 		while (j < (int)minimap->width && k < game->mwidth)
 		{
-			if (j % (TS / 5) == 0 && k < game->mwidth)
+			if (j % (TS / 7) == 0 && k < game->mwidth)
 				k++;
 			if (l >= 0 && k >= 0 && l < game->mheight && k < game->mwidth)
 			{
-				if (game->map[l][k] == '1')
+				if (game->map[l][k] == '1' || game->map[l][k] == '2')
 					mlx_put_pixel(minimap, j, i, 0xFFFFFFAA);
-				else if (game->map[l][k] == '0' || game->map[l][k] == 'N')
+				else if (game->map[l][k] == '0' || game->map[l][k] == 'N'
+					|| game->map[l][k] == 'S' || game->map[l][k] == 'W'
+					|| game->map[l][k] == 'E' || game->map[l][k] == 'D')
 					mlx_put_pixel(minimap, j, i, 0x000000AA);
 			}
 			j++;

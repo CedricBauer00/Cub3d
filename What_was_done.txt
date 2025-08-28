@@ -1,7 +1,5 @@
 Things need to be done:
 	- adding the fov effect to the minimap using the rays.
-	- adding the player facing directions.
-	- converting the colours.
 
 Created a 2D map cus i like having something visual when working on projects.
 
@@ -58,6 +56,12 @@ Friday:
 	arranged most files to be norm friendly.
 	removed some files and merged some with others.
 	added some explanations for the function to the library.
+
+27.08 Wednesday
+	the direction of the character can be changed by putting N, S, E or W on the map.
+	the set_color function has been changed a bit.
+	added a delete function for the images that we load and put that plus the gc free function to the exit key.
+	now we have doors that can be opened and closed!! doors are defined as 2 in the map but can be changed later.
 
 
 compass directions:

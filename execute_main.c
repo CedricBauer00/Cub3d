@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/27 11:12:59 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/27 15:36:59 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	game_start(t_game *game, t_configs *data)
 	mlx_cursor_hook(game->mlx, cursor, game);
 	mlx_loop_hook(game->mlx, update_frame, game);
 	mlx_loop(game->mlx);
+	delete_textures(game);
 	mlx_terminate(game->mlx);
 	return (0);
 }
@@ -51,40 +52,17 @@ int	execute_main(t_configs *data)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "game", true);
 	if (!game->mlx)
 		return (-1);
+	game->tex->sky = data->textures->c_clr;
+	game->tex->floor = data->textures->f_clr;
 	game_start(game, data);
 	return (0);
 }
 
-// static void	ft_uppercase_hex(unsigned int nbr, int i, int check)
-// {
-// 	unsigned int	copy;
-// 	char			number[9];
-
-// 	copy = nbr;
-// 	while (copy > 0)
-// 	{
-// 		if (copy % 16 >= 10)
-// 			number[i++] = copy % 16 + 'A' - 10;
-// 		else
-// 			number[i++] = copy % 16 + 48;
-// 		copy /= 16;
-// 	}
-// 	number[i] = '\0';
-// 	while (i > 0)
-// 	{
-// 		check = write(1, &number[--i], 1);
-// 	}
-// }
-
 void	init_texture(t_configs *d, t_game *g)
 {
-	// (void)d;
 	g->tex->no = d->textures->no_text;
 	g->tex->so = d->textures->so_text;
 	g->tex->we = d->textures->we_text;
 	g->tex->ea = d->textures->ea_text;
-	g->tex->no_tex = mlx_texture_to_image(g->mlx, d->textures->no_text);
-	g->tex->so_tex = mlx_texture_to_image(g->mlx, d->textures->so_text);
-	g->tex->we_tex = mlx_texture_to_image(g->mlx, d->textures->we_text);
-	g->tex->ea_tex = mlx_texture_to_image(g->mlx, d->textures->ea_text);
+	g->tex->door = mlx_load_png("pngs/door_1.png");
 }

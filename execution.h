@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/08/28 11:20:27 by cbauer           ###   ########.fr       */
+=======
+/*   Updated: 2025/08/27 16:46:54 by bolcay           ###   ########.fr       */
+>>>>>>> 02bfff2ca72a9ca90de642bed7db237d995a5736
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +59,7 @@ typedef struct s_tex
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	mlx_texture_t	*door;
 
 	mlx_image_t		*no_tex;
 	mlx_image_t		*so_tex;
@@ -150,6 +155,9 @@ void		draw_vertical(t_game *g, t_ray r, int check, int ray_i);
 
 // texture 
 
+// deletes the textures
+void	delete_textures(t_game *g);
+
 // initialises the pngs
 void		init_texture(t_configs *d, t_game *g);
 // gets the colour from the png depending on where the ray hits.
@@ -179,6 +187,9 @@ int			wall_check_right(t_game *g);
 // rotation functions.
 void		rotate_right(t_game *game);
 void		rotate_left(t_game *game);
+
+// this function checks if there is a door ahead of the character and opens/closes it.
+void		open_door(t_game *g);
 
 // cursor function
 void		cursor(double xpos, double ypos, void *ptr);

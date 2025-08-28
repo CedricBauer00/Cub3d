@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 11:51:36 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/27 11:06:55 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/27 13:53:09 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,20 @@ uint32_t	set_color(char **d)
 
 	i = 0;
 	color = 0;
-	while (d[i])
+	while (d[i] && i < 3)
 	{
 		j = 0;
+		num = 0;
 		while (d[i][j])
 			num = num * 10 + (d[i][j++] - '0');
-		color |= num; //adding bits from num into color 
-		color <<= 8; //shifting 8 to the left
+		// color |= num; //adding bits from num into color 
+		// color <<= 8; //shifting 8 to the left
+		if (i == 0)
+			color |= (num << 24);
+		if (i == 1)
+			color |= (num << 16);
+		if (i == 2)
+			color |= (num << 8);
 		i++;
 	}
 	color |= 255; //setting alpha = brightness
