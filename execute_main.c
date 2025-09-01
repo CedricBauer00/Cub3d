@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/27 15:36:59 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/28 12:25:09 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	game_start(t_game *game, t_configs *data)
 	initialize(data->map_info, game);
 	game->player->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->player->minimap = mlx_new_image(game->mlx, WIDTH / 3, HEIGHT / 3);
+	if (init_animation(game) < 0)
+		return (-1);
 	draw_player(game);
 	draw_minimap(game, game->player->minimap, 0, -1);
 	mlx_image_to_window(game->mlx, game->player->image, 0, 0);

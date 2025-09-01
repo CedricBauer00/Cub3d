@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/27 11:07:52 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/08/28 11:28:20 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	check_duplicate(char **lines)
 		if (ft_strncmp(lines[i], "C ", 2) == 0)
 			flags.c++;
 	}
+	printf("no = %d\nso = %d\nwe = %d\nea = %d\nF = %d\nC = %d\n", flags.no, flags.so, flags.we, flags.ea, flags.f, flags.c);
 	if (flags.no != 1 || flags.so != 1 || flags.we != 1 || flags.ea != 1
 		|| flags.f != 1 || flags.c != 1)
 		return (printf("Error: Input error: Duplicates/Missing lines!\n"), -1);

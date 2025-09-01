@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/27 16:34:32 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/28 12:16:03 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,10 @@ void	update_frame(void *ptr)
 	check_move(game, game->d, 'd');
 	check_rotation(game, game->l, 'l');
 	check_rotation(game, game->r, 'r');
+	move_gun(game);
 	draw_player(game);
 	draw_minimap(game, game->player->minimap, 0, -1);
+	draw_gun(game);
 }
 
 void	choose_move(t_game *game, char c, int *new_x, int *new_y)
