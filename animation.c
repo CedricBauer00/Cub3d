@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/27 12:46:14 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/28 13:14:05 by cbauer           ###   ########.fr       */
+/*   Created: 2025/09/01 10:50:40 by cbauer            #+#    #+#             */
+/*   Updated: 2025/09/01 11:45:10 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,52 @@
 
 int	init_animation(t_game *g)
 {
-	xpm_t	*xpm;
+	mlx_texture_t	*png;
+	int				x;
+	int				y;
 
+	g->timer = 0;
 	g->gun_anim = gc_malloc(sizeof(t_aniamtion), EXEC);
 	if (!g->gun_anim)
 		return (-1);
-	xpm = mlx_load_xpm42("animations/weapon1.pm");
-	if (!xpm)
+	png = mlx_load_png("../animations/weapon1A.png");
+	if (!png)
 		return (-1);
-	g->gun_anim->gun_text = mlx_texture_to_image(g->mlx, &xpm->texture);
-	if (!g->gun_anim->gun_text)
+	g->gun_anim->gun_img = mlx_texture_to_image(g->mlx, png);
+	if (!g->gun_anim->gun_img)
 	{
-		mlx_delete_xpm42(xpm);
+		mlx_delete_texture(png);
 		return (-1);
 	}
-	mlx_delete_xpm42(xpm);
-	g->gun_anim->gun_offset = 0;
+	mlx_delete_texture(png);
+	g->gun_anim->gun_offset = 10;
 	g->gun_anim->gun_movement = false;
+	x = (g->mlx->width - g->gun_anim->gun_img->width) / 2;
+	y = (g->mlx->height - g->gun_anim->gun_img->height);
+	mlx_resize_image(g->gun_anim->gun_img, 200, 200);
+	mlx_image_to_window(g->mlx, g->gun_anim->gun_img, x, y);
 	return (0);
 }
 
 void	move_gun(t_game *g)
 {
-	if (g->gun_anim->gun_movement)
+	if (!g->move && !g->std)
 	{
-		g->gun_anim->gun_offset += 1; //up/down movement
-		if (g->gun_anim->gun_offset > 5)
-		{
-			g->gun_anim->gun_offset = -5;
-			g->gun_anim->gun_movement = false; // stop movement
-		}
+		g->timer = 0;
+		g->gun_anim->gun_movement = false;
+		g->gun_anim->gun_img->instances[0].y = g->mlx->height - g->gun_anim->gun_img->height; // reset image to original position
+		g->std = true;
+		return ;
 	}
-}
-
-void	draw_gun(t_game *g)
-{
-	mlx_image_t		*gun_image;
-	int				gun_x;
-	int				gun_y;
-
-	gun_x = WIDTH / 2 - g->gun_anim->gun_text->width / 2;
-	gun_y = HEIGHT - g->gun_anim->gun_text->height + g->gun_anim->gun_offset;
-	gun_image = mlx_texture_to_image(g->mlx, g->gun_anim->gun_text);
-	mlx_image_to_window(g->mlx, g->gun_anim->gun_text, gun_x, gun_y);
+	else if (!g->move)
+		return ;
+	g->std = false;
+	g->timer = (g->timer + 1) % 7;
+	if (g->timer != 0)
+		return ;
+	g->gun_anim->gun_movement = !g->gun_anim->gun_movement; // each time boolian value gets swapped
+	if (g->gun_anim->gun_movement == true)
+		g->gun_anim->gun_img->instances[0].y = g->mlx->height - g->gun_anim->gun_img->height + g->gun_anim->gun_offset; //instance[0] erstes image; + g->gun_anim->gun_offset versetzt nach unten
+	else
+		g->gun_anim->gun_img->instances[0].y = g->mlx->height - g->gun_anim->gun_img->height;
 }

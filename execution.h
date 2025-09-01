@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/01 10:40:10 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/01 11:41:19 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_player
 
 typedef struct	s_animation
 {
-	mlx_texture_t	*gun_text;
+	mlx_image_t		*gun_img;
 	int				gun_offset;
 	bool			gun_movement;
 }	t_aniamtion;
@@ -120,6 +120,9 @@ typedef struct s_game
 	bool		r;
 	bool		l;
 	t_aniamtion	*gun_anim;
+	int			timer;
+	bool		move;
+	bool		std;
 }	t_game;
 
 // prints a 2d map.

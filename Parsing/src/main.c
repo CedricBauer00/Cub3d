@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/28 11:28:20 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/01 11:15:35 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int	check_duplicate(char **lines)
 		if (ft_strncmp(lines[i], "C ", 2) == 0)
 			flags.c++;
 	}
-	printf("no = %d\nso = %d\nwe = %d\nea = %d\nF = %d\nC = %d\n", flags.no, flags.so, flags.we, flags.ea, flags.f, flags.c);
 	if (flags.no != 1 || flags.so != 1 || flags.we != 1 || flags.ea != 1
 		|| flags.f != 1 || flags.c != 1)
 		return (printf("Error: Input error: Duplicates/Missing lines!\n"), -1);
@@ -131,12 +130,6 @@ int	main(int argc, char **argv)
 	//EXECUTION!
 	if (execute_main(&data) < 0)
 		return (printf("Error: Execution failed!\n"), -1);
-	printf("Parsing wokred successfully!\n");
 	gc_free_all(); //	DELETE MLX TEXTURES with mlx_delete_texture(test) - DID NOT HAPPEN YET
 	return (0);
 }
-
-// int execute_main(t_textures *textures, t_map *map_info)
-// {
-
-// }
