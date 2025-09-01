@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/01 11:35:35 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/01 11:56:12 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ void	key(mlx_key_data_t keys, void *ptr)
 	game = (t_game *)ptr;
 	signal = keys.key;
 	if (signal == MLX_KEY_ESCAPE && keys.action == MLX_PRESS)
-	{
-		delete_textures(game);
-		gc_free_all();
-		exit(0);
-	}
+		mlx_close_window(game->mlx);
 	if (keys.key == MLX_KEY_E && keys.action == MLX_PRESS)
 		open_door(game);
 	if (keys.key == MLX_KEY_W)

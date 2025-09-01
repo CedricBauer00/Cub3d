@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/01 11:44:44 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/01 11:57:39 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	game_start(t_game *game, t_configs *data)
 		return (-1);
 	mlx_key_hook(game->mlx, key, game);
 	mlx_cursor_hook(game->mlx, cursor, game);
+	mlx_mouse_hook(game->mlx, mouse_button, game);
 	mlx_loop_hook(game->mlx, update_frame, game);
 	mlx_loop(game->mlx);
 	delete_textures(game);
