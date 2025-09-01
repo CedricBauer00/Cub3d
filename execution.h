@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/01 12:10:26 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/01 13:13:59 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,85 +127,145 @@ typedef struct s_game
 	int			show;
 }	t_game;
 
-// prints a 2d map.
-void		draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l);
-// clears what was drawn when updating the image.
-void		delete_image(mlx_image_t *image);
-// where the first calculation stuff starts for the rays.
-// also it's the start of the drawing process too.
-void		draw_player(t_game *game);
-// draw_ray function and its little helper are used to calculate
-// the distance of the red ray.
-t_ray		draw_ray(t_game *game, int check, double angle);
-// it was used to draw the rays of the other 2d map we had before.
-void		draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy);
-// more calculations.
-void		draw_ray_init(t_player *p, t_ray *r, double angle, int check);
-// calculating the distance of the ray.
-int			ray_loop(t_game *game, t_player *p);
-// calculations used for the ray stuff.
-void		ray_initializer(t_player *p, double angle);
-// calculations used for the ray stuff.
-void		ray_initializer_2(t_player *p);
-// looping to draw the rays for RAY_N amount of times.
-void		draw_multiple_ray(t_game *game);
-// fixes the angle if it's more than 2 PI's or less than 0.
-double		normalised_angle(double angle);
-// this is where the actual drawing on the screen part starts.
-void		draw_vertical(t_game *g, t_ray r, int check, int ray_i);
+// ----------------------------------------------------------------------
+//						   Execute_main.c
+// ----------------------------------------------------------------------
 
-// texture 
+// the functions used in the beginning of the execution.
+int			game_start(t_game *game, t_configs *data);
+int			execute_main(t_configs *data);
+void		init_texture(t_configs *d, t_game *g);
+
+// ----------------------------------------------------------------------
+//							   Utils.c
+// ----------------------------------------------------------------------
 
 // deletes the textures
-void	delete_textures(t_game *g);
+void		delete_textures(t_game *g);
+// a small initializing function
+void		initialize(t_map *maps, t_game *game);
+// fixes the angle if it's more than 2 PI's or less than 0.
+double		normalised_angle(double angle);
+// rotation functions.
+void		rotate_right(t_game *game);
+void		rotate_left(t_game *game);
 
-// initialises the pngs
-void		init_texture(t_configs *d, t_game *g);
-// gets the colour from the png depending on where the ray hits.
-uint32_t	texture_colour(mlx_texture_t *img, int x, int y, int check);
-// changes the colour to a bit of a darker version to
-// create a more realistic scene.
-uint32_t	shade_colour(uint32_t colour);
+// ----------------------------------------------------------------------
+//								Hooks.c
+// ----------------------------------------------------------------------
 
 // movement
 
 // this functions gets the signal of the keys you press and does something
 // depending on which key was pressed.
 void		key(mlx_key_data_t keys, void *ptr);
+// cursor function
+void		cursor(double xpos, double ypos, void *ptr);
+void		check_rotation(t_game *game, bool move, char c);
+// game loop for drawing and movement
+void		update_frame(void *ptr);
+void		choose_move(t_game *game, char c, int *new_x, int *new_y);
 
-// movement functions.
-void		move_up(t_game *game);
-void		move_down(t_game *game);
-void		move_left(t_game *game);
-void		move_right(t_game *game);
 
-// wall collision check for the movement functions.
+// ----------------------------------------------------------------------
+//							  WallCheck.c
+// ----------------------------------------------------------------------
+
+void		check_move(t_game *game, bool move, char c);
 int			wall_check_up(t_game *g);
 int			wall_check_down(t_game *g);
 int			wall_check_left(t_game *g);
 int			wall_check_right(t_game *g);
 
-// rotation functions.
-void		rotate_right(t_game *game);
-void		rotate_left(t_game *game);
+// ----------------------------------------------------------------------
+//							  Minimap.c
+// ----------------------------------------------------------------------
+
+static void	in_bounds_check(mlx_image_t *minimap, int *miniX, int *miniY);
+void		draw_character(t_game *game, mlx_image_t *minimap);
+// prints a 2d map.
+void		draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l);
+
+// ----------------------------------------------------------------------
+//							Mouse_button.c
+// ----------------------------------------------------------------------
+
+void		mouse_button(mouse_key_t button, action_t action,
+	modifier_key_t modifier, void *ptr);
+
+// ----------------------------------------------------------------------
+//							Player_movement.c
+// ----------------------------------------------------------------------
+
+void		move_up(t_game *game);
+void		move_down(t_game *game);
+void		move_left(t_game *game);
+void		move_right(t_game *game);
+
+// ----------------------------------------------------------------------
+//							Player.c
+// ----------------------------------------------------------------------
+
+// clears what was drawn when updating the image.
+void		delete_image(mlx_image_t *image);
+// where the first calculation stuff starts for the rays.
+// also it's the start of the drawing process too.
+void		draw_player(t_game *game);
+
+// ----------------------------------------------------------------------
+//								Ray.c
+// ----------------------------------------------------------------------
+
+// it was used to draw the rays of the other 2d map we had before.
+void		draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy);
+// calculating the distance of the ray.
+int			ray_loop(t_game *game, t_player *p);
+// draw_ray function and its little helper are used to calculate
+// the distance of the red ray.
+t_ray		draw_ray(t_game *game, int check, double angle);
+// looping to draw the rays for RAY_N amount of times.
+void		draw_multiple_ray(t_game *game);
+
+
+// ----------------------------------------------------------------------
+//							Ray_init.c
+// ----------------------------------------------------------------------
+
+// calculations used for the ray stuff.
+void		ray_initializer_2(t_player *p);
+// calculations used for the ray stuff.
+void		ray_initializer(t_player *p, double angle);
+// more calculations.
+void		draw_ray_init(t_player *p, t_ray *r, double angle, int check);
+
+
+// ----------------------------------------------------------------------
+//							Rotation.c
+// ----------------------------------------------------------------------
+
+void	rotate_right(t_game *game);
+void	rotate_left(t_game *game);
+
+// ----------------------------------------------------------------------
+//							Textures.c
+// ----------------------------------------------------------------------
+
+// gets the colour from the png depending on where the ray hits.
+uint32_t	texture_colour(mlx_texture_t *img, int x, int y, int check);
+// changes the colour to a bit of a darker version to
+// create a more realistic scene.
+uint32_t	shade_colour(uint32_t colour);
+// this is where the actual drawing on the screen part starts.
+void		draw_vertical(t_game *g, t_ray r, int check, int ray_i);
+static void	draw_vertical_init(t_ray r, int check, t_game *g, t_tex *t);
+
+// ----------------------------------------------------------------------
+//							Doors.c
+// ----------------------------------------------------------------------
 
 // this function checks if there is a door ahead of the character and opens/closes it.
 void		open_door(t_game *g);
-
-// cursor function
-void		cursor(double xpos, double ypos, void *ptr);
-
-// game loop for drawing and movement
-void		update_frame(void *ptr);
-void		check_move(t_game *game, bool move, char c);
-void		choose_move(t_game *game, char c, int *new_x, int *new_y);
-
-// a small initializing function
-void		initialize(t_map *maps, t_game *game);
-
-// the functions used in the beginning of the execution.
-int			game_start(t_game *game, t_configs *data);
-int			execute_main(t_configs *data);
+static void	door_handle(t_game *g, int x, int y);
 
 // ----------------------------------------------------------------------
 //							Animation.c
@@ -214,7 +274,5 @@ int			execute_main(t_configs *data);
 int			init_animation(t_game *g);
 void		move_gun(t_game *g);
 void		draw_gun(t_game *g);
-void		mouse_button(mouse_key_t button, action_t action,
-			modifier_key_t modifier, void *ptr);
 
 #endif
