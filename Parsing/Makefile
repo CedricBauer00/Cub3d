@@ -145,7 +145,8 @@ SOURCES = main.c \
 		../wall_check.c \
 		../texture.c \
 		../door.c \
-		../animation.c
+		../animation.c \
+		../mouse_button.c
 
 OBJECTS := $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 

@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 10:50:40 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/01 12:08:38 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/01 12:26:18 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,16 @@ int	init_animation(t_game *g)
 	int				x;
 	int				y;
 
+	g->show = 0;
 	g->timer = 0;
 	g->gun_anim = gc_malloc(sizeof(t_aniamtion), EXEC);
 	if (!g->gun_anim)
 		return (-1);
-	if (load_pngs < 0)
+	if (load_pngs(g) < 0)
 		return (-1);
 	g->gun_anim->gun_offset = 10;
 	g->gun_anim->gun_movement = false;
-	x = (g->mlx->width - g->gun_anim->gun_img->width) / 2;
+	x = (g->mlx->width - g->gun_anim->gun_img->width) / 2 + (g->mlx->width - g->gun_anim->gun_img->width) / 4 - (g->mlx->width - g->gun_anim->gun_img->width) / 8;
 	y = (g->mlx->height - g->gun_anim->gun_img->height);
 	mlx_resize_image(g->gun_anim->gun_img, 200, 200);
 	mlx_image_to_window(g->mlx, g->gun_anim->gun_img, x, y);
@@ -66,7 +67,7 @@ void	show_gun_fire(t_game *g)
 {
 	if (g->show > 0)
 	{
-		if (g->show == 10)
+		if (g->show == 8)
 		{
 			g->gun_anim->gun_img->instances[0].enabled = false;
 			g->gun_anim->fire_gun->instances[0].enabled = true;

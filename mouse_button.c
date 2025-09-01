@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 11:58:16 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/01 12:02:50 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/01 12:25:24 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	mouse_button(mouse_key_t button, action_t action,
 	(void)modifier;
 	g = (t_game *)ptr;
 	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
-		g->show = 10;
+		g->show = 8;
 	
 }
