@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:32:36 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/27 16:42:07 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/28 12:17:12 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ mlx_texture_t	*check_sides(t_game *g, t_tex *t, int side, t_ray ray)
 	(void)ray;
 	x = g->player->map_x;
 	y = g->player->map_y;
-	if (g->map[y][x] == '2')
+	if (g->map[y][x] == 'D')
 		return (t->door);
 	if (side == 0)
 	{

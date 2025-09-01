@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/27 16:41:05 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/08/28 12:17:20 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ray_loop(t_game *game, t_player *p)
 		if (p->map_x < 0 || p->map_y < 0 || p->map_x >= game->mwidth
 			|| p->map_y >= game->mheight)
 			break ;
-		if (game->map[p->map_y][p->map_x] == '1' || game->map[p->map_y][p->map_x] == '2')
+		if (game->map[p->map_y][p->map_x] == '1' || game->map[p->map_y][p->map_x] == 'D')
 			break ;
 	}
 	return (side);
