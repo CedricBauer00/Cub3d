@@ -1,0 +1,7 @@
+/Users/cbauer/Documents/04_Circle/cub3d/Parsing/MLX/build/CMakeFiles/mlx42.dir
+/Users/cbauer/Documents/04_Circle/cub3d/Parsing/MLX/build/CMakeFiles/edit_cache.dir
+/Users/cbauer/Documents/04_Circle/cub3d/Parsing/MLX/build/CMakeFiles/rebuild_cache.dir
+/Users/cbauer/Documents/04_Circle/cub3d/Parsing/MLX/build/CMakeFiles/list_install_components.dir
+/Users/cbauer/Documents/04_Circle/cub3d/Parsing/MLX/build/CMakeFiles/install.dir
+/Users/cbauer/Documents/04_Circle/cub3d/Parsing/MLX/build/CMakeFiles/install/local.dir
+/Users/cbauer/Documents/04_Circle/cub3d/Parsing/MLX/build/CMakeFiles/install/strip.dir
