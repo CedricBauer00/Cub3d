@@ -6,7 +6,7 @@
 /*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:18:04 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/19 13:53:01 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/09/02 22:37:15 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	gc_free_all(void)
 		gc_free_helper(temp->list);
 		free(temp);
 	}
+	free(which);
 	get_gc()->head = NULL;
 }
 
@@ -93,6 +94,7 @@ void	gc_free(int id)
 			else
 				get_gc()->head = which->next;
 			gc_free_helper(which->list);
+			free(which);
 			return ;
 		}
 		temp = which;

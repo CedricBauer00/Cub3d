@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 11:48:01 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 22:38:10 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,13 @@ int	main(int argc, char **argv)
 		return (printf("Error: Too many/few arguments!\n"), -1);
 	init_data(&data);
 	if (correct_name(argv[1]) < 0)
-		return (-1);
+		return (gc_free_all(), -1);
 	if (init_lines(argv[1], &data, 0, NULL) < 0)
 		return (gc_free_all(), -1);
 	gc_free(PARS);
 	//EXECUTION!
 	if (execute_main(&data) < 0)
-		return (printf("Error: Execution failed!\n"), -1);
+		return (printf("Error: Execution failed!\n"), gc_free_all(), -1);
 	gc_free_all(); //	DELETE MLX TEXTURES with mlx_delete_texture(test) - DID NOT HAPPEN YET
 	return (0);
 }
