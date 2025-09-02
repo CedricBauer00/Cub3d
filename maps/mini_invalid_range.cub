@@ -1,0 +1,13 @@
+NO ./pngs/wall_2.png
+SO ./pngs/wall_2.png
+WE ./pngs/wall_2.png
+EA ./pngs/wall_2.png
+
+F 220,100,255
+C 225,30,-100
+
+111111
+100101
+101001
+1100N1
+111111

@@ -1,0 +1,15 @@
+NO ./pngs/wall_3.png
+SO ./pngs/wall_3.png
+WE ./pngs/wall_3.png
+EA ./pngs/wall_3.png
+
+F 220,100,0
+C 225,30,0
+
+EA ./tex/tmp_ea.png
+
+111111
+100101
+101001
+1100N1
+111111
