@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 16:50:40 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/08 17:10:30 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/08 12:08:03 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/26 16:56:09 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,45 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	d_len;
-	size_t	s_len;
+	size_t	counter;
 	size_t	i;
+	size_t	dst_len;
+	size_t	src_len;
 
-	d_len = ft_strlen(dst);
-	s_len = ft_strlen(src);
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	counter = 0;
 	i = 0;
-	if (d_len >= dstsize)
-		return (dstsize + s_len);
-	while (i < (dstsize - d_len - 1) && src[i] != '\0')
+	if (dstsize <= dst_len)
+		return (dstsize + src_len);
+	while (dst[counter] != '\0')
+		counter++;
+	while (i < dstsize - dst_len -1 && src[i] != '\0')
 	{
-		dst[d_len + i] = src[i];
+		dst[counter + i] = src[i];
 		i++;
 	}
-	dst[d_len + i] = '\0';
-	return (d_len + s_len);
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
 }
 
-/*
-#include <stdio.h>
-
-int main()
-{
-    char dst[29] = "hey how are";
-    const char *src = "1234567891123456";
-    size_t dstsize = 9;
-    printf("%zu", ft_strlcat(dst, src, dstsize));
-    return (0);
-}
-*/
+// int main()
+// {
+// 	char dest[15] = 'a';
+// 	char dest2[15] = 'a';
+//     printf("%zu\n", ft_strlcat(dest, "lorem ipsum dolor sit amet", 15));
+//     printf("%zu\n", strlcat(dest2, "lorem ipsum dolor sit amet", 15));
+//     write(1, "\n", 1);
+//     write(1, dest, 15);
+//     write(1, "\n", 1);
+//     write(1, dest2, 15);
+// // 	char src[] = "the cake is a lie !\0I'm hidden lol\r\n";
+// // 	char dest[60] = "there is no stars in the sky";
+// // 	char dest2[60] = "there is no stars in the sky";
+// // 	size_t max = 60;
+// // 	printf("%s\n", dest);
+// // 	printf("%zu\n", ft_strlcat(dest, src, max));
+// // 	printf("%s\n", dest);
+// // 	printf("%zu\n", strlcat(dest2, src, max));
+// 	return (0);
+// }

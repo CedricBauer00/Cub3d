@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:34:41 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/28 12:25:14 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/02 09:48:53 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	in_bounds_check(mlx_image_t *minimap, int *miniX, int *miniY)
+static void	in_bounds_check(mlx_image_t *minimap, int *miniX, int *miniY) //UNUSED
 {
 	if (*miniX < 0)
 		*miniX = 0;

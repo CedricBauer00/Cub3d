@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 16:12:30 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/08 16:58:04 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/10 11:08:52 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/16 20:46:46 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 int	ft_tolower(int c)
 {
-	if (c >= 65 && c <= 90)
-		c += 32;
+	if (c >= 'A' && c <= 'Z')
+		c = c + 32;
 	return (c);
 }
+
+// int main()
+// {
+// 	printf("%c\n", ft_tolower('\200'));
+// 	return (0);
+// }

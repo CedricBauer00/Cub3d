@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 16:16:40 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/10 15:31:02 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/15 10:47:18 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/26 16:58:43 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,37 @@
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	check;
-	int	result;
+	int	counter;
+	int	minus;
+	int	num;
 
-	result = 0;
-	i = 0;
-	check = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	counter = 0;
+	minus = 0;
+	while (str[counter] != '\0' && ((str[counter] >= '\t'
+				&& str[counter] <= '\r') || str[counter] == ' '))
+		counter++;
+	if (str[counter] == '-')
 	{
-		if (str[i] == '-')
-			check *= -1;
-		i++;
+		minus = 1;
+		counter++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	else if (str[counter] == '+')
+		counter++;
+	num = 0;
+	while (str[counter] >= '0' && str[counter] <= '9')
 	{
-		result *= 10;
-		result += str[i] - 48;
-		i++;
+		num = (str[counter] - '0') + num * 10;
+		counter++;
 	}
-	return (result * check);
+	if (minus == 1)
+		num = -num;
+	return (num);
 }
-/*
-#include <stdio.h>
 
-int main()
-{
-    const char *str = "------+-++-1233456abs3324";
-    printf("%d", ft_atoi(str));
-    return (0);
-}
-*/
+// int main()
+// {
+// 	char str[] = "   -548";
+// 	printf("%d\n", ft_atoi(str));
+// 	printf("%d\n", atoi(str));
+// 	return (0);
+// }

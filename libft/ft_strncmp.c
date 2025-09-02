@@ -3,38 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 15:33:11 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/08 19:53:42 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/08 13:30:30 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/18 14:55:44 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t c)
+int	ft_strncmp(const char *src, const char *dest, size_t n)
 {
-	size_t	i;
+	size_t	counter;
 
-	i = 0;
-	while (i < c && s1[i] != '\0' && s2[i] != '\0')
+	counter = 0;
+	if (n == 0)
+		return (0);
+	while ((counter < n) && !(src[counter] == '\0' && dest[counter] == '\0'))
 	{
-		if ((unsigned char)s1[i] != (unsigned char)s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		if ((unsigned char)src[counter] != (unsigned char)dest[counter])
+			return ((unsigned char)src[counter] - (unsigned char)dest[counter]);
+		counter++;
 	}
-	if (i < c)
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	return (0);
 }
-/*
-int	main(void)
-{
-	const char	*s1 = "test";
-	const char	*s2 = "tests";
-	size_t	c = 15;
 
-	printf("%d", ft_strncmp(s1, s2, c));
-	return (0);
-}
-*/
+// int main()
+// {
+// 	char src[] = "";
+// 	char dest[] = "";
+// 	printf("%d\n", ft_strncmp(src, dest, 1));
+// 	printf("%d\n", strncmp(src, dest, 3));
+// 	return (0);
+// }

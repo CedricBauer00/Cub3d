@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 16:32:32 by bolcay            #+#    #+#             */
-/*   Updated: 2025/08/27 16:34:21 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/02 09:49:54 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	door_handle(t_game *g, int x, int y)
+static void	door_handle(t_game *g, int x, int y) //UNUSED
 {
 	if (g->map[y][x] == 'D')
 		g->map[y][x] = '2';

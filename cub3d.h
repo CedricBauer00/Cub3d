@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:42:45 by cbauer            #+#    #+#             */
-/*   Updated: 2025/08/19 12:44:22 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 11:24:01 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define CUB3D_H
 
 # include "execution.h"
-# include "Parsing/inc/parsing.h"
+# include "inc/parsing.h"
 
 #endif

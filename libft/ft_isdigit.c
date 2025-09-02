@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 16:11:25 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/08 17:21:06 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/08 10:53:31 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/27 15:18:46 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
-/*
-#include <stdio.h>
 
-int main()
-{
-    int c;
-
-    c = 'a';
-    printf("%d", ft_isdigit(c));
-    return (0);
-}
-*/
+// int main()
+// {
+// 	// printf("%d\n", ft_isdigit(47));
+// 	int    i = '0';
+//     while (i <= '9')
+//     {
+//         printf("%d",ft_isdigit(i));
+//         i++;
+//     }
+// 	return (0);
+// }

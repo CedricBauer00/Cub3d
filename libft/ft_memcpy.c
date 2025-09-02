@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 14:37:30 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/10 19:06:22 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/10 15:43:43 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/26 16:54:22 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,28 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char		*c_dst;
-	const unsigned char	*c_src;
-	size_t				i;
+	size_t				counter;
+	unsigned char		*buffer;
+	const unsigned char	*source;
 
-	if (dst == NULL && src == NULL)
-		return (dst);
-	i = 0;
-	c_dst = (unsigned char *) dst;
-	c_src = (const unsigned char *) src;
-	while (i < n)
+	source = (const unsigned char *)src;
+	buffer = (unsigned char *)dst;
+	counter = 0;
+	if (dst == 0 && src == 0)
+		return (0);
+	while (counter < n)
 	{
-		c_dst[i] = c_src[i];
-		i++;
+		buffer[counter] = source[counter];
+		counter++;
 	}
 	return (dst);
 }
-/*
-#include <stdio.h>
-#include <string.h>
 
-int main()
-{
-    char dst[20];
-    const char src[15] = "123456789123456";
-    size_t n = sizeof(src) - 1;
-
-    ft_memcpy(dst, src, n);
-    dst[n] = '\0';
-    printf("%s", ft_memcpy(dst, src, n));
-    return (0);
-}
-*/
+// int main()
+// {
+// 	char dst[10];
+// 	char src[] = "asdfgfff";
+// 	ft_memcpy(dst, src, 5);
+// 	printf("%s\n", dst);
+// 	return (0);
+// }
