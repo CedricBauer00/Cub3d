@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 17:08:52 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/28 12:16:52 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/02 15:02:33 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ int	wall_check_up(t_game *g)
 	{
 		new_x = g->player->x + (int)round(cos(angle) * i);
 		new_y = g->player->y - (int)round(sin(angle) * i);
-		if (g->map[new_y / TS][new_x / TS] == '1' || g->map[new_y / TS][new_x / TS] == 'D')
+		if (g->map[new_y / TS][new_x / TS] == '1'
+				|| g->map[new_y / TS][new_x / TS] == 'D')
 			return (-1);
 		i++;
 	}
-	if (g->map[new_y / TS][new_x / TS] == '1' || g->map[new_y / TS][new_x / TS] == 'D')
+	if (g->map[new_y / TS][new_x / TS] == '1'
+			|| g->map[new_y / TS][new_x / TS] == 'D')
 		return (-1);
 	return (0);
 }
@@ -67,11 +69,13 @@ int	wall_check_down(t_game *g)
 	{
 		new_x = g->player->x - (int)round(cos(angle) * i);
 		new_y = g->player->y + (int)round(sin(angle) * i);
-		if (g->map[new_y / TS][new_x / TS] == '1' || g->map[new_y / TS][new_x / TS] == 'D')
+		if (g->map[new_y / TS][new_x / TS] == '1'
+				|| g->map[new_y / TS][new_x / TS] == 'D')
 			return (-1);
 		i++;
 	}
-	if (g->map[new_y / TS][new_x / TS] == '1' || g->map[new_y / TS][new_x / TS] == 'D')
+	if (g->map[new_y / TS][new_x / TS] == '1'
+			|| g->map[new_y / TS][new_x / TS] == 'D')
 		return (-1);
 	return (0);
 }
@@ -89,11 +93,13 @@ int	wall_check_left(t_game *g)
 	{
 		new_x = g->player->x - (int)round(sin(angle) * i);
 		new_y = g->player->y - (int)round(cos(angle) * i);
-		if (g->map[new_y / TS][new_x / TS] == '1' || g->map[new_y / TS][new_x / TS] == 'D')
+		if (g->map[new_y / TS][new_x / TS] == '1'
+				|| g->map[new_y / TS][new_x / TS] == 'D')
 			return (-1);
 		i++;
 	}
-	if (g->map[new_y / TS][new_x / TS] == '1' || g->map[new_y / TS][new_x / TS] == 'D')
+	if (g->map[new_y / TS][new_x / TS] == '1'
+			|| g->map[new_y / TS][new_x / TS] == 'D')
 		return (-1);
 	return (0);
 }
@@ -111,11 +117,13 @@ int	wall_check_right(t_game *g)
 	{
 		new_x = g->player->x + (int)round(sin(angle) * i);
 		new_y = g->player->y + (int)round(cos(angle) * i);
-		if (g->map[new_y / TS][new_x / TS] == '1' || g->map[new_y / TS][new_x / TS] == 'D')
+		if (g->map[new_y / TS][new_x / TS] == '1'
+				|| g->map[new_y / TS][new_x / TS] == 'D')
 			return (-1);
 		i++;
 	}
-	if (g->map[new_y / TS][new_x / TS] == '1' || g->map[new_y / TS][new_x / TS] == 'D')
+	if (g->map[new_y / TS][new_x / TS] == '1'
+			|| g->map[new_y / TS][new_x / TS] == 'D')
 		return (-1);
 	return (0);
 }

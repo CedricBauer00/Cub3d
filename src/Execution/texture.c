@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:32:36 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/02 09:48:32 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 15:08:42 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ mlx_texture_t	*check_sides(t_game *g, t_tex *t, int side, t_ray ray)
 	}
 }
 
-static void	draw_vertical_init(t_ray r, int check, t_game *g, t_tex *t) // UNUSED
+static void	draw_vertical_init(t_ray r, int check, t_game *g, t_tex *t)
 {
 	if (check == 0)
 		t->wall_x = r.hit_y;

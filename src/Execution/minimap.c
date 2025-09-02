@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:34:41 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/02 12:00:48 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 15:05:28 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	in_bounds_check(mlx_image_t *minimap, int *miniX, int *miniY) //UNUSED
+static void	in_bounds_check(mlx_image_t *minimap, int *miniX, int *miniY)
 {
 	if (*miniX < 0)
 		*miniX = 0;
@@ -49,6 +49,15 @@ void	draw_character(t_game *game, mlx_image_t *minimap)
 	}
 }
 
+static int	check_minimap(t_game *game, int l, int k)
+{
+	if (game->map[l][k] == '0' || game->map[l][k] == 'N'
+		|| game->map[l][k] == 'S' || game->map[l][k] == 'W'
+		|| game->map[l][k] == 'E')
+		return (1);
+	return (0);
+}
+
 void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l)
 {
 	int	k;
@@ -58,7 +67,7 @@ void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l)
 	{
 		j = 0;
 		k = -1;
-		if (i % (TS / 7) == 0 && l < game->mheight)
+		if (i++ % (TS / 7) == 0 && l < game->mheight)
 			l++;
 		while (j < (int)minimap->width && k < game->mwidth)
 		{
@@ -67,17 +76,13 @@ void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l)
 			if (l >= 0 && k >= 0 && l < game->mheight && k < game->mwidth)
 			{
 				if (game->map[l][k] == '1')
-					mlx_put_pixel(minimap, j, i, 0xFFFFFFAA);
-				else if (game->map[l][k] == '0' || game->map[l][k] == 'N'
-					|| game->map[l][k] == 'S' || game->map[l][k] == 'W'
-					|| game->map[l][k] == 'E' || game->map[l][k] == '2')
-					mlx_put_pixel(minimap, j, i, 0x000000AA);
-				else if (game->map[l][k] == 'D')
-					mlx_put_pixel(minimap, j, i, 0xFF00FFAA);
+					mlx_put_pixel(minimap, j++, i, 0xFFFFFFAA);
+				else if (check_minimap(game, l, k) == 1)
+					mlx_put_pixel(minimap, j++, i, 0x000000AA);
+				else if (game->map[l][k] == 'D' || game->map[l][k] == '2')
+					mlx_put_pixel(minimap, j++, i, 0xFF00FFAA);
 			}
-			j++;
 		}
-		i++;
 	}
 	draw_character(game, minimap);
 }

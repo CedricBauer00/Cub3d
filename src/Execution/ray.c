@@ -6,42 +6,11 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/28 12:17:20 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/02 15:03:36 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/*
-	this functions basically draws the rays. i will work on it more because
-	it doesn't fit the 42 norm at the moment.
-*/
-
-void	draw_ray_helper(t_game *game, mlx_image_t *image, int hx, int hy)
-{
-	int	i = 0;
-	double	xx;
-	double	yy;
-	int	x = game->player->x;
-	int	y = game->player->y;
-	int	steps = (int)fmax(abs(hx - x), abs(hy - y));
-	double	incx;
-	double	incy;
-
-	if (steps < 1)
-		steps = 1;
-	incx = (hx - x) / (double)steps;
-	incy = (hy - y) / (double)steps;
-	xx = x;
-	yy = y;
-	while (i <= steps)
-	{
-		mlx_put_pixel(image, (int)round(xx), (int)round(yy), 0xFF0000FF);
-		xx += incx;
-		yy += incy;
-		i++;
-	}
-}
 
 /*
 	Here we keep moving till we hit a wall. Depending on which variable is behind
@@ -82,7 +51,8 @@ int	ray_loop(t_game *game, t_player *p)
 		if (p->map_x < 0 || p->map_y < 0 || p->map_x >= game->mwidth
 			|| p->map_y >= game->mheight)
 			break ;
-		if (game->map[p->map_y][p->map_x] == '1' || game->map[p->map_y][p->map_x] == 'D')
+		if (game->map[p->map_y][p->map_x] == '1'
+				|| game->map[p->map_y][p->map_x] == 'D')
 			break ;
 	}
 	return (side);

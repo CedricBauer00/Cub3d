@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 10:50:40 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 11:35:32 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 15:13:06 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ int	init_animation(t_game *g)
 		return (-1);
 	g->gun_anim->gun_offset = 10;
 	g->gun_anim->gun_movement = false;
-	x = (g->mlx->width - g->gun_anim->gun_img->width) / 2 + (g->mlx->width - g->gun_anim->gun_img->width) / 4 - (g->mlx->width - g->gun_anim->gun_img->width) / 8;
+	x = (g->mlx->width - g->gun_anim->gun_img->width) / 2
+		+ (g->mlx->width - g->gun_anim->gun_img->width) / 4
+		- (g->mlx->width - g->gun_anim->gun_img->width) / 8;
 	y = (g->mlx->height - g->gun_anim->gun_img->height);
 	mlx_resize_image(g->gun_anim->gun_img, 200, 200);
 	mlx_image_to_window(g->mlx, g->gun_anim->gun_img, x, y);
@@ -88,7 +90,8 @@ void	move_gun(t_game *g)
 	{
 		g->timer = 0;
 		g->gun_anim->gun_movement = false;
-		g->gun_anim->gun_img->instances[0].y = g->mlx->height - g->gun_anim->gun_img->height; // reset image to original position
+		g->gun_anim->gun_img->instances[0].y = g->mlx->height
+			- g->gun_anim->gun_img->height; // reset image to original position
 		g->std = true;
 		return ;
 	}
@@ -100,7 +103,9 @@ void	move_gun(t_game *g)
 		return ;
 	g->gun_anim->gun_movement = !g->gun_anim->gun_movement; // each time boolian value gets swapped
 	if (g->gun_anim->gun_movement == true)
-		g->gun_anim->gun_img->instances[0].y = g->mlx->height - g->gun_anim->gun_img->height + g->gun_anim->gun_offset; //instance[0] erstes image; + g->gun_anim->gun_offset versetzt nach unten
+		g->gun_anim->gun_img->instances[0].y = g->mlx->height
+			- g->gun_anim->gun_img->height + g->gun_anim->gun_offset; //instance[0] erstes image; + g->gun_anim->gun_offset versetzt nach unten
 	else
-		g->gun_anim->gun_img->instances[0].y = g->mlx->height - g->gun_anim->gun_img->height;
+		g->gun_anim->gun_img->instances[0].y = g->mlx->height
+			- g->gun_anim->gun_img->height;
 }

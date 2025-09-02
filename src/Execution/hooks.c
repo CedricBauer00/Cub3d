@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/02 10:51:01 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 15:16:38 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	key(mlx_key_data_t keys, void *ptr)
 	if (signal == MLX_KEY_ESCAPE && keys.action == MLX_PRESS)
 		mlx_close_window(game->mlx);
 	if (keys.key == MLX_KEY_E && keys.action == MLX_PRESS)
-		open_door(game);
+		open_door(game, 1);
 	if (keys.key == MLX_KEY_W)
 		game->w = keys.action != MLX_RELEASE;
 	if (keys.key == MLX_KEY_A)
