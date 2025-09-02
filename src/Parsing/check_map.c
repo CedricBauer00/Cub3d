@@ -6,11 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:55:06 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 11:23:19 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 11:48:33 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../inc/cub3d.h"
 
 int	check_map(t_configs *data, char **map)
 {

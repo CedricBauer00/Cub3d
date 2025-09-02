@@ -1,6 +1,6 @@
 CMakeFiles/mlx42.dir/lib/png/lodepng.c.o: \
-  /Users/cbauer/Documents/04_Circle/cub3d/Parsing/MLX/lib/png/lodepng.c \
-  /Users/cbauer/Documents/04_Circle/cub3d/Parsing/MLX/include/lodepng/lodepng.h \
+  /Users/cbauer/Documents/04_Circle/cub3d/MLX/lib/png/lodepng.c \
+  /Users/cbauer/Documents/04_Circle/cub3d/MLX/include/lodepng/lodepng.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/string.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/_types.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/sys/_types.h \

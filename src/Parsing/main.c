@@ -6,11 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 11:23:44 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 11:48:01 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../inc/cub3d.h"
 
 int	allocate_lines(char *argv1, t_configs *data)
 {

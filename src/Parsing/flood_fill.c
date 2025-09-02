@@ -6,11 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 12:09:33 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 11:23:27 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 11:48:28 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../inc/cub3d.h"
 
 int	flood_fill(t_configs *data, int y, int x, char **map)
 {

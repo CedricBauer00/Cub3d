@@ -150,7 +150,8 @@ SOURCES = main.c \
 
 OBJECTS := $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 
-vpath %.c   src/ \
+vpath %.c   src/Parsing \
+			src/Execution \
 			get_next_line/
 vpath %.h   inc/
 

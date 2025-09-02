@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 09:46:20 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 11:32:58 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 11:52:12 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdbool.h>
 # include <math.h>
 # include "../gc/gc.h"
-# include <MLX42/MLX42.h>
+# include <../MLX42/include/MLX42/MLX42.h>
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
 

@@ -6,11 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:00:56 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 11:33:16 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 11:48:22 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../inc/cub3d.h"
 
 void	per_line(t_configs *data, char *line, int i, int len)
 {

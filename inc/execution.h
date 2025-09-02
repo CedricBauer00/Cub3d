@@ -6,14 +6,14 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/02 11:24:58 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 11:48:54 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
 # include "../libft/libft.h"
-# include "MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 # include <unistd.h>
 # include <stdbool.h>
@@ -22,7 +22,7 @@
 # include <stdio.h>
 # include <stddef.h>
 # include <fcntl.h>
-# include "inc/parsing.h"
+# include "parsing.h"
 
 # define TS 64
 # define WIDTH 1024

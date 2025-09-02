@@ -6,11 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:57:59 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 11:23:53 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 11:48:13 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../inc/cub3d.h"
 
 int	process_texture(t_configs *data, char *path, char which)
 {

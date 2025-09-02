@@ -6,11 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 12:29:54 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 11:23:31 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 11:48:25 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../inc/cub3d.h"
 
 char	*init_str(char *line, char *str, int len, int i)
 {
