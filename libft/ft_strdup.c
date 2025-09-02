@@ -3,43 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 17:18:02 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/08 17:12:40 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/08 13:58:21 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/24 10:37:51 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *str)
 {
-	size_t	i;
-	size_t	j;
-	char	*new_s;
+	size_t	len;
+	size_t	counter;
+	char	*ptr;
 
-	i = 0;
-	j = ft_strlen(s);
-	new_s = (char *) malloc(j + 1);
-	if (new_s == 0)
-		return (0);
-	while (s[i])
+	len = ft_strlen(str);
+	ptr = malloc(len * sizeof(char) + 1);
+	if (!ptr)
+		return (NULL);
+	counter = 0;
+	while (str[counter] != '\0')
 	{
-		new_s[i] = s[i];
-		i++;
+		ptr[counter] = str[counter];
+		counter++;
 	}
-	new_s[i] = '\0';
-	return (new_s);
+	ptr[counter] = '\0';
+	return (ptr);
 }
-
-/*
-#include <stdio.h>
-
-int main()
-{
-    const char *s = "broski why";
-    printf("%s", ft_strdup(s));
-    free(ft_strdup(s));
-    return (0);
-}
-*/

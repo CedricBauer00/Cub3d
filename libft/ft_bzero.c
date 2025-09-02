@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 12:50:32 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/08 17:59:24 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/10 11:58:27 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/26 16:58:50 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,24 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
-	char	*temp;
-
-	i = 0;
-	temp = (char *) s;
-	while (i < n)
-	{
-		temp[i] = 0;
-		i++;
-	}
+	ft_memset(s, 0, n);
 }
+
+// void	ft_bzero(void *s, size_t n)
+// {
+// 	size_t			counter;
+// 	unsigned char	*string;
+// 	string = (unsigned char *)s;	
+// 	counter = 0;
+// 	while (counter < n)
+// 	{
+// 		string[counter] = 0;
+// 		counter++;
+// 	}
+// }
+// int main()
+// {
+// 	char str[] = "asdasd";
+// 	printf("%s\n", ft_bzero(str, 4));
+// 	return (0);
+// }

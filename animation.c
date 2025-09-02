@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 10:50:40 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/01 12:26:18 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 11:35:32 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	load_pngs(t_game *g)
 {
 	mlx_texture_t	*png;
 
-	png = mlx_load_png("../animations/weapon1A.png");
+	png = mlx_load_png("animations/weapon1A.png");
 	if (!png)
 		return (-1);
 	g->gun_anim->gun_img = mlx_texture_to_image(g->mlx, png);
@@ -26,7 +26,7 @@ int	load_pngs(t_game *g)
 		return (-1);
 	}
 	mlx_delete_texture(png);
-	png = mlx_load_png("../animations/weapon1B.png");
+	png = mlx_load_png("animations/weapon1B.png");
 	if (!png)
 		return (-1);
 	g->gun_anim->fire_gun = mlx_texture_to_image(g->mlx, png);

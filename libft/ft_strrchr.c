@@ -3,42 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 17:18:20 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/10 16:47:16 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/08 14:04:15 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/26 16:07:34 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *str, int c)
 {
-	int	i;
-	int	j;
+	size_t	counter;
+	char	*i;
+	int		last;
 
-	i = 0;
-	j = -1;
-	while (s[i])
+	last = ft_strlen(str);
+	i = NULL;
+	counter = 0;
+	while (str[counter] != '\0')
 	{
-		if (s[i] == (char) c)
-			j = i;
-		i++;
+		if (str[counter] == (char)c)
+			i = (char *)(str + counter);
+		counter++;
 	}
-	if (j != -1)
-		return ((char *) &s[j]);
-	else if (s[i] == (char) c)
-		return ((char *) &s[i]);
-	return (0);
+	if ((char)c == '\0')
+		return ((char *)(str + last));
+	return (i);
 }
-/*
-#include <stdio.h>
 
-int main()
-{
-    const char *s = "yoo how you doin";
-    int c = 'o';
-    printf("%s", ft_strrchr(s, c));
-    return (0);
-}
-*/
+// #include <stdio.h>
+// int main()
+// {
+// 	char *test = "teste";
+// 	printf("%s\n", ft_strrchr(test, '\0'));
+// 	return 0;
+// }

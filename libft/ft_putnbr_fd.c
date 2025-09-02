@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 10:54:16 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/09 12:50:00 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/17 19:14:52 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/26 10:38:20 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,32 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	long	copy;
-	char	number[10];
-	int		i;
+	int	res;
 
-	copy = n;
-	i = 0;
-	if (copy == 0)
+	if (n == 0)
 	{
 		write(fd, "0", 1);
 		return ;
 	}
-	if (copy < 0)
+	if (n == -2147483648)
 	{
-		copy *= -1;
-		write (fd, "-", 1);
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	while (copy > 0)
+	if (n < 0)
 	{
-		number[i++] = copy % 10 + 48;
-		copy /= 10;
+		write(fd, "-", 1);
+		n = -n;
 	}
-	while (i > 0)
-	{
-		write (fd, &number[--i], 1);
-	}
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	res = n % 10 + '0';
+	write(fd, &res, 1);
 }
-/*
-int	main(void)
-{
-	ft_putnbr_fd(-2147483648, 1);
-}
-*/
+
+// int main()
+// {
+// 	// ft_putnbr_fd(123123, 1);
+// 	ft_putnbr_fd(-2147483648, 4);
+// 	return (0);
+// }

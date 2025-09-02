@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 18:21:49 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/08 19:59:17 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/18 11:11:04 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/18 15:08:06 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned int	i;
+	unsigned int	counter;
 
-	i = 0;
-	while (s[i])
+	counter = 0;
+	if (!s || *f == 0)
+		return ;
+	while (s[counter] != '\0')
 	{
-		f(i, &s[i]);
-		i++;
+		f(counter, &s[counter]);
+		counter++;
 	}
 }

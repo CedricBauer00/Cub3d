@@ -3,83 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 15:07:49 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/10 16:36:56 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/21 10:01:11 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/26 16:53:27 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	lenght(int n);
-static char	*zero_handling(int n);
+static int	ft_countint(int n)
+{
+	int		counter;
+
+	counter = 0;
+	if (n < 0)
+		counter++;
+	while (n != 0)
+	{
+		n = n / 10;
+		counter++;
+	}
+	return (counter);
+}
 
 char	*ft_itoa(int n)
 {
-	long	copy;
-	int		j;
-	char	*number;
+	char	*intrep;
+	int		counter;
 
-	copy = (long)n;
-	j = lenght(n);
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	if (n == 0)
-		number = zero_handling(n);
-	else
-		number = (char *)malloc(lenght(n) + 1);
-	if (!number)
-		return (NULL);
-	if (copy < 0)
+		return (ft_strdup("0"));
+	counter = ft_countint(n);
+	intrep = (char *)malloc((counter + 1) * sizeof(char));
+	if (!intrep)
+		return (0);
+	if (n < 0)
 	{
-		copy *= -1;
-		number[0] = '-';
+		n = -n;
+		intrep[0] = '-';
 	}
-	while (copy > 0 && n != 0)
+	intrep[counter] = '\0';
+	counter--;
+	while (n > 0)
 	{
-		number[--j] = copy % 10 + 48;
-		copy /= 10;
+		intrep[counter] = (n % 10) + '0';
+		counter--;
+		n = n / 10;
 	}
-	number[lenght(n)] = '\0';
-	return (number);
+	return (intrep);
 }
 
-static int	lenght(int n)
-{
-	long	i;
-	int		count;
+// #include <stdio.h>
+// #include <unistd.h>
 
-	i = n;
-	count = 0;
-	if (i < 0)
-	{
-		i *= -1;
-		count++;
-	}
-	if (i == 0)
-		count++;
-	while (i > 0)
-	{
-		i /= 10;
-		count++;
-	}
-	return (count);
-}
-
-static char	*zero_handling(int n)
-{
-	char	*zero;
-
-	zero = (char *)malloc(n + 2);
-	if (!zero)
-		return (NULL);
-	zero[0] = '0';
-	return (zero);
-}
-/*
-int	main(void)
-{
-    int n = -623;
-    printf("%s", ft_itoa(n));
-    return (0);
-}
-*/
+// int main()
+// {
+// 	char *str = ft_itoa(668);
+// 	printf("%s\n", str);
+// 	// write(1, str, 8);
+// 	return (0);
+// }

@@ -3,43 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 20:25:22 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/08 20:40:20 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/08 11:21:44 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/26 16:56:06 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i;
-	size_t	s_len;
+	unsigned int	counter;
 
-	i = 0;
-	s_len = ft_strlen(src);
-	if (size > 0)
+	counter = 0;
+	if (dstsize == 0)
+		return (ft_strlen(src));
+	while (counter + 1 < dstsize && src[counter])
 	{
-		while (src[i] && i < size - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		dst[counter] = src[counter];
+		counter++;
 	}
-	return (s_len);
+	dst[counter] = '\0';
+	return (ft_strlen(src));
 }
 
-/*
-#include <stdio.h>
+// #include <stdio.h>
 
-int main()
-{
-    char dst[10] = "hey yo yoo";
-    const char *src = "hey y";
-    size_t size = 6;
-    printf("%zu", ft_strlcpy(dst, src, size));
-    return (0);
-}
-*/
+// int main()
+// {
+// 	char *dest;
+// 	printf("%d\n", ft_strlcpy(dest, "lorem", 15));
+//     write(1, "\n", 1);
+//     write(1, dest, 15);
+// 	return (0);
+// // 	char src[] = "abcde";
+// // 	char dest[] = "hahahah";
+// // 	char test[] = "hahahah";
+// // 	int len; 
+// // 	len = 10;
+// // 	printf("%d\n", ft_strlcpy(src, dest, len));
+// // 	printf("%s\n", dest);
+// }
+// int main()
+// {
+// 	char src[] = "isws";
+// 	char dest[] = "127";
+// 	printf("%d\n", ft_strlcpy(src, dest, 13));
+// 	printf("%s\n", dest);
+// 	return (0);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 18:05:26 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/08 18:30:32 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/18 11:47:49 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/18 15:37:36 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int		i;
-	unsigned int		j;
-	char				*new_s;
+	unsigned int	counter;
+	size_t			len;
+	char			*newstr;
 
-	i = 0;
-	j = ft_strlen(s);
-	new_s = (char *)malloc (j + 1);
-	if (!new_s)
+	len = ft_strlen(s);
+	newstr = (char *)malloc((len + 1) * sizeof(char));
+	if (!newstr)
 		return (NULL);
-	while (i < j)
+	counter = 0;
+	while (s[counter] != '\0')
 	{
-		new_s[i] = f(i, s[i]);
-		i ++;
+		newstr[counter] = f(counter, s[counter]);
+		counter++;
 	}
-	new_s[i] = '\0';
-	return (new_s);
+	newstr[counter] = '\0';
+	return (newstr);
 }

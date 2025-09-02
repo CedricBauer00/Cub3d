@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 13:47:57 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/11 15:38:34 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/14 13:44:14 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/26 16:54:37 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,32 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	i;
-	char	*t_dst;
-	char	*t_src;
+	size_t				counter;
+	unsigned char		*destination;
+	const unsigned char	*source;
 
-	if (!dst && !src)
-		return (NULL);
-	t_dst = (char *) dst;
-	t_src = (char *) src;
-	if (t_dst < t_src)
+	destination = (unsigned char *)dst;
+	source = (const unsigned char *)src;
+	if (len == 0)
+		return (dst);
+	if (destination > source)
 	{
-		i = 0;
-		while (i < len)
+		counter = len;
+		while (counter > 0)
 		{
-			t_dst[i] = t_src[i];
-			i++;
+			destination[counter - 1] = source[counter - 1];
+			counter--;
 		}
 	}
-	if (t_dst > t_src)
-	{
-		while (len-- > 0)
-			t_dst[len] = t_src[len];
-	}
+	else
+		ft_memcpy(dst, src, len);
 	return (dst);
 }
+
+// int main()
+// {
+// 	char dst[] = "DSDSDSDSD";
+// 	const char src[] = "AAAAAAAA";
+// 	printf("%s\n", ft_memmove(dst, src, 4));
+// 	return (0);
+// }

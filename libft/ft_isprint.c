@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 16:11:53 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/08 17:20:54 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/08 11:12:58 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/09 15:07:58 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,9 @@ int	ft_isprint(int c)
 		return (1);
 	return (0);
 }
+
+// int main()
+// {
+// 	printf("%d\n", ft_isprint(30));
+// 	return (0);
+// }

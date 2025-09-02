@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 13:26:20 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/10 18:17:59 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/14 20:38:53 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/26 16:54:04 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,24 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t			i;
-	unsigned char	*j;
-	unsigned char	k;
+	const unsigned char		*string;
+	size_t					counter;
 
-	i = 0;
-	j = (unsigned char *) s;
-	k = (unsigned char) c;
-	while (i < n)
+	string = (const unsigned char *)s;
+	counter = 0;
+	while (counter < n)
 	{
-		if (j[i] == k)
-			return ((unsigned char *) &j[i]);
-		i++;
+		if (string[counter] == (unsigned char)c)
+		{
+			return ((void *)(&string[counter]));
+		}
+		counter++;
 	}
-	return (0);
+	return (NULL);
 }
-/*
-#include <stdio.h>
-
-int main()
-{
-    const char s[] = "howdy";
-    int c = 'o';
-    size_t n = 5;
-    printf("%s", ft_memchr(s, c, n));
-    return (0);
-}
-*/
+// int main()
+// {
+// 	char	str[] = "aasdasFFffdasd";
+// 	printf("%s\n", ft_memchr(str, 'F', 10));
+// 	return (0);
+// }

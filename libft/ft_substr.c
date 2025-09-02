@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:11:25 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/09 22:30:56 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/17 12:15:07 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/18 14:50:10 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,29 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*new_s;
+	char	*substr;
+	size_t	counter;
 	size_t	i;
-	size_t	s_len;
 
-	if (!s)
-		return (NULL);
-	i = 0;
-	s_len = ft_strlen(s);
-	if (start > s_len)
+	if (len == 0)
 		return (ft_strdup(""));
-	if (len > s_len - start)
-		len = s_len - start;
-	new_s = (char *)malloc(len + 1);
-	if (!new_s)
+	if (!s)
+		return (0);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	substr = (char *)malloc((len + 1) * sizeof(char));
+	if (!substr)
 		return (NULL);
-	while (i < len)
+	counter = start;
+	i = 0;
+	while (counter < len + start)
 	{
-		new_s[i] = s[start + i];
+		substr[i] = s[counter];
+		counter++;
 		i++;
 	}
-	new_s[i] = '\0';
-	return (new_s);
+	substr[i] = '\0';
+	return (substr);
 }
-
-/*
-#include <stdio.h>
-
-int main()
-{
-    char const *s = "the new string";
-    unsigned int start = 4;
-    size_t len = 6;
-    printf("%s", ft_substr(s, start, len));
-    return (0);
-}
-*/

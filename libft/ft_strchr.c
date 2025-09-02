@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 16:31:31 by bolcay            #+#    #+#             */
-/*   Updated: 2024/11/10 16:45:10 by bolcay           ###   ########.fr       */
+/*   Created: 2024/10/08 14:04:15 by cbauer            #+#    #+#             */
+/*   Updated: 2024/10/26 16:56:16 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,31 @@
 
 char	*ft_strchr(const char *str, int c)
 {
-	int	i;
+	int	counter;
 
-	i = 0;
-	while (str[i] != '\0')
+	counter = 0;
+	while (str[counter] != '\0')
 	{
-		if (str[i] == (char)c)
-			return ((char *)&str[i]);
-		i++;
+		if (str[counter] == (char)c)
+			return ((char *)&str[counter]);
+		counter++;
 	}
-	if (str[i] == (char)c)
-		return ((char *)&str[i]);
-	return (0);
+	if ((char)c == '\0')
+		return ((char *)(str + counter));
+	return (NULL);
 }
+
+// int main()
+// {
+// 	char str[] = "Hello World!";
+// 	printf("%s\n", ft_strchr(str, '\0'));
+// 	return (0);
+// }
+// if (!(str = ft_strchr(str2, '\0')))
+//         ft_print_result("NULL");
+//     else
+//     {
+//         ft_print_result(str);
+//         if (str != str2 + 7)
+//             ft_print_result("\nReturn value is false");
+//     }
