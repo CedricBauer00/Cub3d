@@ -63,6 +63,10 @@ Friday:
 	added a delete function for the images that we load and put that plus the gc free function to the exit key.
 	now we have doors that can be opened and closed!! doors are defined as 2 in the map but can be changed later.
 
+02.09 Tuesday
+	fixed norm errors.
+	what's there to do?
+		there is a problem with the minimap. when the mapsize is too big, the minimap also becomes too big.
 
 compass directions:
 	N = up
