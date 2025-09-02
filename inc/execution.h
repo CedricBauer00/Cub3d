@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/02 15:24:30 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/02 17:53:54 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 # define ROT_SPEED 0.003
 # define PI 3.1415926535897932
 # define RAY_N WIDTH
+# define MAX_MINIMAP_WIDTH 200
+# define MAX_MINIMAP_HEIGHT 150
+# define MIN_MINIMAP_SCALE 3
+# define MAX_MINIMAP_SCALE 10
 
 typedef struct s_ray
 {
@@ -125,6 +129,7 @@ typedef struct s_game
 	bool		move;
 	bool		std;
 	int			show;
+	int			minimap_scale;
 }	t_game;
 
 // ----------------------------------------------------------------------
@@ -180,9 +185,10 @@ int			wall_check_right(t_game *g);
 //							  Minimap.c
 // ----------------------------------------------------------------------
 
-void		draw_character(t_game *game, mlx_image_t *minimap);
+void		draw_character(t_game *game, mlx_image_t *minimap, int scale);
 // prints a 2d map.
-void		draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l);
+void		draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l, int scale);
+int			calculate_minimap_scale(int map_width, int map_height);
 
 // ----------------------------------------------------------------------
 //							Mouse_button.c

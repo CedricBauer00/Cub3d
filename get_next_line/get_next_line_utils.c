@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:28:54 by ialiev            #+#    #+#             */
-/*   Updated: 2025/09/01 10:40:23 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/02 17:44:20 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_writeremainder(char **buf, int *linebreakpos)
 	int		j;
 
 	c = 0;
-	if (linebreakpos > 0)
+	if (linebreakpos != NULL)
 		c = linebreakpos[0] + 1;
 	i = gnl_strlen((*buf), 2, linebreakpos[0]);
 	line = (char *)malloc((i + 1) * sizeof(char));

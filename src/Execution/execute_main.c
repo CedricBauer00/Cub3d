@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/02 15:29:53 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/02 17:55:43 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@
 
 int	game_start(t_game *game, t_configs *data)
 {
+	int	minimap_scale;
+
 	init_texture(data, game);
 	initialize(data->map_info, game);
 	game->player->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	minimap_scale = calculate_minimap_scale(data->map_info->width, data->map_info->hight);
+	game->minimap_scale = minimap_scale;
 	game->player->minimap = mlx_new_image(game->mlx,
-			(data->map_info->width * TS) / 3, (data->map_info->hight * TS) / 3);
+			(data->map_info->width * TS) / minimap_scale, (data->map_info->hight * TS) / minimap_scale);
 	draw_player(game);
-	draw_minimap(game, game->player->minimap, 0, -1);
+	draw_minimap(game, game->player->minimap, 0, -1, minimap_scale);
 	mlx_image_to_window(game->mlx, game->player->image, 0, 0);
 	mlx_image_to_window(game->mlx, game->player->minimap, 10, 10);
 	if (init_animation(game) < 0)
