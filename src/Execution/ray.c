@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:35:31 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/02 15:03:36 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/03 11:00:58 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ray_loop(t_game *game, t_player *p)
 	the wall the ray hits we draw the wall.
 */
 
-t_ray	draw_ray(t_game *game, int check, double angle)
+void	draw_ray(t_game *game, int check, double angle)
 {
 	t_ray		r;
 	t_player	*p;
@@ -94,7 +94,6 @@ t_ray	draw_ray(t_game *game, int check, double angle)
 	if (r.draw_e >= HEIGHT)
 		r.draw_e = HEIGHT - 1;
 	draw_vertical(game, r, check, game->ray_i);
-	return (r);
 }
 
 /*
@@ -134,7 +133,6 @@ void	draw_multiple_ray(t_game *game)
 	double	start;
 	double	step;
 	int		i;
-	t_ray	ray;
 
 	fov = 60.0 * PI / 180;
 	start = game->player->angle - fov * 0.5;
@@ -143,7 +141,7 @@ void	draw_multiple_ray(t_game *game)
 	while (i < RAY_N)
 	{
 		game->ray_i = i;
-		ray = draw_ray(game, 0, start + step * i);
+		draw_ray(game, 0, start + step * i);
 		i++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/02 17:53:54 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/03 11:02:01 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define TS 64
 # define WIDTH 1024
 # define HEIGHT 720
-# define MOVE_S 5
+# define MOVE_S 3
 # define SPEED 0.03
 # define ROT_SPEED 0.003
 # define PI 3.1415926535897932
@@ -224,7 +224,7 @@ void		draw_player(t_game *game);
 int			ray_loop(t_game *game, t_player *p);
 // draw_ray function and its little helper are used to calculate
 // the distance of the red ray.
-t_ray		draw_ray(t_game *game, int check, double angle);
+void		draw_ray(t_game *game, int check, double angle);
 // looping to draw the rays for RAY_N amount of times.
 void		draw_multiple_ray(t_game *game);
 

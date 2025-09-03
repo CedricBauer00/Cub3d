@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/02 17:55:43 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/03 11:27:03 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	game_start(t_game *game, t_configs *data)
 	mlx_mouse_hook(game->mlx, mouse_button, game);
 	mlx_loop_hook(game->mlx, update_frame, game);
 	mlx_loop(game->mlx);
-	delete_textures(game);
 	mlx_terminate(game->mlx);
+	delete_textures(game);
 	return (0);
 }
 
@@ -57,7 +57,7 @@ int	execute_main(t_configs *data)
 	game->ray = gc_malloc(sizeof(t_ray), EXEC);
 	if (!game->ray)
 		return (-1);
-	game->mlx = mlx_init(WIDTH, HEIGHT, "game", true);
+	game->mlx = mlx_init(WIDTH, HEIGHT, "game", false);
 	if (!game->mlx)
 		return (-1);
 	game->tex->sky = data->textures->c_clr;

@@ -1,14 +1,14 @@
-NO              ./pngs/wall_4.png
+NO              ./pngs/wall_3.png
 
 
 
 
-SO      ./pngs/wall_4.png
-WE ./pngs/wall_4.png
+SO      ./pngs/wall_3.png
+WE ./pngs/wall_3.png
 
 
 
-EA   ./pngs/wall_4.png
+EA   ./pngs/wall_3.png
 
 F 220,100,0
 

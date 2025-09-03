@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 12:09:33 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 11:48:28 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/03 12:14:41 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,3 @@ int	set_up_fl(t_configs *data)
 		return (printf("Error: Map wall is invalid!\n"), -1);
 	return (0);
 }
-
-// for (int i = 0; i < data->m_hight; i++)
-// 	{
-// 		for (int j = 0; j < data->m_width; j++)
-// 		{
-// 			if (i == 11 && j == 27)
-// 				printf("\033[38;5;196mP\033[0m");
-// 			else
-// 				printf("%c", data->map[i][j]);
-// 			if (j < data->m_width - 1)
-// 				printf(" ");
-// 		}
-// 		printf("\n");
-// 	}
