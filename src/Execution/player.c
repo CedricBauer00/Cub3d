@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:33:53 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/02 15:33:26 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/03 13:05:21 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ void	delete_image(mlx_image_t *image)
 
 void	draw_player(t_game *game)
 {
-	// delete_image(image);
 	draw_multiple_ray(game);
 }

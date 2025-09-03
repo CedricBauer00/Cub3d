@@ -3,55 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:34:41 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/02 22:13:43 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/09/03 14:02:55 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	calculate_minimap_scale(int map_width, int map_height)
-{
-	int	potential_width;
-	int	potential_height;
-	int	scale;
-
-	if (map_width <= 0 || map_height <= 0)
-		return (MIN_MINIMAP_SCALE);
-	
-	scale = MIN_MINIMAP_SCALE;
-	while (scale <= 50)
-	{
-		potential_width = (map_width * TS) / scale;
-		potential_height = (map_height * TS) / scale;
-		if (potential_width <= MAX_MINIMAP_WIDTH
-			&& potential_height <= MAX_MINIMAP_HEIGHT)
-			return (scale);
-		scale++;
-	}
-	scale = (map_width * TS) / MAX_MINIMAP_WIDTH;
-	if ((map_height * TS) / MAX_MINIMAP_HEIGHT > scale)
-		scale = (map_height * TS) / MAX_MINIMAP_HEIGHT;
-	
-	if (scale < MIN_MINIMAP_SCALE)
-		scale = MIN_MINIMAP_SCALE;
-	
-	return (scale + 1);
-}
-
-static void	in_bounds_check(mlx_image_t *minimap, int *miniX, int *miniY)
-{
-	if (*miniX < 0)
-		*miniX = 0;
-	if (*miniY < 0)
-		*miniY = 0;
-	if (*miniX >= (int)minimap->width)
-		*miniX = minimap->width - 1;
-	if (*miniY >= (int)minimap->height)
-		*miniY = minimap->height - 1;
-}
 
 void	draw_character(t_game *game, mlx_image_t *minimap, int scale)
 {
@@ -59,11 +18,13 @@ void	draw_character(t_game *game, mlx_image_t *minimap, int scale)
 	int	miniy;
 	int	i;
 	int	j;
-	if (scale <= 0)
-		return;
+	double	player_map_x;
+	double	player_map_y;
 
-	double player_map_x = (double)game->player->x / TS;
-	double player_map_y = (double)game->player->y / TS;
+	if (scale <= 0)
+		return ;
+	player_map_x = (double)game->player->x / TS;
+	player_map_y = (double)game->player->y / TS;
 	minix = (int)((player_map_x * minimap->width) / game->mwidth);
 	miniy = (int)((player_map_y * minimap->height) / game->mheight);
 	in_bounds_check(minimap, &minix, &miniy);
@@ -82,57 +43,54 @@ void	draw_character(t_game *game, mlx_image_t *minimap, int scale)
 	}
 }
 
-static int	check_minimap(t_game *game, int l, int k)
+void	draw_minimap_check(t_game *g, t_minimap *m, int i, int j)
 {
-	if (game->map[l][k] == '0' || game->map[l][k] == 'N'
-		|| game->map[l][k] == 'S' || game->map[l][k] == 'W'
-		|| game->map[l][k] == 'E')
-		return (1);
-	return (0);
+	if (j == (int)g->player->minimap->width - 1)
+		m->k = g->mwidth - 1;
+	else
+		m->k = (j * g->mwidth) / g->player->minimap->width;
+	if (i == (int)g->player->minimap->height - 1)
+		m->l = g->mheight - 1;
+	else
+		m->l = (i * g->mheight) / g->player->minimap->height;
 }
 
-void	draw_minimap(t_game *game, mlx_image_t *minimap, int i, int l, int scale)
+void	put_pixel(t_game *g, t_minimap m, int i, int j)
 {
-	int	k;
-	int	j;
-	int	scale_step;
+	mlx_image_t *minimap;
 
-	if (scale <= 0)
-		scale = MIN_MINIMAP_SCALE;
-	scale_step = TS / scale;
-	if (scale_step <= 0)
-		scale_step = 1;
+	minimap = g->player->minimap;
+	if (m.l >= 0 && m.k >= 0 && m.l < g->mheight && m.k < g->mwidth)
+	{
+		if (g->map[m.l][m.k] == '1')
+			mlx_put_pixel(minimap, j, i, 0xFFFFFFAA);
+		else if (check_minimap(g, m.l, m.k) == 1)
+			mlx_put_pixel(minimap, j, i, 0x000000AA);
+		else if (g->map[m.l][m.k] == 'D' || g->map[m.l][m.k] == '2')
+			mlx_put_pixel(minimap, j, i, 0xFF00FFAA);
+		else
+			mlx_put_pixel(minimap, j, i, 0x808080AA);
+	}
+	else
+		mlx_put_pixel(minimap, j, i, 0x808080AA);
+}
+
+void	draw_minimap(t_game *game, mlx_image_t *minimap, int i)
+{
+	int			j;
+	t_minimap	m;
+
 	i = 0;
 	while (i < (int)minimap->height)
 	{
 		j = 0;
 		while (j < (int)minimap->width)
 		{
-			if (j == (int)minimap->width - 1)
-				k = game->mwidth - 1;
-			else
-				k = (j * game->mwidth) / minimap->width;
-			if (i == (int)minimap->height - 1)
-				l = game->mheight - 1;
-			else
-				l = (i * game->mheight) / minimap->height;
-			
-			if (l >= 0 && k >= 0 && l < game->mheight && k < game->mwidth)
-			{
-				if (game->map[l][k] == '1')
-					mlx_put_pixel(minimap, j, i, 0xFFFFFFAA);
-				else if (check_minimap(game, l, k) == 1)
-					mlx_put_pixel(minimap, j, i, 0x000000AA);
-				else if (game->map[l][k] == 'D' || game->map[l][k] == '2')
-					mlx_put_pixel(minimap, j, i, 0xFF00FFAA);
-				else
-					mlx_put_pixel(minimap, j, i, 0x808080AA);
-			}
-			else
-				mlx_put_pixel(minimap, j, i, 0x808080AA);
+			draw_minimap_check(game, &m, i, j);
+			put_pixel(game, m, i, j);
 			j++;
 		}
 		i++;
 	}
-	draw_character(game, minimap, scale);
+	draw_character(game, minimap, game->minimap_scale);
 }

@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/02 17:55:43 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/03 13:42:35 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ int	game_start(t_game *game, t_configs *data)
 	init_texture(data, game);
 	initialize(data->map_info, game);
 	game->player->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	minimap_scale = calculate_minimap_scale(data->map_info->width, data->map_info->hight);
+	minimap_scale = calculate_minimap_scale(data->map_info->width,
+			data->map_info->hight);
 	game->minimap_scale = minimap_scale;
 	game->player->minimap = mlx_new_image(game->mlx,
-			(data->map_info->width * TS) / minimap_scale, (data->map_info->hight * TS) / minimap_scale);
+			(data->map_info->width * TS) / minimap_scale,
+			(data->map_info->hight * TS) / minimap_scale);
 	draw_player(game);
-	draw_minimap(game, game->player->minimap, 0, -1, minimap_scale);
+	draw_minimap(game, game->player->minimap, 0);
 	mlx_image_to_window(game->mlx, game->player->image, 0, 0);
 	mlx_image_to_window(game->mlx, game->player->minimap, 10, 10);
 	if (init_animation(game) < 0)
@@ -57,7 +59,7 @@ int	execute_main(t_configs *data)
 	game->ray = gc_malloc(sizeof(t_ray), EXEC);
 	if (!game->ray)
 		return (-1);
-	game->mlx = mlx_init(WIDTH, HEIGHT, "game", true);
+	game->mlx = mlx_init(WIDTH, HEIGHT, "game", false);
 	if (!game->mlx)
 		return (-1);
 	game->tex->sky = data->textures->c_clr;

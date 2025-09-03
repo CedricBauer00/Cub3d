@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/02 21:57:12 by batuhan          ###   ########.fr       */
+/*   Updated: 2025/09/03 13:42:30 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	update_frame(void *ptr)
 	t_game	*game;
 
 	game = (t_game *)ptr;
-	game->move = game->w || game->a || game->s || game->d; // if one of those are true it sets the boolian to true; if one or more are true
+	game->move = game->w || game->a || game->s || game->d;
 	check_move(game, game->w, 'w');
 	check_move(game, game->a, 'a');
 	check_move(game, game->s, 's');
@@ -99,8 +99,7 @@ void	update_frame(void *ptr)
 	check_rotation(game, game->r, 'r');
 	move_gun(game);
 	draw_player(game);
-	draw_minimap(game, game->player->minimap, 0, -1, game->minimap_scale);
-	// draw_gun(game);
+	draw_minimap(game, game->player->minimap, 0);
 }
 
 void	choose_move(t_game *game, char c, int *new_x, int *new_y)

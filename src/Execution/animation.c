@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 10:50:40 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 15:13:06 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/03 13:03:52 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	move_gun(t_game *g)
 		g->timer = 0;
 		g->gun_anim->gun_movement = false;
 		g->gun_anim->gun_img->instances[0].y = g->mlx->height
-			- g->gun_anim->gun_img->height; // reset image to original position
+			- g->gun_anim->gun_img->height;
 		g->std = true;
 		return ;
 	}
@@ -101,10 +101,10 @@ void	move_gun(t_game *g)
 	g->timer = (g->timer + 1) % 7;
 	if (g->timer != 0)
 		return ;
-	g->gun_anim->gun_movement = !g->gun_anim->gun_movement; // each time boolian value gets swapped
+	g->gun_anim->gun_movement = !g->gun_anim->gun_movement;
 	if (g->gun_anim->gun_movement == true)
 		g->gun_anim->gun_img->instances[0].y = g->mlx->height
-			- g->gun_anim->gun_img->height + g->gun_anim->gun_offset; //instance[0] erstes image; + g->gun_anim->gun_offset versetzt nach unten
+			- g->gun_anim->gun_img->height + g->gun_anim->gun_offset;
 	else
 		g->gun_anim->gun_img->instances[0].y = g->mlx->height
 			- g->gun_anim->gun_img->height;

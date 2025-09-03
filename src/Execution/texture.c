@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:32:36 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/02 15:08:42 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/03 13:13:13 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,6 @@ void	draw_vertical(t_game *g, t_ray r, int check, int ray_i)
 		mlx_put_pixel(g->player->image, j, i, colour);
 		i++;
 	}
-	while (i < HEIGHT)
+	while (i < HEIGHT - 1)
 		mlx_put_pixel(g->player->image, j, i++, g->tex->floor);
 }

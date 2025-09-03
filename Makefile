@@ -146,7 +146,8 @@ SOURCES = main.c \
 		texture.c \
 		door.c \
 		animation.c \
-		mouse_button.c
+		mouse_button.c \
+		minimap_utils.c
 
 OBJECTS := $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 
