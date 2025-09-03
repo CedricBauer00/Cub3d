@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 13:09:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/03 16:00:23 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/03 16:45:51 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	initialize(t_map *maps, t_game *game)
 	if (maps->plr_dir == 'W')
 		game->player->angle = PI;
 	if (maps->plr_dir == 'E')
-		game->player->angle = PI * PI;
+		game->player->angle = PI + PI;
 	game->player->x = maps->x_pos * TS + 32;
 	game->player->y = maps->y_pos * TS + 32;
 	game->player->dir_x = cos(game->player->angle);
