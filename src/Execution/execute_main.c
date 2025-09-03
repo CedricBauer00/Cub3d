@@ -6,13 +6,11 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/03 14:29:39 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/03 14:36:06 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// mlx_loop_hook keeps updating the frame over and over
 
 int	game_start(t_game *game, t_configs *data)
 {

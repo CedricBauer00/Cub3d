@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 12:13:43 by batuhan           #+#    #+#             */
-/*   Updated: 2025/08/27 16:37:54 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/03 14:34:41 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/*
-	here at first we increase local x and y variables to check if the character 
-	will be out of bounds of the map.
-	
-	if this happens, we get an error message and it prevents us from
-	moving in that direction.if that's not the case we move the player
-	in that direction.
-
-	normally in the so_long project we had to increase/decrease x or y
-	by 1 but here we want to be able to move in the direction
-	of the angle, therefore we calculate both cos and sin of the angle
-	to get the correct direction and then multiply it by the
-	amount of movement we want to make.
-
-	draw player function is there to both draw the player in the 2d map
-	and to go into the ray calculation/drawing progress.
-*/
 
 void	move_up(t_game *game)
 {

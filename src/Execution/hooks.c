@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:58:35 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/03 14:29:43 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/03 14:35:57 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,6 @@ void	check_rotation(t_game *game, bool move, char c)
 			game->player->angle -= 2 * PI;
 	}
 }
-
-// update position of player accordingly to the key input
-//update raycasting
-//update floor
-//update wall
-//update ceiling
-// ->> updates frame continously
 
 void	update_frame(void *ptr)
 {

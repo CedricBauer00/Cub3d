@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/03 11:38:23 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/03 14:39:44 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,10 @@ int	main(int argc, char **argv)
 		return (gc_free_all(), -1);
 	gc_free(PARS);
 	//EXECUTION!
+	printf("here1!\n");
 	if (execute_main(&data) < 0)
 		return (printf("Error: Execution failed!\n"), gc_free_all(), -1);
 	gc_free_all(); //	DELETE MLX TEXTURES with mlx_delete_texture(test) - DID NOT HAPPEN YET
+	printf("here2!\n");
 	return (0);
 }
