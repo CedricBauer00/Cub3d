@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 13:09:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/02 15:14:21 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/03 14:25:35 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	initialize(t_map *maps, t_game *game)
 	game->w = false;
 	game->l = false;
 	game->r = false;
+	game->move = false;
+	game->std = false;
 }
 
 /*
