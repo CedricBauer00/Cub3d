@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:28:17 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/03 14:36:06 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/03 15:01:18 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	game_start(t_game *game, t_configs *data)
 	mlx_mouse_hook(game->mlx, mouse_button, game);
 	mlx_loop_hook(game->mlx, update_frame, game);
 	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
 	delete_textures(game);
+	mlx_terminate(game->mlx);
 	return (0);
 }
 
