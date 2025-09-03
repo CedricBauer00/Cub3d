@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 13:09:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/03 14:40:34 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/03 15:42:16 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ void	initialize(t_map *maps, t_game *game)
 	game->w = false;
 	game->l = false;
 	game->r = false;
-	// game->move = false;
-	// game->std = false;
 }
 
 void	rotate_right(t_game *game)

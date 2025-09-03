@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 11:51:36 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/02 11:48:31 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/03 15:43:00 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ uint32_t	set_color(char **d)
 		num = 0;
 		while (d[i][j])
 			num = num * 10 + (d[i][j++] - '0');
-		// color |= num; //adding bits from num into color 
-		// color <<= 8; //shifting 8 to the left
 		if (i == 0)
 			color |= (num << 24);
 		if (i == 1)
@@ -65,22 +63,9 @@ uint32_t	set_color(char **d)
 			color |= (num << 8);
 		i++;
 	}
-	color |= 255; //setting alpha = brightness
+	color |= 255;
 	return (color);
 }
-// 255, 254, 253
-// 255 = 11111111
-// 254 = 11111110
-// 253 = 11111101
-// 00000000, 00000000, 00000000, 00000000 = 00000000, 00000000, 00000000, 11111111
-// 00000000, 00000000, 00000000, 11111111 <<= 8
-// = 00000000, 00000000, 11111111, 00000000 
-// 00000000, 00000000, 11111111, 00000000 |= 00000000, 00000000, 00000000, 11111110
-// = 00000000, 00000000, 11111111, 11111110 <<= 8
-// = 00000000, 11111111, 11111110, 00000000
-// 00000000, 11111111, 11111110, 00000000 |= 00000000, 00000000, 00000000, 11111101
-// = 00000000, 11111111, 11111110, 11111101 <<= 8
-// = 11111111, 11111110, 11111101, 00000000
 
 int	process_color(t_configs *data, char *path, char which)
 {
@@ -94,13 +79,13 @@ int	process_color(t_configs *data, char *path, char which)
 	while (d[i])
 	{
 		if (d[i][0] == '\0')
-			return (printf("1Error: Invalid color code!\n"), -1);
+			return (printf("Error: Invalid color code: 1 !\n"), -1);
 		if (str_isdigit(d[i]) < 0)
-			return (printf("2Error: Invalid color code!\n"), -1);
+			return (printf("Error: Invalid color code: 2 !\n"), -1);
 		i++;
 	}
 	if (i != 3)
-		return (printf("3Error: Invalid color code!\n"), -1);
+		return (printf("Error: Invalid color code: 3 !\n"), -1);
 	if (which == 'F')
 		data->textures->f_clr = set_color(d);
 	else

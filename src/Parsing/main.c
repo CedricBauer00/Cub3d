@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/03 14:39:44 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/03 15:44:17 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	allocate_lines(char *argv1, t_configs *data)
 	str = get_next_line(fd);
 	while (str != NULL)
 	{
-		if (check_empty_line(str) == true) // if true, increment count
+		if (check_empty_line(str) == true)
 			data->lcount++;
 		free(str);
 		str = get_next_line(fd);
@@ -54,9 +54,9 @@ int	init_lines(char *argv1, t_configs *data, int fd, char *tmp)
 	data->lcount = 0;
 	while (tmp != NULL)
 	{
-		if (check_empty_line(tmp) == true) // if true, increment count
+		if (check_empty_line(tmp) == true)
 			data->lines[data->lcount++] = gc_substr(tmp, 0,
-				ft_strlen(tmp), PARS);
+					ft_strlen(tmp), PARS);
 		if (!data->lines[data->lcount - 1])
 			return (free(tmp), -1);
 		free(tmp);
@@ -127,11 +127,8 @@ int	main(int argc, char **argv)
 	if (init_lines(argv[1], &data, 0, NULL) < 0)
 		return (gc_free_all(), -1);
 	gc_free(PARS);
-	//EXECUTION!
-	printf("here1!\n");
 	if (execute_main(&data) < 0)
 		return (printf("Error: Execution failed!\n"), gc_free_all(), -1);
-	gc_free_all(); //	DELETE MLX TEXTURES with mlx_delete_texture(test) - DID NOT HAPPEN YET
-	printf("here2!\n");
+	gc_free_all();
 	return (0);
 }

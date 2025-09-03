@@ -6,13 +6,13 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/03 14:36:58 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/03 15:56:17 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
-# include "../libft/libft.h"
+# include "../src/libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 # include <unistd.h>
