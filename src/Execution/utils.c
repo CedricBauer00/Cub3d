@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 13:09:42 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/03 15:42:16 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/03 16:00:23 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 void	delete_textures(t_game *g)
 {
-	mlx_delete_texture(g->tex->no);
-	mlx_delete_texture(g->tex->so);
-	mlx_delete_texture(g->tex->we);
-	mlx_delete_texture(g->tex->ea);
-	mlx_delete_texture(g->tex->door);
-	mlx_delete_image(g->mlx, g->gun_anim->fire_gun);
-	mlx_delete_image(g->mlx, g->gun_anim->gun_img);
+	if (g->tex->no)
+		mlx_delete_texture(g->tex->no);
+	if (g->tex->so)
+		mlx_delete_texture(g->tex->so);
+	if (g->tex->we)
+		mlx_delete_texture(g->tex->we);
+	if (g->tex->ea)
+		mlx_delete_texture(g->tex->ea);
+	if (g->tex->door)
+		mlx_delete_texture(g->tex->door);
+	if (g->gun_anim->fire_gun)
+		mlx_delete_image(g->mlx, g->gun_anim->fire_gun);
+	if (g->gun_anim->gun_img)
+		mlx_delete_image(g->mlx, g->gun_anim->gun_img);
 }
 
 double	normalised_angle(double angle)
