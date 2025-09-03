@@ -6,27 +6,26 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:34:41 by batuhan           #+#    #+#             */
-/*   Updated: 2025/09/03 14:02:55 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/03 14:10:21 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_character(t_game *game, mlx_image_t *minimap, int scale)
+void	draw_character(t_game *game, mlx_image_t *minimap,
+	double player_x, double player_y)
 {
 	int	minix;
 	int	miniy;
 	int	i;
 	int	j;
-	double	player_map_x;
-	double	player_map_y;
 
-	if (scale <= 0)
+	if (game->minimap_scale <= 0)
 		return ;
-	player_map_x = (double)game->player->x / TS;
-	player_map_y = (double)game->player->y / TS;
-	minix = (int)((player_map_x * minimap->width) / game->mwidth);
-	miniy = (int)((player_map_y * minimap->height) / game->mheight);
+	player_x = (double)game->player->x / TS;
+	player_y = (double)game->player->y / TS;
+	minix = (int)((player_x * minimap->width) / game->mwidth);
+	miniy = (int)((player_y * minimap->height) / game->mheight);
 	in_bounds_check(minimap, &minix, &miniy);
 	i = -2;
 	while (i <= 2)
@@ -57,7 +56,7 @@ void	draw_minimap_check(t_game *g, t_minimap *m, int i, int j)
 
 void	put_pixel(t_game *g, t_minimap m, int i, int j)
 {
-	mlx_image_t *minimap;
+	mlx_image_t	*minimap;
 
 	minimap = g->player->minimap;
 	if (m.l >= 0 && m.k >= 0 && m.l < g->mheight && m.k < g->mwidth)
@@ -92,5 +91,5 @@ void	draw_minimap(t_game *game, mlx_image_t *minimap, int i)
 		}
 		i++;
 	}
-	draw_character(game, minimap, game->minimap_scale);
+	draw_character(game, minimap, 0.0, 0.0);
 }

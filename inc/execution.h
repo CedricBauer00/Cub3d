@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 12:15:15 by bolcay            #+#    #+#             */
-/*   Updated: 2025/09/03 14:03:09 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/09/03 14:07:40 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -459,7 +459,8 @@ int			wall_check_right(t_game *g);
 //							  Minimap.c
 // ----------------------------------------------------------------------
 
-void		draw_character(t_game *game, mlx_image_t *minimap, int scale);
+void		draw_character(t_game *game, mlx_image_t *minimap,
+				double player_x, double player_y);
 // prints a 2d map.
 void		draw_minimap(t_game *game, mlx_image_t *minimap, int i);
 
