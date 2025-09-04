@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:00:56 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/04 08:54:52 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/04 09:05:48 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,13 @@ int	create_map(t_configs *data)
 		i++;
 	}
 	if (allocate_map(data, 0) < 0)
-		return (delete_texture_main(data), -1);
+		return (del_txts(data), -1);
 	init_map(data, 0, 0, 0);
 	if (check_map(data, data->map) < 0)
-		return (delete_texture_main(data), -1);
+		return (del_txts(data), -1);
 	if (player(data) < 0)
-		return (delete_texture_main(data), -1);
+		return (del_txts(data), -1);
 	if (set_up_fl(data) < 0)
-		return (delete_texture_main(data), -1);
+		return (del_txts(data), -1);
 	return (0);
 }
