@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 11:51:36 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/04 08:27:46 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/04 09:02:41 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ int	process_color(t_configs *data, char *path, char which)
 	while (d[i])
 	{
 		if (d[i][0] == '\0')
-			return (printf("Error: Invalid color code: 1 !\n"), -1);
+			return (delete_texture_main(data), printf("Error: Invalid color code: 1 !\n"), -1);
 		if (str_isdigit(d[i]) < 0)
-			return (printf("Error: Invalid color code: 2 !\n"), -1);
+			return (delete_texture_main(data), printf("Error: Invalid color code: 2 !\n"), -1);
 		i++;
 	}
 	if (i != 3)
-		return (printf("Error: Invalid color code: 3 !\n"), -1);
+		return (delete_texture_main(data), printf("Error: Invalid color code: 3 !\n"), -1);
 	if (which == 'F')
 		data->textures->f_clr = set_color(d);
 	else
