@@ -6,7 +6,7 @@ EA ./pngs/wall_3.png
 F 220,100,0
 C 225,30,0
 
-EA ./tex/tmp_ea.png
+EA ./pngs/wall_3.png
 
 111111
 100101
