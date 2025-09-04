@@ -6,7 +6,7 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 09:46:20 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/03 15:56:03 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/04 08:46:02 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,10 @@ int			process_color(t_configs *data, char *path, char which);
 int			check_textures(t_configs *data, int i, char *path, int error);
 
 // ----------------------------------------------------------------------
-//							INIT_MAP
+//							PROCESS_TEXTURE
 // ----------------------------------------------------------------------
 
+void		delete_texture_main(t_configs *data);
 int			process_texture(t_configs *data, char *path, char which);
 
 // ----------------------------------------------------------------------

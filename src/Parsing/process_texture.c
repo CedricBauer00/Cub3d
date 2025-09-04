@@ -6,11 +6,24 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:57:59 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/03 15:44:43 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/04 08:46:39 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+
+void	delete_texture_main(t_configs *data)
+{
+	if (data->textures->no_text)
+		mlx_delete_texture(data->textures->no_text);
+	if (data->textures->so_text)
+		mlx_delete_texture(data->textures->so_text);
+	if (data->textures->we_text)
+		mlx_delete_texture(data->textures->we_text);
+	if (data->textures->ea_text)
+		mlx_delete_texture(data->textures->ea_text);
+}
 
 int	process_texture(t_configs *data, char *path, char which)
 {
@@ -18,7 +31,7 @@ int	process_texture(t_configs *data, char *path, char which)
 
 	test = mlx_load_png(path);
 	if (!test)
-		return (printf("Error: mlx_load_png failed!\n"), -1);
+		return (delete_texture_main(data), -1);
 	if (which == 'N')
 		data->textures->no_text = test;
 	if (which == 'S')
