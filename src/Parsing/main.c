@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 11:32:55 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/03 16:00:03 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/05 07:09:51 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int	main(int argc, char **argv)
 	if (correct_name(argv[1]) < 0)
 		return (gc_free_all(), -1);
 	if (init_lines(argv[1], &data, 0, NULL) < 0)
-		return (gc_free_all(), -1);
+		return (del_txts(&data), gc_free_all(), -1);
 	gc_free(PARS);
 	if (execute_main(&data) < 0)
 		return (printf("Error: Execution failed!\n"), gc_free_all(), -1);

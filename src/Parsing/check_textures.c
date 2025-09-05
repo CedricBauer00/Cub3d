@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 11:51:36 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/04 09:05:06 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/05 07:08:37 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int	check_textures(t_configs *data, int i, char *path, int error)
 	data->textures = (t_textures *)gc_malloc(sizeof(t_textures), TEXT);
 	if (!data->textures)
 		return (-1);
+	data->textures->count = 0;
 	while (++i < 6)
 	{
 		path = get_path(data->txtrs[i]);
@@ -115,7 +116,7 @@ int	check_textures(t_configs *data, int i, char *path, int error)
 				error = process_texture(data, path, data->txtrs[i][0]);
 		}
 		if (error < 0)
-			return (del_txts(data), -1);
+			return (-1);
 	}
 	return (0);
 }

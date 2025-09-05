@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:57:59 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/04 09:05:20 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/05 07:09:57 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 void	del_txts(t_configs *data)
 {
-	if (data->textures->no_text)
+	if (data->textures->count > 0)
 		mlx_delete_texture(data->textures->no_text);
-	if (data->textures->so_text)
+	if (data->textures->count > 1)
 		mlx_delete_texture(data->textures->so_text);
-	if (data->textures->we_text)
+	if (data->textures->count > 2)
 		mlx_delete_texture(data->textures->we_text);
-	if (data->textures->ea_text)
+	if (data->textures->count > 3)
 		mlx_delete_texture(data->textures->ea_text);
 }
 
@@ -40,5 +40,6 @@ int	process_texture(t_configs *data, char *path, char which)
 		data->textures->we_text = test;
 	if (which == 'E')
 		data->textures->ea_text = test;
+	data->textures->count++;
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
+/*   By: batuhan <batuhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 09:46:20 by cbauer            #+#    #+#             */
-/*   Updated: 2025/09/04 09:04:09 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/09/05 07:06:32 by batuhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_textures
 	mlx_texture_t	*so_text;
 	mlx_texture_t	*we_text;
 	mlx_texture_t	*ea_text;
+	int				count;
 
 	//floor/ceeling
 	uint32_t		f_clr;
